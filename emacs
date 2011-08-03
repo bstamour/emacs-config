@@ -52,6 +52,7 @@
 
 ;; Turn off auto-indentation modes for C-like languages.
 (require 'cc-mode)
+(setq-default indent-tabs-mode nil)
 (setq c-basic-offset 2)
 (setq c-default-style '((java-mode . "java")
                         (awk-mode . "awk")
