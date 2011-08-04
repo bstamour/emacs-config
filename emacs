@@ -7,7 +7,10 @@
 (add-to-list 'load-path "~/.emacs.d")
 (add-to-list 'load-path "~/.emacs.d/color-theme")
 (add-to-list 'load-path "~/.emacs.d/slime")
-(add-to-list 'load-path "~/.emacs.d/darkroom-mode")
+(add-to-list 'load-path "~/.emacs.d/custom-color-themes")
+(add-to-list 'load-path "~/.emacs.d/etc")
+
+
 
 ;; A boolean flag to determine if I am on my Macbook or not.
 (setq on-laptop (equal (system-name) "Bryan-St-Amours-MacBook.local"))
@@ -34,6 +37,9 @@
 
 ;; Sexual color theme.
 (require 'color-theme)
+
+;(load "packages/color-theme/color-theme.el")
+
 (color-theme-initialize)
 (require 'billc)
 (color-theme-billc)
@@ -107,7 +113,7 @@
 
 
 ;; Haskell editing support.
-(load "~/.emacs.d/haskell-mode/haskell-site-file")
+(load "haskell-mode/haskell-site-file")
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 
