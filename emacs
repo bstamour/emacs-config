@@ -2,6 +2,7 @@
 ;; Emacs config file.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
 ;; Update the load path.
 (add-to-list 'load-path "~/.emacs.d")
 (add-to-list 'load-path "~/.emacs.d/color-theme")
@@ -15,18 +16,13 @@
 (setq on-school-server (equal (system-name) "bravo"))
 
 
-
-
-;; Git support.
-(require 'git)
-(require 'git-blame)
-
 ;; Move buffers around with ease.
 (require 'buffer-move)
 (global-set-key (kbd "<C-S-up>")     'buf-move-up)
 (global-set-key (kbd "<C-S-down>")   'buf-move-down)
 (global-set-key (kbd "<C-S-left>")   'buf-move-left)
 (global-set-key (kbd "<C-S-right>")  'buf-move-right)
+
 
 ;; ORG Mode.
 ;(require 'org-install)
@@ -35,35 +31,37 @@
 ;(define-key global-map "\C-ca" 'org-agenda)
 ;(setq org-log-done t)
 
+
 ;; Sexual color theme.
 (require 'color-theme)
 (color-theme-initialize)
-;(require 'zenburn)
-;(color-theme-zenburn)
 (require 'billc)
 (color-theme-billc)
 
-;(set-background-color "cornsilk")
-;(set-foreground-color "black")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; C/C++ programming customizations.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Turn off auto-indentation modes for C-like languages.
 (require 'cc-mode)
-(setq-default indent-tabs-mode nil)
-(setq c-basic-offset 2)
+
+;; Custom C++ style.
+(c-add-style "my-style"
+             '("bsd"
+               (c-basic-offset . 2)
+               (c-offsets-alist
+                (innamespace . -)
+                (inline-open . 0)
+                (inher-cont . c-lineup-multi-inher)
+                (arglist-cont-nonempty . +)
+                (arglist-close . 0)
+                (template-args-cont . +))))
+
+;; Set default styles for languages.
 (setq c-default-style '((java-mode . "java")
                         (awk-mode . "awk")
-                        (other . "user")))
-
-(setq basic-offsets-alist '((template-args-cont . +)
-                            (arglist-close . 0)))
-
-
-
-
+                        (c-mode . "bsd")
+                        (c++-mode . "my-style")))
 
 
 ;; Make the compilation window vanish after 0.5 seconds,
@@ -86,6 +84,7 @@
 ;; Support for PHP
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; When on the school server nxhtml has problems...
 (when (not on-school-server)
   (load "nxhtml/autostart.el")
   ;; For some reason nxhtml likes to shit kittens when it loads,
@@ -101,14 +100,17 @@
                     'font-lock-beginning-of-syntax-function)))
   (setq mumamo-background-colors nil))
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Other languages.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 
 ;; Haskell editing support.
 (load "~/.emacs.d/haskell-mode/haskell-site-file")
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+
 
 ;; Support for lisp.
 (setq path-to-sbcl (if on-laptop "/usr/local/bin/sbcl" "/usr/bin/sbcl"))
@@ -116,15 +118,11 @@
 (require 'slime)
 (slime-setup)
 
-;(require 'php-mode)
-;(autoload 'php-mode "php-mode" "Major mode for editing php code." t)
-;(add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
-;(add-to-list 'auto-mode-alist '("\\.inc$" . php-mode))
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Other customizations.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 
 ;; Easier use of M-x
 (global-set-key "\C-x\C-m" 'execute-extended-command)
@@ -164,9 +162,6 @@
 
 ;; Change the yes/no prompts to y/n instead.
 (defalias 'yes-or-no-p 'y-or-n-p)
-
-;; For distraction-free writing.
-(require 'darkroom-mode)
 
 
 
