@@ -1,6 +1,6 @@
-;;;;
-;;;; Emacs init.el
-;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Emacs config file.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -133,8 +133,8 @@
 ;; Sexual color theme.
 (require 'color-theme)
 (color-theme-initialize)
-(require 'billc)
-(color-theme-billc)
+(require 'zenburn)
+(color-theme-zenburn)
 
 ;; Move buffers around with ease.
 (require 'buffer-move)
