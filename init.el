@@ -133,8 +133,7 @@
 ;; Sexual color theme.
 (require 'color-theme)
 (color-theme-initialize)
-(require 'zenburn)
-(color-theme-zenburn)
+(color-theme-gtk-ide)
 
 ;; Move buffers around with ease.
 (require 'buffer-move)
