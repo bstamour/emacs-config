@@ -113,8 +113,8 @@
 
 ;; Make the compilation window vanish after 0.5 seconds,
 ;; unless there is an error.
-(setq compilation-window-height 8)
-(setq compilation-finish-functions 'auto-close)
+;(setq compilation-window-height 8)
+;(setq compilation-finish-functions 'auto-close)
 
 (defun auto-close (buf str)
   (if (string-match "exited abnormally" str)
