@@ -132,9 +132,9 @@
 
 ;; Sexual color theme.
 (require 'color-theme)
-(load-file "~/.emacs.d/custom-color-themes/tomorrow.el")
+(load "deeper-blue.el")
 (color-theme-initialize)
-(color-theme-tomorrow-night-eighties)
+(color-theme-deeper-blue)
 
 ;; Move buffers around with ease.
 (require 'buffer-move)
