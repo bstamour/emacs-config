@@ -132,8 +132,9 @@
 
 ;; Sexual color theme.
 (require 'color-theme)
+(load-file "~/.emacs.d/custom-color-themes/tomorrow.el")
 (color-theme-initialize)
-(color-theme-gtk-ide)
+(color-theme-tomorrow-night-eighties)
 
 ;; Move buffers around with ease.
 (require 'buffer-move)
