@@ -140,13 +140,6 @@
 (require 'slime)
 (slime-setup)
 
-;; Ocaml syntax highlighting.
-(setq auto-mode-alist
-          (cons '("\\.ml[iyl]?$" .  caml-mode) auto-mode-alist))
-(autoload 'caml-mode "ocaml" (interactive)
-  "Major mode for editing Caml code." t)
-(autoload 'camldebug "camldebug" (interactive) "Debug caml mode")
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; General programming settings.
