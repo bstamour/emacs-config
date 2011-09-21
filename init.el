@@ -12,6 +12,7 @@
 (add-to-list 'load-path "~/.emacs.d")
 (add-to-list 'load-path "~/.emacs.d/color-theme")
 (add-to-list 'load-path "~/.emacs.d/slime")
+(add-to-list 'load-path "~/.emacs.d/ocaml-mode")
 (add-to-list 'load-path "~/.emacs.d/custom-color-themes")
 (add-to-list 'load-path "~/.emacs.d/etc")
 
@@ -139,6 +140,13 @@
 (require 'slime)
 (slime-setup)
 
+;; Ocaml syntax highlighting.
+(setq auto-mode-alist
+          (cons '("\\.ml[iyl]?$" .  caml-mode) auto-mode-alist))
+(autoload 'caml-mode "ocaml" (interactive)
+  "Major mode for editing Caml code." t)
+(autoload 'camldebug "camldebug" (interactive) "Debug caml mode")
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; General programming settings.
@@ -165,10 +173,10 @@
 
 
 ;; Sexual color theme.
-(require 'color-theme)
-(load "deeper-blue.el")
-(color-theme-initialize)
-(color-theme-deeper-blue)
+;(require 'color-theme)
+;(load "deeper-blue.el")
+;(color-theme-initialize)
+;(color-theme-deeper-blue)
 
 ;; Move buffers around with ease.
 (require 'buffer-move)
