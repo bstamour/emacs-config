@@ -62,7 +62,7 @@
 (setq c-default-style '((java-mode . "java")
                         (awk-mode  . "awk")
                         (c-mode    . "bsd")
-                        (c++-mode  . "my-style")))
+                        (c++-mode  . "stroustrup")))
 
 ;; Spaces instead of tabs.
 (setq-default indent-tabs-mode nil)
