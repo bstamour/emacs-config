@@ -48,8 +48,8 @@
 
 ;; Custom C++ style.
 (c-add-style "my-style"
-             '("bsd"
-               (c-basic-offset . 2)
+             '("stroustrup"
+               (c-basic-offset . 4)
                (c-offsets-alist
                 (innamespace . -)
                 (inline-open . 0)
@@ -62,7 +62,7 @@
 (setq c-default-style '((java-mode . "java")
                         (awk-mode  . "awk")
                         (c-mode    . "bsd")
-                        (c++-mode  . "stroustrup")))
+                        (c++-mode  . "my-style")))
 
 ;; Spaces instead of tabs.
 (setq-default indent-tabs-mode nil)
