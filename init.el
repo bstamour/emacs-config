@@ -10,6 +10,7 @@
 
 ;; Update the load path.
 (add-to-list 'load-path "~/.emacs.d")
+(add-to-list 'load-path "~/.emacs.d/cc-mode")
 (add-to-list 'load-path "~/.emacs.d/color-theme")
 (add-to-list 'load-path "~/.emacs.d/slime")
 (add-to-list 'load-path "~/.emacs.d/ocaml-mode")
@@ -46,6 +47,22 @@
 
 (require 'cc-mode)
 
+;; This function returns 0 if the current line only has a '>' character
+;; on it, and + otherwise. Basically if I'm doing a multi-line template
+;; argument list, I want the closing > to be flush with the opening
+;; 'template' keyword, not indented like the actual template arguments.
+;;
+;; This ALMOST works correctly. It still dies on template-template
+;; arguments, but I think that's a problem with cc-mode.
+(defun indent-templates (elem)
+  (c-langelem-col elem t)
+  (let ((current-line
+         (buffer-substring-no-properties
+          (point-at-bol) (point-at-eol))))
+    (if (string-match-p "^\\s-*>" current-line)
+        0
+        '+)))
+
 ;; Custom C++ style.
 (c-add-style "my-style"
              '("bsd"
@@ -56,13 +73,14 @@
                 (inher-cont . c-lineup-multi-inher)
                 (arglist-cont-nonempty . +)
                 (arglist-close . 0)
-                (template-args-cont . +))))
+                (arglist-cont . indent-templates)
+                (template-args-cont . indent-templates))))
 
 ;; Set default styles for languages.
 (setq c-default-style '((java-mode . "java")
                         (awk-mode  . "awk")
                         (c-mode    . "bsd")
-                        (c++-mode  . "stroustrup")))
+                        (c++-mode  . "my-style")))
 
 ;; Spaces instead of tabs.
 (setq-default indent-tabs-mode nil)
