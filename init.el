@@ -65,8 +65,8 @@
 
 ;; Custom C++ style.
 (c-add-style "my-style"
-             '("bsd"
-               (c-basic-offset . 2)
+             '("stroustrup"
+               (c-basic-offset . 4)
                (c-offsets-alist
                 (innamespace . -)
                 (inline-open . 0)
