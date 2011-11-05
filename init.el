@@ -18,7 +18,7 @@
 (add-to-list 'load-path "~/.emacs.d/etc")
 
 ;; A boolean flag to determine if I am on my Macbook or not.
-(setq on-laptop (equal (system-name) "Bryan-St-Amours-MacBook.local"))
+(setq on-laptop (equal (system-name) "Bryans-MacBook.local"))
 
 ;; On the school server?
 (setq on-school-server (or (equal (system-name) "bravo")
@@ -64,23 +64,29 @@
         '+)))
 
 ;; Custom C++ style.
-(c-add-style "my-style"
+(c-add-style "my-c++-style"
              '("stroustrup"
-               (c-basic-offset . 4)
+               (c-basic-offset . 2)
                (c-offsets-alist
                 (innamespace . -)
+                (topmost-intro-cont . c-lineup-dont-change)
                 (inline-open . 0)
                 (inher-cont . c-lineup-multi-inher)
                 (arglist-cont-nonempty . +)
                 (arglist-close . 0)
-                (arglist-cont . indent-templates)
-                (template-args-cont . indent-templates))))
+                (template-args-cont . c-lineup-dont-change)
+                )))
+
+(c-add-style "my-java-style"
+             '("java"
+               (c-basic-offset . 2)))
+
 
 ;; Set default styles for languages.
-(setq c-default-style '((java-mode . "java")
+(setq c-default-style '((java-mode . "my-java-style")
                         (awk-mode  . "awk")
                         (c-mode    . "bsd")
-                        (c++-mode  . "my-style")))
+                        (c++-mode  . "my-c++-style")))
 
 ;; Spaces instead of tabs.
 (setq-default indent-tabs-mode nil)
@@ -164,6 +170,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
+
+
 ;; Make the compilation window vanish after 0.5 seconds,
 ;; unless there is an error.
 ;(setq compilation-window-height 8)
@@ -182,12 +190,15 @@
 ;; Other customizations.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-
 ;; Sexual color theme.
-;(require 'color-theme)
-;(load "deeper-blue.el")
-;(color-theme-initialize)
-;(color-theme-deeper-blue)
+(require 'color-theme)
+(color-theme-initialize)
+(require 'zenburn)
+(color-theme-zenburn)
+
+;; Prevent startup message and switch to empty *scratch*
+(setq inhibit-startup-message t)
+(setq initial-scratch-message nil)
 
 ;; Move buffers around with ease.
 (require 'buffer-move)
