@@ -1,3 +1,5 @@
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Emacs config file.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -10,7 +12,6 @@
 
 ;; Update the load path.
 (add-to-list 'load-path "~/.emacs.d")
-(add-to-list 'load-path "~/.emacs.d/cc-mode")
 (add-to-list 'load-path "~/.emacs.d/color-theme")
 (add-to-list 'load-path "~/.emacs.d/slime")
 (add-to-list 'load-path "~/.emacs.d/ocaml-mode")
@@ -37,7 +38,7 @@
              (y-or-n-p "byte compile init.el? "))
     (byte-compile-file "~/.emacs.d/init.el")))
 
-(add-hook 'kill-buffer-hook 'compile-init-file)
+;(add-hook 'kill-buffer-hook 'compile-init-file)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -54,14 +55,14 @@
 ;;
 ;; This ALMOST works correctly. It still dies on template-template
 ;; arguments, but I think that's a problem with cc-mode.
-(defun indent-templates (elem)
-  (c-langelem-col elem t)
-  (let ((current-line
-         (buffer-substring-no-properties
-          (point-at-bol) (point-at-eol))))
-    (if (string-match-p "^\\s-*>" current-line)
-        0
-        '+)))
+;(defun indent-templates (elem)
+;  (c-langelem-col elem t)
+;  (let ((current-line
+;         (buffer-substring-no-properties
+;          (point-at-bol) (point-at-eol))))
+;    (if (string-match-p "^\\s-*>" current-line)
+;        0
+;        '+)))
 
 ;; Custom C++ style.
 (c-add-style "my-c++-style"
@@ -118,12 +119,12 @@
         (when (and start (> depth 0))
           (c-put-font-lock-face start (point) 'font-lock-comment-face)))))
   nil)
-(add-hook 'c-mode-common-hook
-          (lambda ()
-            (font-lock-add-keywords
-             nil
-             '((my-c-mode-font-lock-if0 (0 font-lock-comment-face prepend)))
-             'add-to-end)))
+;(add-hook 'c-mode-common-hook
+;          (lambda ()
+;            (font-lock-add-keywords
+;             nil
+;             '((my-c-mode-font-lock-if0 (0 font-lock-comment-face prepend)))
+;             'add-to-end)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -132,20 +133,20 @@
 
 
 ;; When on the school server nxhtml has problems...
-(when (not on-school-server)
-  (load "nxhtml/autostart.el")
-  ;; For some reason nxhtml likes to shit kittens when it loads,
-  ;; this snippet prevents it from doing that...
-  (when (and (equal emacs-major-version 23)
-             (equal emacs-minor-version 3))
-    (eval-after-load "bytecomp"
-      '(add-to-list 'byte-compile-not-obsolete-vars
-                    'font-lock-beginning-of-syntax-function))
-    ;; tramp-compat.el clobbers this variable!
-    (eval-after-load "tramp-compat"
-      '(add-to-list 'byte-compile-not-obsolete-vars
-                    'font-lock-beginning-of-syntax-function)))
-  (setq mumamo-background-colors nil))
+;(when (not on-school-server)
+;  (load "nxhtml/autostart.el")
+;  ;; For some reason nxhtml likes to shit kittens when it loads,
+;  ;; this snippet prevents it from doing that...
+;  (when (and (equal emacs-major-version 23)
+;             (equal emacs-minor-version 3))
+;    (eval-after-load "bytecomp"
+;      '(add-to-list 'byte-compile-not-obsolete-vars
+;                    'font-lock-beginning-of-syntax-function))
+;    ;; tramp-compat.el clobbers this variable!
+;    (eval-after-load "tramp-compat"
+;      '(add-to-list 'byte-compile-not-obsolete-vars
+;                    'font-lock-beginning-of-syntax-function)))
+;  (setq mumamo-background-colors nil))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -193,8 +194,7 @@
 ;; Sexual color theme.
 (require 'color-theme)
 (color-theme-initialize)
-(require 'zenburn)
-(color-theme-zenburn)
+(color-theme-scintilla)
 
 ;; Prevent startup message and switch to empty *scratch*
 (setq inhibit-startup-message t)
