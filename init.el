@@ -193,8 +193,10 @@
 
 ;; Sexual color theme.
 (require 'color-theme)
+(require 'color-theme-gruber-darker)
 (color-theme-initialize)
-(color-theme-scintilla)
+;(color-theme-scintilla)
+(color-theme-gruber-darker)
 
 ;; Prevent startup message and switch to empty *scratch*
 (setq inhibit-startup-message t)
