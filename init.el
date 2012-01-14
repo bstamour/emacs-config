@@ -1,20 +1,15 @@
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Emacs config file.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Front matter.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-
 ;; Update the load path.
 (add-to-list 'load-path "~/.emacs.d")
 (add-to-list 'load-path "~/.emacs.d/color-theme")
 (add-to-list 'load-path "~/.emacs.d/slime")
-(add-to-list 'load-path "~/.emacs.d/ocaml-mode")
 (add-to-list 'load-path "~/.emacs.d/custom-color-themes")
 (add-to-list 'load-path "~/.emacs.d/etc")
 
@@ -28,41 +23,11 @@
                            (equal (system-name) "luna")
                            (equal (system-name) "sol")))
 
-;; If I kill the buffer containing my init.el file, ask me
-;; if I would like to recompile it.
-(defun compile-init-file ()
-  (interactive)
-  (when (and (string-equal
-              buffer-file-name
-              (expand-file-name "~/.emacs.d/init.el"))
-             (y-or-n-p "byte compile init.el? "))
-    (byte-compile-file "~/.emacs.d/init.el")))
-
-;(add-hook 'kill-buffer-hook 'compile-init-file)
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; C-style language settings.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-
 (require 'cc-mode)
-
-;; This function returns 0 if the current line only has a '>' character
-;; on it, and + otherwise. Basically if I'm doing a multi-line template
-;; argument list, I want the closing > to be flush with the opening
-;; 'template' keyword, not indented like the actual template arguments.
-;;
-;; This ALMOST works correctly. It still dies on template-template
-;; arguments, but I think that's a problem with cc-mode.
-;(defun indent-templates (elem)
-;  (c-langelem-col elem t)
-;  (let ((current-line
-;         (buffer-substring-no-properties
-;          (point-at-bol) (point-at-eol))))
-;    (if (string-match-p "^\\s-*>" current-line)
-;        0
-;        '+)))
 
 ;; Custom C++ style.
 (c-add-style "my-c++-style"
@@ -82,7 +47,6 @@
              '("java"
                (c-basic-offset . 2)))
 
-
 ;; Set default styles for languages.
 (setq c-default-style '((java-mode . "my-java-style")
                         (awk-mode  . "awk")
@@ -92,67 +56,38 @@
 ;; Spaces instead of tabs.
 (setq-default indent-tabs-mode nil)
 
-;; Change the color of text inside #if 0 /* ... */ #endif
-;; to match comments.
-;;
-;; From
-;; http://stackoverflow.com/questions/4549015/in-c-c-mode-in-emacs-change-face-of-code-in-if-0-endif-block-to-comment-fa
-(defun my-c-mode-font-lock-if0 (limit)
-  (save-restriction
-    (widen)
-    (save-excursion
-      (goto-char (point-min))
-      (let ((depth 0) str start start-depth)
-        (while (re-search-forward "^\\s-*#\\s-*\\(if\\|else\\|endif\\)" limit 'move)
-          (setq str (match-string 1))
-          (if (string= str "if")
-              (progn
-                (setq depth (1+ depth))
-                (when (and (null start) (looking-at "\\s-+0"))
-                  (setq start (match-end 0)
-                        start-depth depth)))
-            (when (and start (= depth start-depth))
-              (c-put-font-lock-face start (match-beginning 0) 'font-lock-comment-face)
-              (setq start nil))
-            (when (string= str "endif")
-              (setq depth (1- depth)))))
-        (when (and start (> depth 0))
-          (c-put-font-lock-face start (point) 'font-lock-comment-face)))))
-  nil)
-;(add-hook 'c-mode-common-hook
-;          (lambda ()
-;            (font-lock-add-keywords
-;             nil
-;             '((my-c-mode-font-lock-if0 (0 font-lock-comment-face prepend)))
-;             'add-to-end)))
+;; I like pretty lines to separate my code regions.
+(setq comment-line-length 80)
 
+;; Insert a block comment using the '-' character.
+(defun insert-block-comment ()
+  (interactive)
+  (let* ((com (cond ((string-equal major-mode "c++-mode")        "//")
+                    ((string-equal major-mode "emacs-lisp-mode") ";;")
+                    (t                                           "#")))
+         (pos (current-column))
+         (chars-to-write (- comment-line-length pos (length com))))
+    (insert com) ; The first comment character.
+    (dotimes (i chars-to-write) (insert "-"))
+    (insert "\n")
+    (dotimes (i pos) (insert " "))
+    (insert com)
+    (insert " \n")
+    (dotimes (i pos) (insert " "))
+    (insert com)
+    (dotimes (i chars-to-write) (insert "-"))
+    (insert "\n")
+    (previous-line)
+    (previous-line)
+    (end-of-line)))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Web development stuff.
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-;; When on the school server nxhtml has problems...
-;(when (not on-school-server)
-;  (load "nxhtml/autostart.el")
-;  ;; For some reason nxhtml likes to shit kittens when it loads,
-;  ;; this snippet prevents it from doing that...
-;  (when (and (equal emacs-major-version 23)
-;             (equal emacs-minor-version 3))
-;    (eval-after-load "bytecomp"
-;      '(add-to-list 'byte-compile-not-obsolete-vars
-;                    'font-lock-beginning-of-syntax-function))
-;    ;; tramp-compat.el clobbers this variable!
-;    (eval-after-load "tramp-compat"
-;      '(add-to-list 'byte-compile-not-obsolete-vars
-;                    'font-lock-beginning-of-syntax-function)))
-;  (setq mumamo-background-colors nil))
-
+(add-hook 'c++-mode-hook
+          (lambda ()
+            (global-set-key "\C-c\C-j" 'insert-block-comment)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Other languages.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 
 ;; Haskell editing support.
 (load "haskell-mode/haskell-site-file")
@@ -165,18 +100,14 @@
 (require 'slime)
 (slime-setup)
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; General programming settings.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-
-
-
 ;; Make the compilation window vanish after 0.5 seconds,
 ;; unless there is an error.
-;(setq compilation-window-height 8)
-;(setq compilation-finish-functions 'auto-close)
+(setq compilation-window-height 8)
+(setq compilation-finish-functions 'auto-close)
 
 (defun auto-close (buf str)
   (if (string-match "exited abnormally" str)
@@ -186,7 +117,6 @@
     (run-at-time 0.5 nil 'delete-windows-on buf)
     (message "NO COMPILATION ERRORS!")))
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Other customizations.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -195,7 +125,6 @@
 (require 'color-theme)
 (require 'color-theme-gruber-darker)
 (color-theme-initialize)
-;(color-theme-scintilla)
 (color-theme-gruber-darker)
 
 ;; Prevent startup message and switch to empty *scratch*
@@ -208,6 +137,13 @@
 (global-set-key (kbd "<C-S-down>")   'buf-move-down)
 (global-set-key (kbd "<C-S-left>")   'buf-move-left)
 (global-set-key (kbd "<C-S-right>")  'buf-move-right)
+
+;; When on laptop, C-S gets handled by the OS, causing funky things
+;; to happen. Use these as a failback.
+(global-set-key (kbd "<M-S-up>")     'buf-move-up)
+(global-set-key (kbd "<M-S-down>")   'buf-move-down)
+(global-set-key (kbd "<M-S-left>")   'buf-move-left)
+(global-set-key (kbd "<M-S-right>")  'buf-move-right)
 
 ;; Easier use of M-x
 (global-set-key "\C-x\C-m" 'execute-extended-command)
@@ -248,17 +184,3 @@
 
 ;; Change the yes/no prompts to y/n instead.
 (defalias 'yes-or-no-p 'y-or-n-p)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
