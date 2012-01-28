@@ -163,64 +163,54 @@ environment."
     (save-excursion
       (goto-char (point-min))
       (let ((depth 0) token comment-start comment-start-depth if-stack)
-        (while (re-search-forward "^\\s-*#\\s-*\\(if\\|else\\|endif\\)" limit 'move)
-          (setq token (match-string 1))
-          ;; Check the token out...
-          (cond ((string= token "if")
-                 (setq depth (1+ depth))
-                 (if (looking-at "\\s-+0")
-                     (progn
-                       ;; Found an #if 0 at this depth.
-                       (push 0 if-stack)
+        (flet ((start-comment ()
+                              ;; Check if a comment can be started now and if so, do it.
+                              (when (null comment-start)
+                                (setq comment-start (match-end 0))
+                                (setq comment-start-depth depth)))
+               (finish-comment ()
+                               ;; Check if a comment is being closed off now, if so, close it
+                               ;; and do the font trickery.
+                               (when (and (not (null comment-start)) (= depth comment-start-depth))
+                                 (c-put-font-lock-face
+                                  comment-start
+                                  (match-beginning 0)
+                                  'font-lock-comment-face)
+                                 (setq comment-start nil))))
 
-                       (when (null comment-start)
-                         ;; No comment yet. Let's make one here.
-                         (setq comment-start (match-end 0))
-                         (setq comment-start-depth depth)))
-                   (progn
-                     ;; Did not find an #if 0 at this depth.
-                     (push 1 if-stack))))
-                ((string= token "else")
-                 ;; Figure out what this pairs with: #if 0 or #if 1.
-                 (if (= 0 (pop if-stack))
-                     (progn
-                       ;; Matches an #if 0.
+          (while (re-search-forward "^\\s-*#\\s-*\\(if\\|else\\|endif\\)" limit 'move)
+            (setq token (match-string 1))
 
-                       ;; Closing off a potential comment. Let's make sure we're in one.
-                       (when (and (not (null comment-start)) (= depth comment-start-depth))
-                         (c-put-font-lock-face
-                          comment-start
-                          (match-beginning 0)
-                          'font-lock-comment-face)
-                         (setq comment-start nil))
+            (cond ((string= token "if")
+                   (setq depth (1+ depth))
+                   (cond ((looking-at "\\s-+0")        ;; Found an #if 0
+                          (push 0 if-stack)
+                          (start-comment))
+                         ((looking-at "\\s-+1")        ;; Found an #if 1
+                          (push 1 if-stack))
+                         (t
+                          (push 2 if-stack))))         ;; Found an #if cond
 
-                       ;; Replace the mode, since we're on the other side.
-                       (push 1 if-stack))
-                   (progn
-                     ;; Matches an #if 1.
+                  ((string= token "else")
+                   (let ((stack-top (pop if-stack)))
+                     (cond ((= 0 stack-top)            ;; Closing an #if 0
+                            (finish-comment)
+                            (push 1 if-stack))
+                           ((= 1 stack-top)            ;; Closing an #if 1
+                            (start-comment)
+                            (push 0 if-stack))
+                           (t                          ;; Closing any other cond
+                            (push stack-top if-stack)))))
 
-                     ;; We might be starting a comment here, if one isn't already in progress.
-                     (when (null comment-start)
-                       (setq comment-start (match-end 0))
-                       (setq comment-start-depth depth))
+                  ((string= token "endif")
+                   (finish-comment)
+                   (setq depth (1- depth))
+                   (pop if-stack))))
 
-                     ;; Replace the mode, since we're on the other side.
-                     (push 0 if-stack))))
-                ((string= token "endif")
-                 ;; Closing off a potential comment. Let's make sure we're in one.
-                 (when (and (not (null comment-start)) (= depth comment-start-depth))
-                   (c-put-font-lock-face
-                    comment-start
-                    (match-beginning 0)
-                    'font-lock-comment-face)
-                   (setq comment-start nil))
-
-                 ;; Decrease our depth.
-                 (setq depth (1- depth)))))
         (when (and comment-start (> depth 0))
           (c-put-font-lock-face
            comment-start (point)
-           'font-lock-comment-face)))))
+           'font-lock-comment-face))))))
   nil)
 
 (add-hook 'c-mode-common-hook
