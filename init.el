@@ -123,13 +123,8 @@ environment."
              '("stroustrup"
                (c-basic-offset . 2)
                (c-offsets-alist
-                (innamespace           . -)
-                (topmost-intro-cont    . c-lineup-dont-change)
                 (inline-open           . 0)
-                (inher-cont            . c-lineup-multi-inher)
-                (arglist-cont-nonempty . +)
                 (arglist-close         . 0)
-                (template-args-cont    . c-lineup-dont-change)
                 )))
 
 ;; Custom Java style.
@@ -153,6 +148,37 @@ environment."
             (global-set-key "\C-c\C-v" 'uncomment-region)
             (global-set-key "\C-c\C-k" 'compile)
             ))
+
+;;------------------------------------------------------------------------------
+;; Teach emacs about the new enum class in C++11
+;;------------------------------------------------------------------------------
+
+(defun inside-class-enum-p (pos)
+  "Checks if POS is within the braces of a C++ \"enum class\"."
+  (ignore-errors
+    (save-excursion
+      (goto-char pos)
+      (up-list -1)
+      (backward-sexp 1)
+      (looking-back "enum[ \t]+class[ \t]+"))))
+
+(defun align-enum-class (langelem)
+  (if (inside-class-enum-p (c-langelem-pos langelem))
+      0
+    (c-lineup-topmost-intro-cont langelem)))
+
+(defun align-enum-class-closing-brace (langelem)
+  (if (inside-class-enum-p (c-langelem-pos langelem))
+      '-
+    '+))
+
+(defun fix-enum-class ()
+  "Setup `c++-mode' to better handle \"class enum\"."
+  (add-to-list 'c-offsets-alist '(topmost-intro-cont . align-enum-class))
+  (add-to-list 'c-offsets-alist
+               '(statement-cont . align-enum-class-closing-brace)))
+
+(add-hook 'c++-mode-hook 'fix-enum-class)
 
 ;;------------------------------------------------------------------------------
 ;; Highlight regions of code blocked off by #if 0 as if it were a comment.
@@ -247,19 +273,10 @@ environment."
 ;; Change the default frame size.
 (add-to-list 'default-frame-alist '(width . 100))
 
-;; For the most part I will be staying in Windsor.
-(setq calendar-location-name "Windsor, ON")
-(setq calendar-latitude 42.18)
-(setq calendar-longitude -83.01)
-
 ;; Color theme.
 (require 'color-theme)
-(require 'zenburn)
 (color-theme-initialize)
-
-;; Change the color theme based on the time of day.
-(require 'theme-changer)
-(change-theme 'color-theme-scintilla 'color-theme-zenburn)
+(color-theme-scintilla)
 
 ;; Prevent startup message and switch to empty *scratch*
 (setq inhibit-startup-message t)
