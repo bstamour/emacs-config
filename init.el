@@ -74,35 +74,20 @@ environment."
   (let ((value (assoc-string major-mode inline-comment-map)))
     (if (null value) "#" (cdr value))))
 
-(defun insert-block-comment ()
-  "Insert a block comment flower box at the current position."
+(defun insert-comment-line ()
+  "Insert a commented line to separate regions of code."
   (interactive)
   (let* ((com (get-inline-comment-init))
          (pos (current-column))
          (chars-to-write (- comment-line-length pos (length com))))
     (beginning-of-line)
-    (draw-comment-line com pos chars-to-write "-")
-    (draw-comment-blank-line com pos)
-    (draw-comment-line com pos chars-to-write "-")
-    (previous-line)             ; Move up two lines and over to the end,
-    (previous-line)             ; so the user can start typing the
-    (end-of-line)))             ; comment.
+    (draw-comment-line com pos chars-to-write "-")))
 
 (defun draw-comment-line (com pos lngth ln)
   (dotimes (i pos) (insert " "))
   (insert com)
   (dotimes (i lngth) (insert ln))
   (insert "\n"))
-
-(defun draw-comment-blank-line (com pos)
-  (dotimes (i pos) (insert " "))
-  (insert com)
-  (insert " \n"))
-
-;; Make the compilation window vanish after 0.5 seconds,
-;; unless there is an error.
-;(setq compilation-window-height 8)
-;(setq compilation-finish-functions 'auto-close)
 
 (defun auto-close (buf str)
   (if (string-match "exited abnormally" str)
@@ -123,8 +108,8 @@ environment."
              '("stroustrup"
                (c-basic-offset . 2)
                (c-offsets-alist
-                (inline-open           . 0)
-                (arglist-close         . 0)
+                (inline-open   . 0)
+                (arglist-close . 0)
                 )))
 
 ;; Custom Java style.
@@ -144,7 +129,7 @@ environment."
 ;; Easy way to insert block comments.
 (add-hook 'c++-mode-hook
           (lambda ()
-            (global-set-key "\C-c\C-j" 'insert-block-comment)
+            (global-set-key "\C-c\C-j" 'insert-comment-line)
             (global-set-key "\C-c\C-v" 'uncomment-region)
             (global-set-key "\C-c\C-k" 'compile)
             ))
@@ -189,43 +174,51 @@ environment."
     (save-excursion
       (goto-char (point-min))
       (let ((depth 0) token comment-start comment-start-depth if-stack)
-        (flet ((start-comment ()
-                              ;; Check if a comment can be started now and if so, do it.
-                              (when (null comment-start)
-                                (setq comment-start (match-end 0))
-                                (setq comment-start-depth depth)))
-               (finish-comment ()
-                               ;; Check if a comment is being closed off now, if so, close it
-                               ;; and do the font trickery.
-                               (when (and (not (null comment-start)) (= depth comment-start-depth))
-                                 (c-put-font-lock-face
-                                  comment-start
-                                  (match-beginning 0)
-                                  'font-lock-comment-face)
-                                 (setq comment-start nil))))
+        (flet ((start-comment
+                ()
+                ;; Check if a comment can be started now and if so, do it.
+                (when (null comment-start)
+                  (setq comment-start (match-end 0))
+                  (setq comment-start-depth depth)))
 
-          (while (re-search-forward "^\\s-*#\\s-*\\(if\\|else\\|endif\\)" limit 'move)
+               (finish-comment
+                ()
+                ;; Check if a comment is being closed off now, if so, close it
+                ;; and do the font trickery.
+                (when (and
+                       (not (null comment-start))
+                       (= depth comment-start-depth))
+                  (c-put-font-lock-face
+                   comment-start
+                   (match-beginning 0)
+                   'font-lock-comment-face)
+                  (setq comment-start nil))))
+
+          (while (re-search-forward
+                  "^\\s-*#\\s-*\\(if\\|else\\|endif\\)"
+                  limit
+                  'move)
             (setq token (match-string 1))
 
             (cond ((string= token "if")
                    (setq depth (1+ depth))
-                   (cond ((looking-at "\\s-+0")        ;; Found an #if 0
+                   (cond ((looking-at "\\s-+0")     ;; Found an #if 0
                           (push 0 if-stack)
                           (start-comment))
-                         ((looking-at "\\s-+1")        ;; Found an #if 1
+                         ((looking-at "\\s-+1")     ;; Found an #if 1
                           (push 1 if-stack))
                          (t
-                          (push 2 if-stack))))         ;; Found an #if cond
+                          (push 2 if-stack))))      ;; Found an #if cond
 
                   ((string= token "else")
                    (let ((stack-top (pop if-stack)))
-                     (cond ((= 0 stack-top)            ;; Closing an #if 0
+                     (cond ((= 0 stack-top)         ;; Closing an #if 0
                             (finish-comment)
                             (push 1 if-stack))
-                           ((= 1 stack-top)            ;; Closing an #if 1
+                           ((= 1 stack-top)         ;; Closing an #if 1
                             (start-comment)
                             (push 0 if-stack))
-                           (t                          ;; Closing any other cond
+                           (t                       ;; Closing any other cond
                             (push stack-top if-stack)))))
 
                   ((string= token "endif")
@@ -271,7 +264,7 @@ environment."
 ;;------------------------------------------------------------------------------
 
 ;; Change the default frame size.
-(add-to-list 'default-frame-alist '(width . 100))
+(add-to-list 'default-frame-alist '(width . 80))
 
 ;; Color theme.
 (require 'color-theme)
@@ -357,3 +350,5 @@ environment."
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
+
+;;------------------------------------------------------------------------------
