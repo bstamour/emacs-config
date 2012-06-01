@@ -81,7 +81,7 @@ environment."
          (pos (current-column))
          (chars-to-write (- comment-line-length pos (length com))))
     (beginning-of-line)
-    (draw-comment-line com pos chars-to-write "-")))
+    (draw-comment-line com pos chars-to-write "=")))
 
 (defun draw-comment-line (com pos lngth ln)
   (dotimes (i pos) (insert " "))
@@ -269,7 +269,12 @@ environment."
 ;; Color theme.
 (require 'color-theme)
 (color-theme-initialize)
-(color-theme-scintilla)
+
+(if (string-equal system-type "darwin")
+    (progn
+      (require 'color-theme-tomorrow)
+      (color-theme-tomorrow-night))
+  (color-theme-wheat))
 
 ;; Prevent startup message and switch to empty *scratch*
 (setq inhibit-startup-message t)
@@ -324,25 +329,13 @@ environment."
 ;; Highlight matching parenthesis.
 (show-paren-mode t)
 
+(column-number-mode t)
+
 ;; Before saving a file, delete all the trailing whitespace.
 (add-hook 'before-save-hook
           (lambda ()
             (delete-trailing-whitespace)
-            (delete-trailing-blank-lines)
             ))
-
- (defun delete-trailing-blank-lines ()
-   "Deletes all blank lines at the end of the file, even the last one"
-   (interactive)
-   (save-excursion
-     (save-restriction
-       (widen)
-       (goto-char (point-max))
-       (delete-blank-lines)
-       (let ((trailnewlines (abs (skip-chars-backward "\n\t"))))
-         (if (> trailnewlines 0)
-             (progn
-               (delete-char trailnewlines)))))))
 
 ;; Set up org-mode for note taking.
 (require 'org-install)
@@ -350,5 +343,10 @@ environment."
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
+
+;; Remove scroll bars and menu bars.
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
 ;;------------------------------------------------------------------------------
