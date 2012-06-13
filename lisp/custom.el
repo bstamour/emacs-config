@@ -1,5 +1,9 @@
 ;; Change the default frame size.
-(add-to-list 'default-frame-alist '(width . 80))
+(if (not (eq system-type 'darwin))
+    (progn
+      (add-to-list 'default-frame-alist '(width . 120))
+      (add-to-list 'default-frame-alist '(height . 50)))
+  (add-to-list 'default-frame-alist '(width . 80)))
 
 ;; Prevent startup message and switch to empty *scratch*
 (setq inhibit-startup-message t)
