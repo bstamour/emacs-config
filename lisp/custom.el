@@ -10,11 +10,14 @@
 (color-theme-initialize)
 
 ;; If on laptop, use the darker theme. Also should check emacs' version...
-(if (string-equal system-type "darwin")
-    (progn
-      (require 'color-theme-tomorrow)
-      (color-theme-tomorrow-night))
-  (color-theme-wheat))
+;(if (string-equal system-type "darwin")
+;    (progn
+;      (require 'color-theme-tomorrow)
+;      (color-theme-tomorrow-night))
+;  (color-theme-wheat))
+
+(require 'color-theme-tomorrow)
+(color-theme-tomorrow-night)
 
 ;; Turn off the damn bell.
 (setq visible-bell t)
