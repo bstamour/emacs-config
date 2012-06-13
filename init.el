@@ -4,9 +4,9 @@
                        "/Users/bryan/"
                      "/home/bryan/"))
 
-(add-hook 'kill-emacs-hook
-          (lambda ()
-            (byte-recompile-directory (concat emacs-root ".emacs.d"))))
+;(add-hook 'kill-emacs-hook
+;          (lambda ()
+;            (byte-recompile-directory (concat emacs-root ".emacs.d"))))
 
 (labels ((add-to-path (p)
                       (add-to-list
