@@ -26,6 +26,10 @@
   (add-to-path ".emacs.d/site-lisp/nxhtml")
   (add-to-path ".emacs.d/site-lisp/tuareg-mode"))
 
+
+(add-to-list 'custom-theme-load-path 
+	     (concat emacs-root ".emacs.d/lisp/color-themes"))
+
 (load-library "load-shell-env")   ; Copy the shell environment from bash.
 (load-library "custom")           ; Generic customizations.
 

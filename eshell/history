@@ -82,3 +82,7 @@ man gcc
 cd Code/C++
 ls
 ./fltk-test 
+cd Code/C++
+./curry 
+./curry 
+./curry 

@@ -20,8 +20,12 @@
 ;      (color-theme-tomorrow-night))
 ;  (color-theme-wheat))
 
-(require 'color-theme-tomorrow)
-(color-theme-tomorrow-night)
+;(require 'color-theme-tomorrow)
+;(color-theme-tomorrow-night)
+
+(load-theme 'zen-and-art t)
+
+
 
 ;; Turn off the damn bell.
 (setq visible-bell t)
