@@ -20,10 +20,10 @@
 ;      (color-theme-tomorrow-night))
 ;  (color-theme-wheat))
 
-;(require 'color-theme-tomorrow)
-;(color-theme-tomorrow-night)
+(require 'color-theme-tomorrow)
+(color-theme-tomorrow-night)
 
-(load-theme 'zen-and-art t)
+;(load-theme 'zen-and-art t)
 
 
 
