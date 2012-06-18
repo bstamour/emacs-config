@@ -4,9 +4,11 @@
                        "/Users/bryan/"
                      "/home/bryan/"))
 
-;(add-hook 'kill-emacs-hook
-;          (lambda ()
-;            (byte-recompile-directory (concat emacs-root ".emacs.d"))))
+;; When emacs is shut down, check for files that may need to be
+;; recompiled.
+(add-hook 'kill-emacs-hook
+          (lambda ()
+            (byte-recompile-directory (concat emacs-root ".emacs.d"))))
 
 (labels ((add-to-path (p)
                       (add-to-list
@@ -26,8 +28,7 @@
   (add-to-path ".emacs.d/site-lisp/nxhtml")
   (add-to-path ".emacs.d/site-lisp/tuareg-mode"))
 
-
-(add-to-list 'custom-theme-load-path 
+(add-to-list 'custom-theme-load-path
 	     (concat emacs-root ".emacs.d/lisp/color-themes"))
 
 (load-library "load-shell-env")   ; Copy the shell environment from bash.
