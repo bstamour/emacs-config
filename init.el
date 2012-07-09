@@ -4,12 +4,6 @@
                        "/Users/bryan/"
                      "/home/bryan/"))
 
-;; When emacs is shut down, check for files that may need to be
-;; recompiled.
-(add-hook 'kill-emacs-hook
-          (lambda ()
-            (byte-recompile-directory (concat emacs-root ".emacs.d"))))
-
 (labels ((add-to-path (p)
                       (add-to-list
                        'load-path
@@ -21,12 +15,17 @@
   (add-to-path ".emacs.d/lisp/color-themes")
 
   (add-to-path ".emacs.d/site-lisp")
+
+  (add-to-path ".emacs.d/site-lisp/games")
+  (add-to-path ".emacs.d/site-lisp/games/nethack_0_9_5")
+
   (add-to-path ".emacs.d/site-lisp/color-theme")
-  (add-to-path ".emacs.d/site-lisp/cc-mode")
+  ;(add-to-path ".emacs.d/site-lisp/cc-mode")
   (add-to-path ".emacs.d/site-lisp/slime")
   (add-to-path ".emacs.d/site-lisp/haskell-mode")
   (add-to-path ".emacs.d/site-lisp/nxhtml")
   (add-to-path ".emacs.d/site-lisp/tuareg-mode"))
+
 
 (add-to-list 'custom-theme-load-path
 	     (concat emacs-root ".emacs.d/lisp/color-themes"))
