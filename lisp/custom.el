@@ -1,9 +1,9 @@
 ;; Change the default frame size.
-(if (not (eq system-type 'darwin))
-    (progn
-      (add-to-list 'default-frame-alist '(width . 120))
-      (add-to-list 'default-frame-alist '(height . 50)))
-  (add-to-list 'default-frame-alist '(width . 80)))
+;(if (not (eq system-type 'darwin))
+;    (progn
+;      (add-to-list 'default-frame-alist '(width . 120))
+;      (add-to-list 'default-frame-alist '(height . 50)))
+;  (add-to-list 'default-frame-alist '(width . 80)))
 
 ;; Prevent startup message and switch to empty *scratch*
 (setq inhibit-startup-message t)
@@ -13,14 +13,17 @@
 (require 'color-theme)
 (color-theme-initialize)
 
-(if (eq system-type 'darwin)
-    (load-theme 'zen-and-art t)
-  (progn
-    (require 'color-theme-tomorrw)
-    (color-theme-tomorrow-night)))
+(if window-system
+    (color-theme-high-contrast)
+  (color-theme-dark-laptop))
+
+;(load-theme 'solarized-dark t)
 
 ;; Turn off the damn bell.
 (setq visible-bell t)
+
+;; Turn on desktop-save.
+(desktop-save-mode 1)
 
 ;; Highlight matching parenthesis.
 (show-paren-mode t)
