@@ -27,7 +27,7 @@
 (setq visible-bell t)
 
 ;; Turn on desktop-save.
-(desktop-save-mode 1)
+;(desktop-save-mode 1)
 
 ;; Highlight matching parenthesis.
 (show-paren-mode t)

@@ -25,3 +25,6 @@
 
 ;; R.
 (require 'ess-site)
+
+;; Web stuff.
+(load "~/.emacs.d/site-lisp/nxhtml/autostart")
