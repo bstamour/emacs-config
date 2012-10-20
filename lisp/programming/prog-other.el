@@ -22,3 +22,6 @@
 
 ;; C.
 (add-hook 'c-mode (lambda () (c-set-style "bsd")))
+
+;; R.
+(require 'ess-site)

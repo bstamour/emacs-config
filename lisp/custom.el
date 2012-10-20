@@ -14,8 +14,12 @@
 (color-theme-initialize)
 
 (if window-system
-    (color-theme-high-contrast)
+    (load-theme 'solarized-light t)
   (color-theme-dark-laptop))
+
+;(if window-system
+;    (color-theme-high-contrast)
+;  (color-theme-dark-laptop))
 
 ;(load-theme 'solarized-dark t)
 

@@ -11,9 +11,10 @@
                (c-offsets-alist
                 (inline-open   . 0)
                 (arglist-close . 0)
-                (innamespace . 0)
-                )))
-(add-hook 'c++-mode (lambda () (c-set-style "my-c++-style")))
+;                (innamespace . 0)
+                )
+               ))
+(add-hook 'c++-mode-hook (lambda () (c-set-style "my-c++-style")))
 
 ;; Spaces instead of tabs.
 (setq-default indent-tabs-mode nil)
