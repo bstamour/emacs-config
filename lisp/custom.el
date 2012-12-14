@@ -12,10 +12,15 @@
 ;; Color theme.
 (require 'color-theme)
 (color-theme-initialize)
+;(color-theme-deep-blue)
 
 (if window-system
-    (load-theme 'solarized-light t)
-  (color-theme-dark-laptop))
+    (load-theme 'solarized-dark t)
+  (color-theme-deep-blue))
+
+;(if window-system
+;    (load-theme 'solarized-light t)
+;  (color-theme-dark-laptop))
 
 ;(if window-system
 ;    (color-theme-high-contrast)
