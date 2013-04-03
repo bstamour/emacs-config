@@ -1,6 +1,12 @@
 (require 'cl)
 
-(defvar emacs-root "/home/bryan/")
+(defvar on-windows (if (string= system-type "windows-nt")
+		       t
+		     nil))
+
+(defvar emacs-root (if on-windows
+                       "C:/Users/bryan/AppData/Roaming/"
+                     "/home/bryan/"))
 
 (defun add-to-path (p)
   (add-to-list 'load-path (concat emacs-root p)))
@@ -9,9 +15,13 @@
 (add-to-path ".emacs.d/site-lisp/color-theme")
 (add-to-path ".emacs.d/site-lisp/tuareg-mode")
 (add-to-path ".emacs.d/site-lisp/haskell-mode")
+(add-to-path ".emacs.d/site-lisp/php-mode")
 (add-to-path ".emacs.d/site-lisp/slime")
 
-(add-to-list 'custom-theme-load-path "~/.emacs.d/lisp/color-themes/")
+(if on-windows
+    (setq default-directory "C:/Users/Bryan/"))
+
+;(add-to-list 'custom-theme-load-path "~/.emacs.d/lisp/color-themes/")
 
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
@@ -71,8 +81,10 @@ as launched by `$SHELL -lc' (or shell-cmd) to the current
 environment."
   (mapc 'setenv-from-cons (interactive-env-alist shell-cmd env-cmd)))
 
-(setenv-from-shell-environment)
-(setq exec-path (split-string (getenv "PATH") path-separator))
+(if (not on-windows)
+    (progn
+      (setenv-from-shell-environment)
+      (setq exec-path (split-string (getenv "PATH") path-separator))))
 
 ;;---------------------------------------------------------------------------
 
@@ -91,6 +103,8 @@ environment."
 (add-to-list 'auto-mode-alist '("\\.ml[iylp]?" . tuareg-mode))
 (autoload 'tuareg-mode "tuareg" "Major mode for editing Caml code" t)
 (autoload 'camldebug "camldebug" "Run the Caml debugger" t)
+
+(require 'php-mode)
 
 ;;---------------------------------------------------------------------------
 
@@ -242,16 +256,4 @@ environment."
 
 ;;---------------------------------------------------------------------------
 
-(eshell) ; Start a shell.
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("f5e56ac232ff858afb08294fc3a519652ce8a165272e3c65165c42d6fe0262a0" default))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+(eshell)
