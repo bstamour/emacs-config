@@ -26,7 +26,8 @@
 (if on-windows
     (setq default-directory "C:/Users/Bryan/"))
 
-(set-default-font "DejaVu Sans Mono-8")
+(if (not on-windows)
+    (set-default-font "DejaVu Sans Mono-8"))
 
 (load-theme 'sanityinc-tomorrow-night t)
 
@@ -38,8 +39,6 @@
 
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
-
-(load-theme 'tango t)
 
 (setq visible-bell t)
 (show-paren-mode t)
@@ -275,7 +274,7 @@ environment."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" default))))
+ '(custom-safe-themes (quote ("8b9d07b01f2a9566969c2049faf982cab6a4b483dd43de7fd6a016bb861f7762" "cc49acc055b77f0bedf68cc6ce20aad47925b5c2675754fea2507975135a5bf9" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" default))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
