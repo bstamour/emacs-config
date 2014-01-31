@@ -18,7 +18,9 @@
 (add-to-list 'load-path vendor-dir)
 (add-to-list 'load-path personal-dir)
 (add-to-list 'load-path elpa-dir)
-(add-to-list 'custom-theme-load-path theme-dir)
+
+(when (>= emacs-major-version 24)
+  (add-to-list 'custom-theme-load-path theme-dir))
 
 ;; Add all subdirs of elpa to the load path as well.
 (let ((default-directory elpa-dir))
