@@ -63,7 +63,9 @@ as launched by `$SHELL -lc' (or shell-cmd) to the current
 environment."
   (mapc 'setenv-from-cons (interactive-env-alist shell-cmd env-cmd)))
 
-(setenv-from-shell-environment)
-(setq exec-path (split-string (getenv "PATH") path-separator))
+(if (not on-windows)
+    (progn
+      (setenv-from-shell-environment)
+      (setq exec-path (split-string (getenv "PATH") path-separator))))
 
 (provide 'core)
