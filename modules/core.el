@@ -1,5 +1,6 @@
 (require 'cl)
 (require 'color-theme)
+(require 'color-theme-monokai)
 
 (if window-system
     (color-theme-monokai))
