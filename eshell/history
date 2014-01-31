@@ -1,9 +1,0 @@
-ls
-cd AppData/Roaming/.emacs.d/
-ls
-cd site-lisp/
-ls
-mkdir php-mode
-ls
-cd php-mode/
-ls
