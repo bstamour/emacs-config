@@ -1,5 +1,6 @@
-;; Check the OS.
+;; Check the OS and system.
 (defvar on-windows (string= system-type "windows-nt"))
+(defvar on-laptop (string= system-name "slacktop.slacktown"))
 
 ;; Directory structure.
 (defvar root-dir (file-name-directory load-file-name))

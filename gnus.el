@@ -1,7 +1,7 @@
 
 ;; When on my laptop, use the local IMAP folder. Else, use IMAP.
 
-(if (not on-windows)
+(if on-laptop
     (progn
       (setq gnus-select-method
             '(nnmaildir "main"
@@ -80,13 +80,13 @@
       '("^Date:" "^From:" "^To:" "^Followup-To:" "^Cc:" "Bcc:" "^Newsgroups:" "Fcc:" "^Subject:"))
 
 ;; Automatically delete expired emails when we leave the summary buffer.
-(add-hook 'gnus-summary-mode-hook
-          (lambda ()
-            (unless (gnus-news-group-p gnus-newsgroup-name)
-              (set (make-local-variable  'gnus-expirable-mark) ?D)
-              (set (make-local-variable  'gnus-canceled-mark)  ?X)
-              (set (make-local-variable  'gnus-ancient-mark)   ? )
-              (set (make-local-variable  'gnus-read-mark)      ? ))))
+;(add-hook 'gnus-summary-mode-hook
+;          (lambda ()
+;            (unless (gnus-news-group-p gnus-newsgroup-name)
+;              (set (make-local-variable  'gnus-expirable-mark) ?D)
+;              (set (make-local-variable  'gnus-canceled-mark)  ?X)
+;              (set (make-local-variable  'gnus-ancient-mark)   ? )
+;              (set (make-local-variable  'gnus-read-mark)      ? ))))
 
 (setq nnmail-expiry-wait 0)
 
