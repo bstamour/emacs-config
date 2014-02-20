@@ -1,3 +1,6 @@
+
+;; When on my laptop, use the local IMAP folder. Else, use IMAP.
+
 (if (not on-windows)
     (progn
       (setq gnus-select-method
@@ -36,15 +39,10 @@
                                        "bryan" nil))
           smtpmail-default-smtp-server "mailserver.bryanstamour.com"
           smtpmail-smtp-server "mailserver.bryanstamour.com"
-          smtpmail-smtp-service 465)
-    ))
+          smtpmail-smtp-service 465)))
 
-
-
-
-
+;; Default email address.
 (setq user-mail-address "bryan@bryanstamour.com")
-
 
 ;; Set the correct email based on who it was sent to.
 (setq gnus-posting-styles
@@ -56,14 +54,7 @@
         ((header "to" "bsa@tessonics.com")
          (address "bsa@tessonics.com"))
 	((header "cc" "bsa@tessonics.com")
-         (address "bsa@tessonics.com"))
-        ))
-
-
-
-
-
-
+         (address "bsa@tessonics.com"))))
 
 ;; Show all mail in the inboxes.
 (setq gnus-permanently-visible-groups ".*")
@@ -84,9 +75,23 @@
       message-send-mail-partially-limit nil  ;; size of sent messages
       gnus-large-newsgroup              1000)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Some functions to make gnus behave more like pine.
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; default Pine ordered header list when displaying mail
+(setq gnus-sorted-header-list
+      '("^Date:" "^From:" "^To:" "^Followup-To:" "^Cc:" "Bcc:" "^Newsgroups:" "Fcc:" "^Subject:"))
+
+;; Automatically delete expired emails when we leave the summary buffer.
+(add-hook 'gnus-summary-mode-hook
+          (lambda ()
+            (unless (gnus-news-group-p gnus-newsgroup-name)
+              (set (make-local-variable  'gnus-expirable-mark) ?D)
+              (set (make-local-variable  'gnus-canceled-mark)  ?X)
+              (set (make-local-variable  'gnus-ancient-mark)   ? )
+              (set (make-local-variable  'gnus-read-mark)      ? ))))
+
+(setq nnmail-expiry-wait 0)
+
+;; Render html messages better.
+(setq mm-discouraged-alternatives '("text/html" "text/richtext"))
 
 (defun gnus-summary-goto-group (my-group)
   "Prompt for a group short name and open it in summary buffer.
