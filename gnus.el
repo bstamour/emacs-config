@@ -16,11 +16,19 @@
       (setq message-send-mail-function 'message-send-mail-with-sendmail)
       (setq sendmail-program "/usr/local/bin/msmtp-enqueue.sh"))
   (progn
+    ;; Primary email.
     (setq gnus-select-method
           '(nnimap "main"
                    (nnimap-address "mailserver.bryanstamour.com")
                    (nnimap-server-port 993)
                    (nnimap-stream ssl)))
+
+    ;; School email.
+    (add-to-list 'gnus-secondary-select-methods
+                 '(nnimap "uwindsor"
+                          (nnimap-address "imap.gmail.com")
+                          (nnimap-server-port 993)
+                          (nnimap-stream ssl)))
 
     (setq message-send-mail-function 'smtpmail-send-it
           smtpmail-starttls-credentials '(("mailserver.bryanstamour.com" 465 nil nil))
@@ -36,6 +44,25 @@
 
 
 (setq user-mail-address "bryan@bryanstamour.com")
+
+
+;; Set the correct email based on who it was sent to.
+(setq gnus-posting-styles
+      '(((header "to" "stamoub@uwindsor.ca")
+         (address "stamoub@uwindsor.ca"))
+	((header "cc" "stamoub@uwindsor.ca")
+         (address "stamoub@uwindsor.ca"))
+
+        ((header "to" "bsa@tessonics.com")
+         (address "bsa@tessonics.com"))
+	((header "cc" "bsa@tessonics.com")
+         (address "bsa@tessonics.com"))
+        ))
+
+
+
+
+
 
 
 ;; Show all mail in the inboxes.
