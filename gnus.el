@@ -63,7 +63,7 @@
       '((".*"
          (gnus-show-threads nil)
          (gnus-use-scoring nil)
-         (display . [not expire]))))
+         (display . all))))
 
 (gnus-demon-add-handler 'gnus-group-get-new-news 5 nil)
 
