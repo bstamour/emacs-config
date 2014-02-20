@@ -1,20 +1,42 @@
-(setq gnus-select-method
-      '(nnmaildir "main"
-                  (directory "~/Maildir/main/")
-                  (directory-files nnheader-directory-files-safe)
-                  (get-new-mail nil)))
+(if (not on-windows)
+    (progn
+      (setq gnus-select-method
+            '(nnmaildir "main"
+                        (directory "~/Maildir/main/")
+                        (directory-files nnheader-directory-files-safe)
+                        (get-new-mail nil)))
 
-(add-to-list 'gnus-secondary-select-methods
-             '(nnmaildir "uwindsor"
-                         (directory "~/Maildir/uwindsor/")
-                         (directory-files nnheader-directory-files-safe)
-                         (get-new-mail nil)))
+      (add-to-list 'gnus-secondary-select-methods
+                   '(nnmaildir "uwindsor"
+                               (directory "~/Maildir/uwindsor/")
+                               (directory-files nnheader-directory-files-safe)
+                               (get-new-mail nil)))
+
+      ;; Send mail via msmtp-queue.
+      (setq message-send-mail-function 'message-send-mail-with-sendmail)
+      (setq sendmail-program "/usr/local/bin/msmtp-enqueue.sh"))
+  (progn
+    (setq gnus-select-method
+          '(nnimap "main"
+                   (nnimap-address "mailserver.bryanstamour.com")
+                   (nnimap-server-port 993)
+                   (nnimap-stream ssl)))
+
+    (setq message-send-mail-function 'smtpmail-send-it
+          smtpmail-starttls-credentials '(("mailserver.bryanstamour.com" 465 nil nil))
+          smtpmail-auth-credentials '(("mailserver.bryanstamour.com" 465
+                                       "bryan" nil))
+          smtpmail-default-smtp-server "mailserver.bryanstamour.com"
+          smtpmail-smtp-server "mailserver.bryanstamour.com"
+          smtpmail-smtp-service 465)
+    ))
+
+
+
+
 
 (setq user-mail-address "bryan@bryanstamour.com")
 
-;; Send mail via msmtp-queue.
-(setq message-send-mail-function 'message-send-mail-with-sendmail)
-(setq sendmail-program "/usr/local/bin/msmtp-enqueue.sh")
 
 ;; Show all mail in the inboxes.
 (setq gnus-permanently-visible-groups ".*")
