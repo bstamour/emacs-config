@@ -1,12 +1,8 @@
 ;; Check the OS.
-(defvar on-windows (if (string= system-type "windows-nt")
-                       t
-                     nil))
+(defvar on-windows (string= system-type "windows-nt"))
 
 ;; Directory structure.
-(defvar root-dir (file-name-directory load-file-name)
-  "The root dir of the emacs config.")
-
+(defvar root-dir (file-name-directory load-file-name))
 (defvar modules-dir (concat root-dir "modules/"))
 (defvar vendor-dir (concat root-dir "vendor/"))
 (defvar personal-dir (concat root-dir "personal/"))
@@ -32,7 +28,7 @@
 
 ;; Config changes made through the customize UI.
 (setq custom-file (concat personal-dir "custom.el"))
-(setq functions-file (concat personal-dir "functions.el")) ; ?
+(setq functions-file (concat personal-dir "functions.el"))
 
 ;; Package manager settings.
 (when (>= emacs-major-version 24)
@@ -44,15 +40,14 @@
      ("melpa" . "http://melpa.milkbox.net/packages/"))))
 
 ;; Load the configs.
-
 (require 'core)
 (require 'lang-c)
 (require 'lang-haskell)
 (require 'lang-lisp)
 (require 'lang-ocaml)
 
-(if on-windows
-    (require 'windows))
+(when on-windows
+  (require 'windows))
 
 ;; Finally, a shell.
 (eshell)

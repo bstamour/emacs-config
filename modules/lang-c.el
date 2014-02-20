@@ -4,6 +4,8 @@
 (c-add-style "my-c++-style"
              '("stroustrup"
                (c-basic-offset . 2)
+               (innamespace . 0)
+               (inline-open . 0)
                ))
 
 ;; Spaces instead of tabs.

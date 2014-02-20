@@ -24,8 +24,6 @@
           (lambda ()
             (delete-trailing-whitespace)))
 
-
-
 ;; Remove scroll bars and menu bars.
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
@@ -62,6 +60,8 @@ the value, e.g. (\"VAR\" . \"VAL\")"
 as launched by `$SHELL -lc' (or shell-cmd) to the current
 environment."
   (mapc 'setenv-from-cons (interactive-env-alist shell-cmd env-cmd)))
+
+(set-frame-font "Monospace-10" t)
 
 (if (not on-windows)
     (progn
