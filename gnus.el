@@ -56,6 +56,9 @@
 	((header "cc" "bsa@tessonics.com")
          (address "bsa@tessonics.com"))))
 
+;; Don't use the full screen.
+(setq gnus-use-full-window nil)
+
 ;; Show all mail in the inboxes.
 (setq gnus-permanently-visible-groups ".*")
 
