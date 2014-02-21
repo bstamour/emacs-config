@@ -47,6 +47,7 @@
 (require 'lang-lisp)
 (require 'lang-ocaml)
 (require 'lang-web)
+(require 'lang-cs)
 
 (when on-windows
   (require 'windows))
