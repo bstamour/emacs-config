@@ -46,7 +46,7 @@
 (require 'lang-haskell)
 (require 'lang-lisp)
 (require 'lang-ocaml)
-(require 'lang-php)
+(require 'lang-web)
 
 (when on-windows
   (require 'windows))
