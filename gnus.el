@@ -66,7 +66,9 @@
       '((".*"
          (gnus-show-threads nil)
          (gnus-use-scoring nil)
-         (display . all))))
+         (display . all)
+         (gcc-self . "INBOX.Sent")
+         )))
 
 (gnus-demon-add-handler 'gnus-group-get-new-news 5 nil)
 
