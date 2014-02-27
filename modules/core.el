@@ -61,7 +61,7 @@ as launched by `$SHELL -lc' (or shell-cmd) to the current
 environment."
   (mapc 'setenv-from-cons (interactive-env-alist shell-cmd env-cmd)))
 
-(set-frame-font "Monospace-10" t)
+(set-frame-font "Monospace-8" t)
 
 (if (not on-windows)
     (progn
