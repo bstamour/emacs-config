@@ -43,9 +43,7 @@
 ;; Load the configs.
 (require 'core)
 (require 'lang-c)
-(require 'lang-haskell)
 (require 'lang-lisp)
-(require 'lang-ocaml)
 (require 'lang-web)
 (require 'lang-cs)
 
