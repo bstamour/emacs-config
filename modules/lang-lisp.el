@@ -1,4 +1,4 @@
-(setq inferior-lisp-program "/usr/local/bin/sbcl") ; your Lisp system
+(setq inferior-lisp-program "sbcl")
 (require 'slime)
 (slime-setup)
 (provide 'lang-lisp)
