@@ -32,13 +32,35 @@
 (setq functions-file (concat personal-dir "functions.el"))
 
 ;; Package manager settings.
+
+(defvar my-required-packages
+  '(caml
+    cl-lib
+    color-theme
+    color-theme-monokai
+    csharp-mode
+    git-commit-mode
+    git-rebase-mode
+    haskell-mode
+    magit
+    slime
+    tuareg
+    w3m
+    web-mode))
+
 (when (>= emacs-major-version 24)
   (require 'package)
   (package-initialize)
+
   (mapc
    (lambda (repo) (add-to-list 'package-archives repo) t)
    '(("marmalade" . "http://marmalade-repo.org/packages/")
-     ("melpa" . "http://melpa.milkbox.net/packages/"))))
+     ("melpa" . "http://melpa.milkbox.net/packages/")))
+
+  (mapc (lambda (package)
+          (unless (package-installed-p package)
+            (package-install package)))
+        my-required-packages))
 
 ;; Load the configs.
 (require 'core)
