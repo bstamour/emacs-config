@@ -80,6 +80,35 @@
       message-send-mail-partially-limit nil  ;; size of sent messages
       gnus-large-newsgroup              1000)
 
+(setq gnus-group-line-format "%M%S%5y/%-5t: %uG %D\n")
+
+;; Map the actual group names to ones I've defined.
+(defun gnus-user-format-function-G (arg)
+  (let ((mapped-name (assoc gnus-tmp-group group-name-map)))
+    (if (null mapped-name)
+        gnus-tmp-group
+      (cdr mapped-name))))
+
+(setq group-name-map
+      '(("nnimap+uwindsor:INBOX" . "School-Inbox")
+        ("nnimap+uwindsor:[Gmail]/Starred" . "School-Starred")
+        ("nnimap+uwindsor:[Gmail]/Sent Mail" . "School-Sent")
+        ("nnimap+uwindsor:Drafts" . "School-Drafts")
+        ("nnimap+uwindsor:Keep these" . "School-Important")
+
+        ("INBOX.Banking" . "Banking")
+        ("INBOX.Facebook" . "Facebook")
+        ("INBOX.Drafts" . "Drafts")
+        ("INBOX.Phone" . "Phone")
+        ("INBOX.Purchases" . "Purchases")
+        ("INBOX.School" . "School")
+        ("INBOX.Sent" . "Sent")
+        ("INBOX.Trash" . "Trash")
+        ("INBOX.Websites" . "Websites")
+        ("INBOX.Everything Else" . "Everything Else")
+        ("INBOX.Wedding" . "Wedding")
+        ))
+
 ;; default Pine ordered header list when displaying mail
 (setq gnus-sorted-header-list
       '("^Date:" "^From:" "^To:" "^Followup-To:" "^Cc:" "Bcc:" "^Newsgroups:" "Fcc:" "^Subject:"))
