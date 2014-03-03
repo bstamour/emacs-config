@@ -89,6 +89,19 @@
         gnus-tmp-group
       (cdr mapped-name))))
 
+(defun gnus-group-sort-by-alias (info1 info2)
+  "Sort by the aliases (if any)"
+  (let* ((g1 (gnus-info-group info1))
+         (g2 (gnus-info-group info2))
+         (a1 (assoc g1 group-name-map))
+         (a2 (assoc g2 group-name-map)))
+    (string< (if (null a1) g1 (cdr a1))
+             (if (null a2) g2 (cdr a2)))))
+
+(defun gnus-group-sort-groups-by-alias (&optional reverse)
+  (interactive "P")
+  (gnus-group-sort-groups 'gnus-group-sort-by-alias reverse))
+
 (setq group-name-map
       '(("nnimap+uwindsor:INBOX" . "School-Inbox")
         ("nnimap+uwindsor:[Gmail]/Starred" . "School-Starred")
