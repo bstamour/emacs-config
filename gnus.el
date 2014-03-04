@@ -1,6 +1,3 @@
-
-;; When on my laptop, use the local IMAP folder. Else, use IMAP.
-
 (if on-laptop
     (progn
       (setq gnus-select-method
@@ -80,11 +77,31 @@
       message-send-mail-partially-limit nil  ;; size of sent messages
       gnus-large-newsgroup              1000)
 
+(setq group-aliases
+  '(("nnimap+uwindsor:INBOX" . "School-Inbox")
+    ("nnimap+uwindsor:[Gmail]/Starred" . "School-Starred")
+    ("nnimap+uwindsor:[Gmail]/Sent Mail" . "School-Sent")
+    ("nnimap+uwindsor:Drafts" . "School-Drafts")
+    ("nnimap+uwindsor:Keep these" . "School-Important")
+
+    ("INBOX.Banking" . "Banking")
+    ("INBOX.Facebook" . "Facebook")
+    ("INBOX.Drafts" . "Drafts")
+    ("INBOX.Phone" . "Phone")
+    ("INBOX.Purchases" . "Purchases")
+    ("INBOX.School" . "School")
+    ("INBOX.Sent" . "Sent")
+    ("INBOX.Trash" . "Trash")
+    ("INBOX.Websites" . "Websites")
+    ("INBOX.Everything Else" . "Everything Else")
+    ("INBOX.Wedding" . "Wedding")))
+
+;; How each line in the group buffer is formatted.
 (setq gnus-group-line-format "%M%S%5y/%-5t: %uG %D\n")
 
-;; Map the actual group names to ones I've defined.
 (defun gnus-user-format-function-G (arg)
-  (let ((mapped-name (assoc gnus-tmp-group group-name-map)))
+  "Map the actual group names to ones defined in the group-aliases alist."
+  (let ((mapped-name (assoc gnus-tmp-group group-aliases)))
     (if (null mapped-name)
         gnus-tmp-group
       (cdr mapped-name))))
@@ -93,8 +110,8 @@
   "Sort by the aliases (if any)"
   (let* ((g1 (gnus-info-group info1))
          (g2 (gnus-info-group info2))
-         (a1 (assoc g1 group-name-map))
-         (a2 (assoc g2 group-name-map)))
+         (a1 (assoc g1 group-aliases))
+         (a2 (assoc g2 group-aliases)))
     (string< (if (null a1) g1 (cdr a1))
              (if (null a2) g2 (cdr a2)))))
 
@@ -102,38 +119,9 @@
   (interactive "P")
   (gnus-group-sort-groups 'gnus-group-sort-by-alias reverse))
 
-(setq group-name-map
-      '(("nnimap+uwindsor:INBOX" . "School-Inbox")
-        ("nnimap+uwindsor:[Gmail]/Starred" . "School-Starred")
-        ("nnimap+uwindsor:[Gmail]/Sent Mail" . "School-Sent")
-        ("nnimap+uwindsor:Drafts" . "School-Drafts")
-        ("nnimap+uwindsor:Keep these" . "School-Important")
-
-        ("INBOX.Banking" . "Banking")
-        ("INBOX.Facebook" . "Facebook")
-        ("INBOX.Drafts" . "Drafts")
-        ("INBOX.Phone" . "Phone")
-        ("INBOX.Purchases" . "Purchases")
-        ("INBOX.School" . "School")
-        ("INBOX.Sent" . "Sent")
-        ("INBOX.Trash" . "Trash")
-        ("INBOX.Websites" . "Websites")
-        ("INBOX.Everything Else" . "Everything Else")
-        ("INBOX.Wedding" . "Wedding")
-        ))
-
 ;; default Pine ordered header list when displaying mail
 (setq gnus-sorted-header-list
       '("^Date:" "^From:" "^To:" "^Followup-To:" "^Cc:" "Bcc:" "^Newsgroups:" "Fcc:" "^Subject:"))
-
-;; Automatically delete expired emails when we leave the summary buffer.
-;(add-hook 'gnus-summary-mode-hook
-;          (lambda ()
-;            (unless (gnus-news-group-p gnus-newsgroup-name)
-;              (set (make-local-variable  'gnus-expirable-mark) ?D)
-;              (set (make-local-variable  'gnus-canceled-mark)  ?X)
-;              (set (make-local-variable  'gnus-ancient-mark)   ? )
-;              (set (make-local-variable  'gnus-read-mark)      ? ))))
 
 (setq nnmail-expiry-wait 0)
 
