@@ -59,12 +59,14 @@
 ;; Show all mail in the inboxes.
 (setq gnus-permanently-visible-groups ".*")
 
+(setq sent-mail-folder (if on-laptop "Sent" "INBOX.Sent"))
+
 (setq gnus-parameters
-      '((".*"
+      `((".*"
          (gnus-show-threads nil)
          (gnus-use-scoring nil)
          (display . all)
-         (gcc-self . "INBOX.Sent")
+         (gcc-self . ,sent-mail-folder)
          )))
 
 (gnus-demon-add-handler 'gnus-group-get-new-news 5 nil)
@@ -97,7 +99,7 @@
     ("INBOX.Wedding" . "Wedding")))
 
 ;; How each line in the group buffer is formatted.
-(setq gnus-group-line-format "%M%S%5y/%-5t: %uG %D\n")
+;(setq gnus-group-line-format "%M%S%5y/%-5t: %uG %D\n")
 
 (defun gnus-user-format-function-G (arg)
   "Map the actual group names to ones defined in the group-aliases alist."

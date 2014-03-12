@@ -15,7 +15,15 @@
 (global-set-key "\C-x\C-m" 'execute-extended-command)
 (global-set-key "\C-x\C-b" 'electric-buffer-list)
 
+(setq backup-directory-alist `(("." . "~/.saves")))
+
 (iswitchb-mode 1)
+
+
+;; TODO: Find a better spot for this.
+(setq w3m-use-cookies t)
+
+
 
 (defalias 'qrr 'query-replace-regexp)
 (defalias 'yes-or-no-p 'y-or-n-p)
