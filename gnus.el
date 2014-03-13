@@ -127,8 +127,8 @@
 
 (setq nnmail-expiry-wait 0)
 
-;; Render html messages better.
-(setq mm-discouraged-alternatives '("text/html" "text/richtext"))
+;; Render html messages using w3m.
+(setq mm-text-html-renderer 'w3m)
 
 (defun gnus-summary-goto-group (my-group)
   "Prompt for a group short name and open it in summary buffer.
