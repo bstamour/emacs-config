@@ -194,6 +194,12 @@
       (gnus-configure-windows 'article 'force)))
 
 ;; Keyboard shortcuts to make gnus act more like pine.
+
+(add-hook 'gnus-article-mode-hook
+          (lambda ()
+            (local-set-key "r"  'gnus-summary-wide-reply)
+            (local-set-key "R"  'gnus-summary-wide-reply-with-original)))
+
 (add-hook 'gnus-summary-mode-hook
           (lambda ()
             (local-set-key (kbd "<tab>") 'gnus-summary-next-unread-article)
@@ -203,8 +209,12 @@
             (local-set-key "!"  'gnus-summary-put-mark-as-ticked-next)
             (local-set-key "d"  'gnus-summary-put-mark-as-expirable-next)
             (local-set-key "u"  'gnus-summary-clear-mark-forward)
-            (local-set-key "r"  'gnus-summary-dwim-reply)
-            (local-set-key "R"  'gnus-summary-dwim-reply-with-original)
+            (local-set-key "r"  'gnus-summary-wide-reply)
+            (local-set-key "R"  'gnus-summary-wide-reply-with-original)
+
+
+;            (local-set-key "r"  'gnus-summary-dwim-reply)
+;            (local-set-key "R"  'gnus-summary-dwim-reply-with-original)
             (local-set-key "x"  'gnus-summary-delete-article)
             (local-set-key "g"  'gnus-summary-goto-group)
             (local-set-key "?"  'gnus-info-find-node)

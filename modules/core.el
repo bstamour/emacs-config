@@ -2,8 +2,7 @@
 (require 'color-theme)
 (require 'color-theme-monokai)
 
-(if window-system
-    (color-theme-monokai))
+(if window-system (load-theme 'distinguished t))
 
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
@@ -22,7 +21,7 @@
 
 ;; TODO: Find a better spot for this.
 (setq w3m-use-cookies t)
-
+(setq w3m-home-page "http://bryanstamour.com/links.html")
 
 
 (defalias 'qrr 'query-replace-regexp)

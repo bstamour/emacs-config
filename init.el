@@ -54,4 +54,4 @@
 
 ;; Finally, a shell.
 (eshell)
-(gnus)
+;(gnus)
