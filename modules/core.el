@@ -7,7 +7,7 @@
 ;(color-theme-initialize)
 ;(color-theme-deep-blue)
 
-(load-theme 'zenburn t)
+(load-theme 'solarized-dark t)
 
 
 (setq inhibit-startup-message t)
