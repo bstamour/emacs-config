@@ -2,7 +2,13 @@
 (require 'color-theme)
 (require 'color-theme-monokai)
 
-(if window-system (load-theme 'distinguished t))
+;(if window-system (load-theme 'distinguished t))
+
+;(color-theme-initialize)
+;(color-theme-deep-blue)
+
+(load-theme 'zenburn t)
+
 
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
