@@ -30,6 +30,13 @@
                           (nnimap-server-port 993)
                           (nnimap-stream ssl)))
 
+    ;; Work email.
+    (add-to-list 'gnus-secondary-select-methods
+                 '(nnimap "tessonics"
+                          (nnimap-address "secure116.inmotionhosting.com")
+                          (nnimap-server-port 993)
+                          (nnimap-stream ssl)))
+
     (setq message-send-mail-function 'smtpmail-send-it
           smtpmail-starttls-credentials '(("mailserver.bryanstamour.com" 465 nil nil))
           smtpmail-auth-credentials '(("mailserver.bryanstamour.com" 465
