@@ -1,16 +1,6 @@
 (require 'cl)
-(require 'color-theme)
-(require 'color-theme-monokai)
-
-;(if window-system (load-theme 'distinguished t))
-
-;(color-theme-initialize)
-;(color-theme-deep-blue)
-
-;(load-theme 'solarized-dark t)
 
 (if window-systen (load-theme 'deeper-blue t))
-
 
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
