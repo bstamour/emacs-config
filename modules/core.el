@@ -7,7 +7,9 @@
 ;(color-theme-initialize)
 ;(color-theme-deep-blue)
 
-(load-theme 'solarized-dark t)
+;(load-theme 'solarized-dark t)
+
+(if window-systen (load-theme 'deeper-blue t))
 
 
 (setq inhibit-startup-message t)
