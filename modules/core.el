@@ -1,6 +1,8 @@
 (require 'cl)
 
-(if window-systen (load-theme 'deeper-blue t))
+(if window-system (load-theme 'ample t))
+
+
 
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
