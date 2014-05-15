@@ -44,7 +44,6 @@
 
 ;; Load the configs.
 (require 'core)
-(require 'mail)
 (require 'lang-c)
 (require 'lang-lisp)
 (require 'lang-web)
