@@ -1,6 +1,6 @@
 ;; Check the OS and system.
 (defvar on-windows (string= system-type "windows-nt"))
-(defvar on-laptop (string= system-name "slacktop.slacktown"))
+(defvar on-laptop (string= system-name "planck.thestamours.net"))
 
 ;; Directory structure.
 (defvar root-dir (file-name-directory load-file-name))
@@ -44,14 +44,15 @@
 
 ;; Load the configs.
 (require 'core)
+(require 'mail)
 (require 'lang-c)
 (require 'lang-lisp)
 (require 'lang-web)
 (require 'lang-cs)
+(require 'lang-haskell)
 
 (when on-windows
   (require 'windows))
 
-;; Finally, a shell.
+(server-start)
 (eshell)
-;(gnus)
