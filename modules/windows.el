@@ -6,4 +6,6 @@
   (setq buffer-display-table (make-display-table))
   (aset buffer-display-table ?\^M []))
 
+(set-face-attribute 'default nil :font "Courier New-10")
+
 (provide 'windows)
