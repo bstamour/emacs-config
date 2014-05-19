@@ -1,9 +1,9 @@
 (require 'cl)
-(require 'color-theme)
-(color-theme-initialize)
-(color-theme-resolve)
+;(require 'color-theme)
+;(color-theme-initialize)
+;(color-theme-resolve)
 
-;(if window-system (load-theme 'ample t))
+(if window-system (load-theme 'brin t))
 
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
