@@ -1,9 +1,7 @@
 (require 'cl)
-;(require 'color-theme)
-;(color-theme-initialize)
-;(color-theme-resolve)
-
-(if window-system (load-theme 'brin t))
+(require 'color-theme)
+(color-theme-initialize)
+(color-theme-deep-blue)
 
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
