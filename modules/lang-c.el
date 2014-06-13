@@ -9,7 +9,12 @@
                ))
 
 ;; Spaces instead of tabs.
-(setq-default indent-tabs-mode nil)
+
+
+
+
+
+;(setq-default indent-tabs-mode nil)
 
 ;; Change the default command for M-x compile when in c++-mode.
 ;; When a makefile exists in the directory just keep things the same.
