@@ -1,7 +1,9 @@
 (require 'cl)
-(require 'color-theme)
-(color-theme-initialize)
-(color-theme-deep-blue)
+;(require 'color-theme)
+;(color-theme-initialize)
+;(color-theme-snowish)
+
+(load-theme 'mccarthy t)
 
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
