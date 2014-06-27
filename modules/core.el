@@ -3,7 +3,7 @@
 ;(color-theme-initialize)
 ;(color-theme-snowish)
 
-(load-theme 'mccarthy t)
+(load-theme 'wilson t)
 
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
