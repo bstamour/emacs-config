@@ -1,9 +1,9 @@
 (require 'cl)
 ;(require 'color-theme)
 ;(color-theme-initialize)
-;(color-theme-snowish)
+;(color-theme-midnight)
 
-(load-theme 'wilson t)
+(load-theme 'cherry-blossom t)
 
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
