@@ -1,9 +1,5 @@
 (require 'cl)
-;(require 'color-theme)
-;(color-theme-initialize)
-;(color-theme-midnight)
-
-(load-theme 'cherry-blossom t)
+(load-theme 'soft-stone t)
 
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
@@ -19,11 +15,9 @@
 
 (iswitchb-mode 1)
 
-
 ;; TODO: Find a better spot for this.
 (setq w3m-use-cookies t)
 (setq w3m-home-page "http://bryanstamour.com/links.html")
-
 
 (defalias 'qrr 'query-replace-regexp)
 (defalias 'yes-or-no-p 'y-or-n-p)
