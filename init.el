@@ -1,6 +1,6 @@
 ;; Check the OS and system.
 (defvar on-windows (string= system-type "windows-nt"))
-(defvar on-laptop (string= system-name "planck.thestamours.net"))
+(defvar on-laptop (string= system-name "cantor.thestamours.net"))
 
 ;; Directory structure.
 (defvar root-dir (file-name-directory load-file-name))
