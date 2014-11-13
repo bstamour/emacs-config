@@ -58,7 +58,10 @@
 	 (signature "Peace, love, and Unix"))
 	("uwindsor"
 	 (signature "Bryan St. Amour\nBCS\nM.Sc")
-	 (address "stamoub@uwindsor.ca"))))
+	 (address "stamoub@uwindsor.ca"))
+	("tessonics"
+	 (signature "Bryan St. Amour\nSoftware Engineer")
+	 (address "bsa@tessonics.com"))))
 
 ;; Don't use the full screen.
 (setq gnus-use-full-window nil)

@@ -1,5 +1,5 @@
 (require 'cl)
-(load-theme 'soft-stone t)
+(load-theme 'deeper-blue t)
 
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
