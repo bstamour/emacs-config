@@ -1,5 +1,5 @@
 (require 'cl)
-(load-theme 'deeper-blue t)
+(load-theme 'tangotango t)
 
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
@@ -69,5 +69,14 @@ environment."
     (progn
       (setenv-from-shell-environment)
       (setq exec-path (split-string (getenv "PATH") path-separator))))
+
+;; Org-more stuff.
+(require 'org)
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(setq org-log-done t)
+
+
+
 
 (provide 'core)
