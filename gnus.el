@@ -1,22 +1,25 @@
-;;---------------------------------------------------------------------------------------------------------------
+;;------------------------------------------------------------------------------------
 
-;;
 ;; Machine-specific settings.
-;;
 
 (if on-laptop
     (progn
       (setq gnus-select-method
-            '(nnmaildir "main"
-                        (directory "~/Maildir/main/")
-                        (directory-files nnheader-directory-files-safe)
-                        (get-new-mail nil)))
+	    '(nnimap "local"
+		     (nnimap-address "localhost")
+		     (nnimap-server-port 143)
+		     (nnimap-stream network)))
+      ;(setq gnus-select-method
+      ;      '(nnmaildir "main"
+      ;                  (directory "~/Maildir/main/")
+      ;                  (directory-files nnheader-directory-files-safe)
+      ;                  (get-new-mail nil)))
 
-      (add-to-list 'gnus-secondary-select-methods
-                   '(nnmaildir "uwindsor"
-                               (directory "~/Maildir/uwindsor/")
-                               (directory-files nnheader-directory-files-safe)
-                               (get-new-mail nil)))
+      ;(add-to-list 'gnus-secondary-select-methods
+      ;             '(nnmaildir "uwindsor"
+      ;                         (directory "~/Maildir/uwindsor/")
+      ;                         (directory-files nnheader-directory-files-safe)
+      ;                         (get-new-mail nil)))
 
       ;; Send mail via msmtp-queue.
       (setq message-send-mail-function 'message-send-mail-with-sendmail)
@@ -51,7 +54,7 @@
           smtpmail-smtp-server "mailserver.bryanstamour.com"
           smtpmail-smtp-service 465)))
 
-;;---------------------------------------------------------------------------------------------------------------
+;;------------------------------------------------------------------------------------
 
 ;; Shortcuts to make gnus behave more like pine. Taken from here:
 ;;
@@ -81,7 +84,7 @@
 	    (local-set-key "n"  'gnus-summary-next-article)
 	    (local-set-key "p"  'gnus-summary-prev-article)
 	    (local-set-key "!"  'gnus-summary-put-mark-as-ticked-next)
-	    (local-set-key "d"  'gnus-summary-put-mark-as-expirable-next)
+	    (local-set-key "d"  'gnus-summary-delete-article)
 	    (local-set-key "u"  'gnus-summary-clear-mark-forward)
 	    (local-set-key "r"  'gnus-summary-dwim-reply)
 	    (local-set-key "R"  'gnus-summary-dwim-reply-with-original)
@@ -89,7 +92,7 @@
 	    (local-set-key "g"  'gnus-summary-goto-group)
 	    (local-set-key "?"  'gnus-info-find-node)
 	    (local-set-key "l"  'gnus-summary-exit)
-	    (local-set-key "s"  'gnus-summary-save-and-expire)
+	    (local-set-key "s"  'gnus-summary-move-article)
 	    (local-set-key "v"  'gnus-article-view-part)
 	    (local-set-key "c"  'gnus-summary-mail-other-window)
 	    (local-set-key "$f" 'gnus-summary-sort-by-author)
@@ -110,12 +113,13 @@
 (defun gnus-summary-goto-group (my-group)
   "Prompt for a group short name and open it in summary buffer.
   Default is next group showing in the *Group* buffer with unread articles."
-  (interactive (list (read-string
-		      (format "Go to group (default %s): "
-			      (if (eq gnus-keep-same-level 'best)
-				  (gnus-summary-best-group gnus-newsgroup-name)
-				(gnus-group-short-name
-				 (gnus-summary-search-group nil gnus-keep-same-level)))))))
+  (interactive
+   (list (read-string
+	  (format "Go to group (default %s): "
+		  (if (eq gnus-keep-same-level 'best)
+		      (gnus-summary-best-group gnus-newsgroup-name)
+		    (gnus-group-short-name
+		     (gnus-summary-search-group nil gnus-keep-same-level)))))))
   (if (string= my-group "")
       (gnus-summary-next-group)
     ;; look for group matching the short name, take first match
@@ -170,11 +174,9 @@
       (gnus-configure-windows 'summary 'force)
     (gnus-configure-windows 'article 'force)))
 
-;;---------------------------------------------------------------------------------------------------------------
+;;------------------------------------------------------------------------------------
 
-;;
 ;; Additional settings.
-;;
 
 (setq user-full-name "Bryan St. Amour")
 (setq user-mail-address "bryan@bryanstamour.com")
@@ -222,13 +224,18 @@
       gnus-large-newsgroup              1000)
 
 ;; Speed things up.
- (setq gnus-nntp-server nil
-       gnus-read-active-file nil
-       gnus-save-newsrc-file nil
-       gnus-read-newsrc-file nil
-       gnus-check-new-newsgroups nil)
+(setq gnus-nntp-server nil
+      gnus-read-active-file nil
+      gnus-save-newsrc-file nil
+      gnus-read-newsrc-file nil
+      gnus-check-new-newsgroups nil)
 
 (setq mm-discouraged-alternatives '("text/html" "text/richtext"))
 
 ;; Render html messages using w3m.
 (setq mm-text-html-renderer 'eww)
+
+(setq gnus-thread-sort-functions
+      '(gnus-thread-sort-by-date))
+(setq gnus-article-sort-functions
+      '(gnus-article-sort-by-date))

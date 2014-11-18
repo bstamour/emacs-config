@@ -6,6 +6,7 @@
                (c-basic-offset . 2)
                (innamespace . 0)
                (inline-open . 0)
+	       (arglist-close . 0)
                ))
 
 ;; Spaces instead of tabs.
