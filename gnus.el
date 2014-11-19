@@ -233,7 +233,7 @@
 (setq mm-discouraged-alternatives '("text/html" "text/richtext"))
 
 ;; Render html messages using w3m.
-(setq mm-text-html-renderer 'eww)
+(setq mm-text-html-renderer 'w3m)
 
 (setq gnus-thread-sort-functions
       '(gnus-thread-sort-by-date))
