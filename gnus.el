@@ -89,7 +89,7 @@
 	    (local-set-key "g"  'gnus-summary-goto-group)
 	    (local-set-key "?"  'gnus-info-find-node)
 	    (local-set-key "l"  'gnus-summary-exit)
-	    (local-set-key "s"  'gnus-summary-save-and-expire)
+	    (local-set-key "s"  'gnus-summary-move-article)
 	    (local-set-key "v"  'gnus-article-view-part)
 	    (local-set-key "c"  'gnus-summary-mail-other-window)
 	    (local-set-key "$f" 'gnus-summary-sort-by-author)
