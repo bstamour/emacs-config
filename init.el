@@ -32,15 +32,38 @@
 (setq functions-file (concat personal-dir "functions.el"))
 
 ;; Package manager settings.
+(require 'package)
+(package-initialize)
+(mapc
+ (lambda (repo) (add-to-list 'package-archives repo) t)
+ '(("marmalade" . "http://marmalade-repo.org/packages/")
+   ("melpa" . "http://melpa.milkbox.net/packages/")))
 
-(when (>= emacs-major-version 24)
-  (require 'package)
-  (package-initialize)
+(unless package-archive-contents
+  (package-refresh-contents))
 
-  (mapc
-   (lambda (repo) (add-to-list 'package-archives repo) t)
-   '(("marmalade" . "http://marmalade-repo.org/packages/")
-     ("melpa" . "http://melpa.milkbox.net/packages/"))))
+(setq package-list '(
+		     ;; Color themes.
+		     underwater-theme
+		     ;; Language support.
+		     haskell-mode
+		     csharp-mode
+		     php-mode
+		     slime
+		     tuareg
+		     web-mode
+		     ;; Utils.
+		     magit
+		     cl-lib
+		     geben
+		     git-commit-mode
+		     git-rebase-mode
+		     w3m
+		     cl-lib))
+
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
 
 ;; Load the configs.
 (require 'bst-core)
