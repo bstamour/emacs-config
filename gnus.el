@@ -33,18 +33,18 @@
                    (nnimap-stream ssl)))
 
     ;; School email.
-    (add-to-list 'gnus-secondary-select-methods
-                 '(nnimap "uwindsor"
-                          (nnimap-address "imap.gmail.com")
-                          (nnimap-server-port 993)
-                          (nnimap-stream ssl)))
+    ;(add-to-list 'gnus-secondary-select-methods
+    ;             '(nnimap "uwindsor"
+    ;                      (nnimap-address "imap.gmail.com")
+    ;                      (nnimap-server-port 993)
+    ;                      (nnimap-stream ssl)))
 
     ;; Work email.
-    (add-to-list 'gnus-secondary-select-methods
-                 '(nnimap "tessonics"
-                          (nnimap-address "secure116.inmotionhosting.com")
-                          (nnimap-server-port 993)
-                          (nnimap-stream ssl)))
+    ;(add-to-list 'gnus-secondary-select-methods
+    ;             '(nnimap "tessonics"
+    ;                      (nnimap-address "secure116.inmotionhosting.com")
+    ;                      (nnimap-server-port 993)
+    ;                      (nnimap-stream ssl)))
 
     (setq message-send-mail-function 'smtpmail-send-it
           smtpmail-starttls-credentials '(("mailserver.bryanstamour.com" 465 nil nil))
@@ -224,11 +224,11 @@
       gnus-large-newsgroup              1000)
 
 ;; Speed things up.
-(setq gnus-nntp-server nil
-      gnus-read-active-file nil
-      gnus-save-newsrc-file nil
-      gnus-read-newsrc-file nil
-      gnus-check-new-newsgroups nil)
+;(setq gnus-nntp-server nil
+;      gnus-read-active-file nil
+;      gnus-save-newsrc-file nil
+;      gnus-read-newsrc-file nil
+;      gnus-check-new-newsgroups nil)
 
 (setq mm-discouraged-alternatives '("text/html" "text/richtext"))
 

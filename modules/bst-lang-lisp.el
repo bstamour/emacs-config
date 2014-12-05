@@ -7,4 +7,4 @@
 (require 'slime)
 (slime-setup '(slime-fancy))
 
-(provide 'lang-lisp)
+(provide 'bst-lang-lisp)

@@ -12,4 +12,4 @@
 
 (add-hook 'web-mode-hook 'my-web-mode-hook)
 
-(provide 'lang-web)
+(provide 'bst-lang-web)

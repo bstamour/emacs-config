@@ -14,4 +14,4 @@
 
 ;(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 
-(provide 'lang-haskell)
+(provide 'bst-lang-haskell)

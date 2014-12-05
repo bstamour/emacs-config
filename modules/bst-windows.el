@@ -8,4 +8,4 @@
 
 (set-face-attribute 'default nil :font "Courier New-10")
 
-(provide 'windows)
+(provide 'bst-windows)

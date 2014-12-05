@@ -43,15 +43,16 @@
      ("melpa" . "http://melpa.milkbox.net/packages/"))))
 
 ;; Load the configs.
-(require 'core)
-(require 'lang-c)
-(require 'lang-lisp)
-(require 'lang-web)
-(require 'lang-cs)
-(require 'lang-haskell)
+(require 'bst-core)
+(require 'bst-lang-c)
+(require 'bst-lang-lisp)
+(require 'bst-lang-web)
+(require 'bst-lang-cs)
+(require 'bst-lang-haskell)
+(require 'bst-org-mode)
 
 (when on-windows
-  (require 'windows))
+  (require 'bst-windows))
 
 (server-start)
 (eshell)

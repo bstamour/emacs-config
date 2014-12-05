@@ -9,37 +9,49 @@
 	       (arglist-close . 0)
                ))
 
-;; Spaces instead of tabs.
-
-
-
-
-
-;(setq-default indent-tabs-mode nil)
-
 ;; Change the default command for M-x compile when in c++-mode.
 ;; When a makefile exists in the directory just keep things the same.
 ;; If a makefile doesn't exist, default to running g++-4.7 on the
 ;; file in the current buffer (with the right flags of course).
 ;;
 ;; From http://emacswiki.org/emacs/CompileCommand
-(require 'compile)
-(defun set-default-compile-command ()
-  (interactive)
-  (let* ((compiler "g++-4.7")
-         (flags    "-std=c++11 -Wall -Werror -Wextra")
-         (format-string
-          (concat compiler " " flags " "
-                  (if (eq system-type 'darwin)
-                      "-framework Cocoa"
-                    "")
-                  " %s -o %s")))
-    (unless (file-exists-p "Makefile")
-      (set (make-local-variable 'compile-command)
-           (let ((file (file-name-nondirectory buffer-file-name)))
-             (format format-string
-                     file
-                     (file-name-sans-extension file)))))))
+
+(setq cpp-compiler (if on-windows
+		       "C:/Program Files (x86)/Microsoft Visual Studio 12.0/VC/bin/cl.exe"
+		     "g++"))
+
+(setq cpp-compiler-flags (if on-windows
+			     "-O2"
+			   "-O2 -std=c++11 -Wall -Werror -Wextra"))
+
+(setq cpp-make-command (if on-windows
+			   "C:/Program Files (x86)/Microsoft Visual Studio 12.0/VC/bin/nmake.exe"
+			 "make"))
+
+
+;(require 'compile)
+;(defun set-default-compile-command ()
+;  (interactive)
+;  (let* ((compiler "g++-4.7")
+;         (flags    "-std=c++11 -Wall -Werror -Wextra")
+;         (format-string
+;          (concat compiler " " flags " "
+;                  (if (eq system-type 'darwin)
+;                      "-framework Cocoa"
+;                    "")
+;                  " %s -o %s")))
+;    (unless (file-exists-p "Makefile")
+;      (set (make-local-variable 'compile-command)
+;           (let ((file (file-name-nondirectory buffer-file-name)))
+;             (format format-string
+;                     file
+;                     (file-name-sans-extension file)))))))
+
+
+
+
+
+
 
 ;; Add support for the 'enum class' keyword in C++11.
 (defun inside-class-enum-p (pos)
@@ -152,4 +164,4 @@
              '((my-c-mode-font-lock-if (0 font-lock-comment-face prepend)))
              'add-to-end)))
 
-(provide 'lang-c)
+(provide 'bst-lang-c)
