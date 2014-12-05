@@ -1,5 +1,5 @@
 (require 'cl)
-(load-theme 'tangotango t)
+(load-theme 'underwater t)
 
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
