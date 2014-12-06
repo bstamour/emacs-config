@@ -42,24 +42,25 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
-(setq package-list '(
-		     ;; Color themes.
-		     underwater-theme
-		     ;; Language support.
-		     haskell-mode
-		     csharp-mode
-		     php-mode
-		     slime
-		     tuareg
-		     web-mode
-		     ;; Utils.
-		     magit
-		     cl-lib
-		     geben
-		     git-commit-mode
-		     git-rebase-mode
-		     w3m
-		     cl-lib))
+(setq package-list
+      '(
+	;; Color themes.
+	underwater-theme
+	;; Language support.
+	haskell-mode
+	csharp-mode
+	php-mode
+	slime
+	tuareg
+	web-mode
+	;; Utils.
+	magit
+	cl-lib
+	geben
+	git-commit-mode
+	git-rebase-mode
+	w3m
+	cl-lib))
 
 (dolist (package package-list)
   (unless (package-installed-p package)

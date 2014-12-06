@@ -1,7 +1,3 @@
-;;------------------------------------------------------------------------------------
-
-;; Machine-specific settings.
-
 (if on-laptop
     (progn
       (setq gnus-select-method
@@ -9,43 +5,14 @@
 		     (nnimap-address "localhost")
 		     (nnimap-server-port 143)
 		     (nnimap-stream network)))
-      ;(setq gnus-select-method
-      ;      '(nnmaildir "main"
-      ;                  (directory "~/Maildir/main/")
-      ;                  (directory-files nnheader-directory-files-safe)
-      ;                  (get-new-mail nil)))
-
-      ;(add-to-list 'gnus-secondary-select-methods
-      ;             '(nnmaildir "uwindsor"
-      ;                         (directory "~/Maildir/uwindsor/")
-      ;                         (directory-files nnheader-directory-files-safe)
-      ;                         (get-new-mail nil)))
-
-      ;; Send mail via msmtp-queue.
       (setq message-send-mail-function 'message-send-mail-with-sendmail)
       (setq sendmail-program "/usr/local/bin/msmtp-enqueue.sh"))
   (progn
-    ;; Primary email.
     (setq gnus-select-method
           '(nnimap "main"
                    (nnimap-address "mailserver.bryanstamour.com")
                    (nnimap-server-port 993)
                    (nnimap-stream ssl)))
-
-    ;; School email.
-    ;(add-to-list 'gnus-secondary-select-methods
-    ;             '(nnimap "uwindsor"
-    ;                      (nnimap-address "imap.gmail.com")
-    ;                      (nnimap-server-port 993)
-    ;                      (nnimap-stream ssl)))
-
-    ;; Work email.
-    ;(add-to-list 'gnus-secondary-select-methods
-    ;             '(nnimap "tessonics"
-    ;                      (nnimap-address "secure116.inmotionhosting.com")
-    ;                      (nnimap-server-port 993)
-    ;                      (nnimap-stream ssl)))
-
     (setq message-send-mail-function 'smtpmail-send-it
           smtpmail-starttls-credentials '(("mailserver.bryanstamour.com" 465 nil nil))
           smtpmail-auth-credentials '(("mailserver.bryanstamour.com" 465
@@ -222,13 +189,6 @@
       gnus-prompt-before-saving         t    ;; better than default
       message-send-mail-partially-limit nil  ;; size of sent messages
       gnus-large-newsgroup              1000)
-
-;; Speed things up.
-;(setq gnus-nntp-server nil
-;      gnus-read-active-file nil
-;      gnus-save-newsrc-file nil
-;      gnus-read-newsrc-file nil
-;      gnus-check-new-newsgroups nil)
 
 (setq mm-discouraged-alternatives '("text/html" "text/richtext"))
 
