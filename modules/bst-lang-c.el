@@ -1,13 +1,12 @@
 (require 'cc-mode)
 
-;; Custom C++ style.
-(c-add-style "my-c++-style"
-             '("stroustrup"
-               (c-basic-offset . 2)
-               (innamespace . 0)
-               (inline-open . 0)
-	       (arglist-close . 0)
-               ))
+(c-add-style "my-cpp-style"
+	     '("stroustrup"
+	       (c-basic-offset . 2)
+	       (c-offsets-alist
+		(innamespace . 0)
+		(inline-open . 0)
+		(arglist-close . 0))))
 
 ;; Change the default command for M-x compile when in c++-mode.
 ;; When a makefile exists in the directory just keep things the same.
@@ -16,18 +15,20 @@
 ;;
 ;; From http://emacswiki.org/emacs/CompileCommand
 
-(setq cpp-compiler (if on-windows
-		       "C:/Program Files (x86)/Microsoft Visual Studio 12.0/VC/bin/cl.exe"
-		     "g++"))
+(setq cpp-compiler
+      (if on-windows
+	  "C:/Program Files (x86)/Microsoft Visual Studio 12.0/VC/bin/cl.exe"
+	"g++"))
 
-(setq cpp-compiler-flags (if on-windows
-			     "-O2"
-			   "-O2 -std=c++11 -Wall -Werror -Wextra"))
+(setq cpp-compiler-flags
+      (if on-windows
+	  "-O2"
+	"-O2 -std=c++11 -Wall -Werror -Wextra"))
 
-(setq cpp-make-command (if on-windows
-			   "C:/Program Files (x86)/Microsoft Visual Studio 12.0/VC/bin/nmake.exe"
-			 "make"))
-
+(setq cpp-make-command
+      (if on-windows
+	  "C:/Program Files (x86)/Microsoft Visual Studio 12.0/VC/bin/nmake.exe"
+	"make"))
 
 ;(require 'compile)
 ;(defun set-default-compile-command ()
@@ -46,12 +47,6 @@
 ;             (format format-string
 ;                     file
 ;                     (file-name-sans-extension file)))))))
-
-
-
-
-
-
 
 ;; Add support for the 'enum class' keyword in C++11.
 (defun inside-class-enum-p (pos)
@@ -81,14 +76,14 @@
 
 ;; Turn on the fancy C++ settings.
 (add-hook 'c++-mode-hook
-          (lambda ()
-            (c-set-style "my-c++-style")
-            (set-default-compile-command)
-            (fix-enum-class)
-            (global-set-key "\C-c\C-j" 'insert-comment-line)
-            (global-set-key "\C-c\C-v" 'uncomment-region)
-            (global-set-key "\C-c\C-k" 'compile)
-            ))
+          '(lambda ()
+	     (c-set-style "my-cpp-style")
+	     (set-default-compile-command)
+	     (fix-enum-class)
+	     (global-set-key "\C-c\C-j" 'insert-comment-line)
+	     (global-set-key "\C-c\C-v" 'uncomment-region)
+	     (global-set-key "\C-c\C-k" 'compile)
+	     ))
 
 ;;------------------------------------------------------------------------------
 ;; Highlight regions of code blocked off by #if 0 as if it were a comment.
@@ -158,10 +153,10 @@
   nil)
 
 (add-hook 'c-mode-common-hook
-          (lambda ()
-            (font-lock-add-keywords
-             nil
-             '((my-c-mode-font-lock-if (0 font-lock-comment-face prepend)))
-             'add-to-end)))
+          '(lambda ()
+	     (font-lock-add-keywords
+	      nil
+	      '((my-c-mode-font-lock-if (0 font-lock-comment-face prepend)))
+	      'add-to-end)))
 
 (provide 'bst-lang-c)
