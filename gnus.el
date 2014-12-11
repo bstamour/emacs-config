@@ -75,7 +75,8 @@
 (add-hook 'gnus-article-mode-hook
 	  (lambda ()
 	    (local-set-key "r"  'gnus-summary-dwim-reply)
-	    (local-set-key "R"  'gnus-summary-dwim-reply-with-original)))
+	    (local-set-key "R"  'gnus-summary-dwim-reply-with-original)
+	    (local-set-key "S"  'gnus-article-save-part)))
 
 (defun gnus-summary-goto-group (my-group)
   "Prompt for a group short name and open it in summary buffer.
