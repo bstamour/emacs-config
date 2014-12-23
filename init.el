@@ -46,6 +46,7 @@
       '(
 	;; Color themes.
 	underwater-theme
+	hipster-theme
 	;; Language support.
 	haskell-mode
 	csharp-mode
