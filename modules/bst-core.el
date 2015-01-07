@@ -1,6 +1,13 @@
 (require 'cl)
 (load-theme 'hipster t)
 
+;; Smart mode line.
+;;
+;; For more customization, see here:
+;; http://emacs.stackexchange.com/questions/281/how-do-i-get-a-fancier-mode-line-that-uses-solid-colors-and-triangles
+(setq sml/theme 'powerline)
+(sml/setup)
+
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
 

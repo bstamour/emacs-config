@@ -61,7 +61,11 @@
 	git-commit-mode
 	git-rebase-mode
 	w3m
-	cl-lib))
+	cl-lib
+	;; Mode line
+	smart-mode-line
+	smart-mode-line-powerline-theme
+	))
 
 (dolist (package package-list)
   (unless (package-installed-p package)
