@@ -47,6 +47,7 @@
 (add-hook 'gnus-summary-mode-hook
 	  (lambda ()
 	    (local-set-key (kbd "<tab>") 'gnus-summary-next-unread-article)
+	    (local-set-key (kbd "<return>") 'gnus-summary-bst-read)
 	    (local-set-key "="  'toggle-article-window)
 	    (local-set-key "n"  'gnus-summary-next-article)
 	    (local-set-key "p"  'gnus-summary-prev-article)
@@ -77,6 +78,13 @@
 	    (local-set-key "r"  'gnus-summary-dwim-reply)
 	    (local-set-key "R"  'gnus-summary-dwim-reply-with-original)
 	    (local-set-key "S"  'gnus-article-save-part)))
+
+(defun gnus-summary-bst-read ()
+  "For some reason GNUS wasn't marking my mail as read when reading
+it. This function (which is bound to the enter key) fixes that problem."
+  (interactive)
+  (gnus-summary-show-article)
+  (gnus-summary-mark-as-read-forward 1))
 
 (defun gnus-summary-goto-group (my-group)
   "Prompt for a group short name and open it in summary buffer.
