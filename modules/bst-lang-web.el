@@ -5,6 +5,8 @@
 
 (autoload 'web-mode "Mode for generic web editing.")
 
+(setq web-mode-code-indent-offset 2)
+
 (defun my-web-mode-hook ()
   ;; Indentation should not be less than tab-width, so set tab-width to 2.
   (setq tab-width 2)
