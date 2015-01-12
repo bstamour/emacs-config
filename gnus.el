@@ -83,8 +83,9 @@
   "For some reason GNUS wasn't marking my mail as read when reading
 it. This function (which is bound to the enter key) fixes that problem."
   (interactive)
-  (gnus-summary-show-article)
-  (gnus-summary-mark-as-read-forward 1))
+  (save-excursion
+    (gnus-summary-show-article)
+    (gnus-summary-mark-as-read-forward 1)))
 
 (defun gnus-summary-goto-group (my-group)
   "Prompt for a group short name and open it in summary buffer.
