@@ -75,6 +75,7 @@
 (require 'bst-lang-lisp)
 (require 'bst-lang-web)
 (require 'bst-lang-cs)
+(require 'bst-lang-java)
 (require 'bst-lang-haskell)
 (require 'bst-org-mode)
 
