@@ -48,6 +48,7 @@
 	underwater-theme
 	hipster-theme
 	ample-zen-theme
+	professional-theme
 	;; Language support.
 	haskell-mode
 	csharp-mode

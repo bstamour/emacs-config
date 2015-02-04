@@ -1,5 +1,5 @@
 (require 'cl)
-(load-theme 'ample-zen t)
+(load-theme 'leuven t)
 
 ;; Smart mode line.
 ;;
