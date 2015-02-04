@@ -10,7 +10,9 @@
 (defun my-web-mode-hook ()
   ;; Indentation should not be less than tab-width, so set tab-width to 2.
   (setq tab-width 2)
-  (setq indent-tabs-mode t))
+  (setq indent-tabs-mode t)
+  (define-key web-mode-map (kbd "TAB") 'self-insert-command)
+  )
 
 (add-hook 'web-mode-hook 'my-web-mode-hook)
 
