@@ -49,6 +49,7 @@
 	hipster-theme
 	ample-zen-theme
 	professional-theme
+	leuven-theme
 	;; Language support.
 	haskell-mode
 	csharp-mode
