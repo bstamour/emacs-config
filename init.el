@@ -79,6 +79,7 @@
 (require 'bst-lang-cs)
 (require 'bst-lang-java)
 (require 'bst-lang-haskell)
+;(require 'bst-lang-idris)
 (require 'bst-org-mode)
 
 (when on-windows
