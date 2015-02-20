@@ -1,5 +1,5 @@
 (require 'cl)
-(load-theme 'leuven t)
+(load-theme 'railscasts t)
 
 ;; Smart mode line.
 ;;
