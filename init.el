@@ -50,7 +50,7 @@
 	ample-zen-theme
 	professional-theme
 	leuven-theme
-	railscasts
+	railscasts-theme
 	;; Language support.
 	haskell-mode
 	csharp-mode
