@@ -1,8 +1,5 @@
 (require 'cl)
-;(load-theme 'railscasts t)
-
-(add-to-list 'default-frame-alist '(foreground-color . "#FFFFFF"))
-(add-to-list 'default-frame-alist '(background-color . "#336699"))
+(load-theme 'solarized-dark t)
 
 
 
