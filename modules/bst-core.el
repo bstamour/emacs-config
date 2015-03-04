@@ -1,5 +1,10 @@
 (require 'cl)
-(load-theme 'railscasts t)
+;(load-theme 'railscasts t)
+
+(add-to-list 'default-frame-alist '(foreground-color . "#FFFFFF"))
+(add-to-list 'default-frame-alist '(background-color . "#336699"))
+
+
 
 ;; Smart mode line.
 ;;
