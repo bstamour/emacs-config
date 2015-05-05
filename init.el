@@ -63,5 +63,6 @@
 
 (require 'lang-cpp)
 (require 'lang-haskell)
+(require 'lang-web)
 
 (eshell)
