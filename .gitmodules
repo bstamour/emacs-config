@@ -1,0 +1,3 @@
+[submodule "third-party/structured-haskell-mode"]
+	path = third-party/structured-haskell-mode
+	url = https://github.com/chrisdone/structured-haskell-mode.git
