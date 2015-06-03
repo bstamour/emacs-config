@@ -1,5 +1,8 @@
 ;;; Main emacs config file.
 
+(defvar on-windows (string= system-type "windows-nt"))
+(defvar on-laptop (string= system-name "cantor.thestamours.net"))
+
 ;;; Global path variables.
 (defvar root-dir (file-name-directory load-file-name))
 (defvar third-party-dir (concat root-dir "third-party/"))
@@ -64,5 +67,8 @@
 (require 'lang-cpp)
 (require 'lang-haskell)
 (require 'lang-web)
+
+(if on-windows
+    (require 'windows))
 
 (eshell)
