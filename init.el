@@ -48,6 +48,8 @@
 	slime
 	tuareg
 	web-mode
+	geiser
+	paredit
 	;; Utils.
 	magit
 	geben
