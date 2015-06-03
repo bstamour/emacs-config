@@ -39,6 +39,7 @@
 (setq package-list
       '(
 	;; Color themes.
+	autumn-light-theme
 	color-theme-sanityinc-solarized
 	;; Language support.
 	haskell-mode

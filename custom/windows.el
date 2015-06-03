@@ -10,4 +10,6 @@
 ;; so that the beginning of the buffer may not be visible correctly.
 (set-face-attribute 'default nil :height 120)
 
+(setq default-directory "~/")
+
 (provide 'windows)
