@@ -41,6 +41,7 @@
 	;; Color themes.
 	autumn-light-theme
 	color-theme-sanityinc-solarized
+	sublime-themes
 	;; Language support.
 	haskell-mode
 	csharp-mode

@@ -1,6 +1,6 @@
 
 ;;; Color theme.
-(load-theme 'autumn-light t)
+(load-theme 'mccarthy t)
 
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
