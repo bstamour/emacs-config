@@ -42,6 +42,7 @@
 	autumn-light-theme
 	color-theme-sanityinc-solarized
 	sublime-themes
+	railscasts-theme
 	;; Language support.
 	haskell-mode
 	csharp-mode
@@ -68,9 +69,13 @@
 (require 'keybindings)
 (require 'editing)
 
+(require 'git)
+
+(require 'lang-r)
 (require 'lang-cpp)
 (require 'lang-haskell)
 (require 'lang-web)
+(require 'lang-lisp)
 
 (if on-windows
     (require 'windows))

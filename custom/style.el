@@ -1,6 +1,6 @@
 
 ;;; Color theme.
-(load-theme 'mccarthy t)
+(load-theme 'railscasts t)
 
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
