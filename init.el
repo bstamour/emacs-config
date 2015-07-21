@@ -52,6 +52,7 @@
 	web-mode
 	geiser
 	paredit
+	rainbow-delimiters
 	;; Utils.
 	magit
 	geben

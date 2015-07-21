@@ -4,15 +4,16 @@
 ;;             ((file-exists-p "/usr/bin/sbcl") "sbcl")
 ;;             (t "clisp")))
 
-(setq inferior-lisp-program "sbcl")
 
-
-
+(require 'rainbow-delimiters)
+(add-hook 'scheme-mode-hook
+	  '(lambda ()
+	     (rainbow-delimiters-mode)
+	     (paredit-mode)))
 
 (require 'slime)
+(setq inferior-lisp-program "sbcl")
 (slime-setup '(slime-fancy))
 
 ;(load (expand-file-name "~/quicklisp/slime-helper.el"))
-
-
 (provide 'lang-lisp)
