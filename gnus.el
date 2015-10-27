@@ -2,11 +2,22 @@
 ;;; GNUS configuration.
 
 ;;; Sending and receiving mail.
-(setq gnus-select-method
-      '(nnimap "main"
-	       (nnimap-address "mercury.bryanstamour.com")
-	       (nnimap-server-port 993)
-	       (nnimap-stream ssl)))
+;(setq gnus-select-method
+;      '(nnimap "main"
+;;	       (nnimap-address "mercury.bryanstamour.com")
+;	       (nnimap-server-port 993)
+;	       (nnimap-stream ssl)))
+
+
+(setq gnus-secondary-select-methods
+      '((nnimap "work"
+		(nnimap-address "secure116.inmotionhosting.com")
+		(nnimap-server-port 993)
+		(nnimap-stream ssl))
+	(nnimap "main"
+		(nnimap-address "mercury.bryanstamour.com")
+		(nnimap-server-port 993)
+		(nnimap-stream ssl))))
 
 (setq message-send-mail-function 'smtpmail-send-it
       smtpmail-starttls-credentials '(("mercury.bryanstamour.com" 587 nil nil))

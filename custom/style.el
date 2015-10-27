@@ -1,6 +1,6 @@
 
 ;;; Color theme.
-(load-theme 'railscasts t)
+(load-theme 'sanityinc-solarized-dark t)
 
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)

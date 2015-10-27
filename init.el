@@ -71,7 +71,7 @@
 
 (require 'git)
 
-(require 'lang-r)
+;(require 'lang-r)
 (require 'lang-cpp)
 (require 'lang-haskell)
 (require 'lang-web)
