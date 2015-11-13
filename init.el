@@ -59,6 +59,9 @@
 	git-rebase-mode
 	w3m
 	cl-lib
+	darkroom
+	;; Etc
+	color-theme-modern
 	))
 
 (dolist (package package-list)
@@ -68,6 +71,8 @@
 (require 'style)
 (require 'keybindings)
 (require 'editing)
+
+(require 'darkroom)
 
 (require 'git)
 
@@ -79,5 +84,13 @@
 
 (if on-windows
     (require 'windows))
+
+
+
+(require 'org)
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(setq org-log-done t)
+(setq org-agenda-files (list "~/org"))
 
 (eshell)
