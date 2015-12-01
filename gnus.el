@@ -35,3 +35,11 @@
 (define-key gnus-group-mode-map
   ;; list all the subscribed groups even they contain zero un-read messages
   (kbd "o") 'my-gnus-group-list-subscribed-groups)
+
+(add-hook 'message-mode-hook
+	  '(lambda ()
+	     (bbdb-initialize 'message)
+	     (bbdb-initialize 'gnus)
+	     (local-set-key "<TAB>" 'bbdb-complete-name)))
+
+(add-hook 'gnus-startup-hook 'bbdb-insinuate-gnus)
