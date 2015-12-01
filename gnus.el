@@ -4,21 +4,21 @@
 
 (setq gnus-select-method
       '(nnimap "personal"
-	       (nnimap-address "minerva.bryanstamour.com")
-	       (nnimap-server-port 993)
-	       (nnimap-stream ssl)
+	       (nnimap-address       "minerva.bryanstamour.com")
+	       (nnimap-server-port   993)
+	       (nnimap-stream        ssl)
 	       ;; @see http://www.gnu.org/software/emacs/manual/html_node/gnus/Expiring-Mail.html
 	       ;; press 'E' to expire email
 	       (nnmail-expiry-target "Trash")
-	       (nnmail-expiry-wait 'immediate)))
+	       (nnmail-expiry-wait   'immediate)))
 
 (add-to-list 'gnus-secondary-select-methods
              '(nnimap "work"
-                      (nnimap-address "secure116.inmotionhosting.com")
-                      (nnimap-server-port 993)
-                      (nnimap-stream ssl)
+                      (nnimap-address       "secure116.inmotionhosting.com")
+                      (nnimap-server-port   993)
+                      (nnimap-stream        ssl)
 		      (nnmail-expiry-target "nnimap+work:INBOX/Trash")
-		      (nnmail-expiry-wait 'immediate)))
+		      (nnmail-expiry-wait   'immediate)))
 
 ;;; Send all mail through my personal smtp server.
 
@@ -31,8 +31,8 @@
 
 ;;; Who am I?
 
-(setq user-full-name "Bryan St. Amour")
-(setq user-mail-address "bryan@bryanstamour.com")
+(setq user-full-name    "Bryan St. Amour"
+      user-mail-address "bryan@bryanstamour.com")
 
 ;;; Special keyboard shortcuts.
 
