@@ -1,3 +1,7 @@
+;;; Email accounts to pull mail from. Not sure if I want to limit
+;;; work email to be accessed only while at work though... Regardless
+;;; I have to add support for my laptop, which uses a local mail server.
+
 (setq gnus-select-method
       '(nnimap "personal"
 	       (nnimap-address "minerva.bryanstamour.com")
@@ -16,7 +20,9 @@
 		      (nnmail-expiry-target "nnimap+work:INBOX/Trash")
 		      (nnmail-expiry-wait 'immediate)))
 
-(setq message-send-mail-function 'smtpmail-send-it
+;;; Send all mail through my personal smtp server.
+
+(setq message-send-mail-function    'smtpmail-send-it
       smtpmail-starttls-credentials '(("minerva.bryanstamour.com" 587 nil nil))
       smtpmail-auth-credentials     '(("minerva.bryanstamour.com" 587 "bryan" nil))
       smtpmail-default-smtp-server  "minerva.bryanstamour.com"
@@ -24,8 +30,11 @@
       smtpmail-smtp-service         587)
 
 ;;; Who am I?
+
 (setq user-full-name "Bryan St. Amour")
 (setq user-mail-address "bryan@bryanstamour.com")
+
+;;; Special keyboard shortcuts.
 
 (defun my-gnus-group-list-subscribed-groups ()
   "List all subscribed groups with or without un-read messages"
@@ -35,6 +44,12 @@
 (define-key gnus-group-mode-map
   ;; list all the subscribed groups even they contain zero un-read messages
   (kbd "o") 'my-gnus-group-list-subscribed-groups)
+
+;;; Support for BBDB, and database for storing contact info.
+;;;
+;;; BBDB stores contact info in the file ~/.emacs.d/bbdb and
+;;; allows me to auto-complete contacts by typing in their
+;;; email addresses and then just hitting <TAB>. Very handy.
 
 (add-hook 'message-mode-hook
 	  '(lambda ()
