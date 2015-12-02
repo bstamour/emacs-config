@@ -44,6 +44,15 @@
 (setq user-full-name    "Bryan St. Amour"
       user-mail-address "bryan@bryanstamour.com")
 
+;;; Different posting styles for different groups.
+
+(setq gnus-posting-styles
+      '((".*"
+	 (signature "Peace, love, and Unix"))
+	("work"
+	 (signature "Bryan St. Amour\nSoftware Engineer\nTessonics Inc.\n519-250-4455 ext 243")
+	 (address "bsa@tessonics.com"))))
+
 ;;; Special keyboard shortcuts.
 
 (defun my-gnus-group-list-subscribed-groups ()
