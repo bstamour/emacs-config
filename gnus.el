@@ -29,6 +29,16 @@
       smtpmail-smtp-server          "minerva.bryanstamour.com"
       smtpmail-smtp-service         587)
 
+;;; More settings.
+
+(setq gnus-inhibit-startup-message      t    ; no startup message
+      gnus-treat-display-smileys        nil  ; no smileys
+      message-kill-buffer-on-exit       t    ; no hanging mail buffers
+      gnus-thread-hide-subtree          t    ; no threads in summary
+      gnus-prompt-before-saving         t    ; better than default
+      message-send-mail-partially-limit nil  ; size of sent messages
+      gnus-large-newsgroup              1000)
+
 ;;; Who am I?
 
 (setq user-full-name    "Bryan St. Amour"
