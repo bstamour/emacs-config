@@ -24,3 +24,5 @@
 (require 'bst-web)
 (require 'bst-git)
 ;(require 'bst-r)
+
+(require 'fireplace)
