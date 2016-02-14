@@ -12,13 +12,13 @@
 	       (nnmail-expiry-target "Trash")
 	       (nnmail-expiry-wait   'immediate)))
 
-(add-to-list 'gnus-secondary-select-methods
-             '(nnimap "work"
-                      (nnimap-address       "secure116.inmotionhosting.com")
-                      (nnimap-server-port   993)
-                      (nnimap-stream        ssl)
-		      (nnmail-expiry-target "nnimap+work:INBOX/Trash")
-		      (nnmail-expiry-wait   'immediate)))
+;(add-to-list 'gnus-secondary-select-methods
+;             '(nnimap "work"
+;                      (nnimap-address       "secure116.inmotionhosting.com")
+;                      (nnimap-server-port   993)
+;                      (nnimap-stream        ssl)
+;		      (nnmail-expiry-target "nnimap+work:INBOX/Trash")
+;		      (nnmail-expiry-wait   'immediate)))
 
 ;;; Send all mail through my personal smtp server.
 
@@ -34,7 +34,7 @@
 (setq gnus-inhibit-startup-message      t    ; no startup message
       gnus-treat-display-smileys        nil  ; no smileys
       message-kill-buffer-on-exit       t    ; no hanging mail buffers
-      gnus-thread-hide-subtree          t    ; no threads in summary
+      ;gnus-thread-hide-subtree          t    ; no threads in summary
       gnus-prompt-before-saving         t    ; better than default
       message-send-mail-partially-limit nil  ; size of sent messages
       gnus-large-newsgroup              1000)

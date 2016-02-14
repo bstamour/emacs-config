@@ -102,7 +102,7 @@
 (add-hook 'c++-mode-hook
 	  '(lambda ()
 	     (c-set-style "stroustrup")
-	     (fix-eum-class)
+	     (fix-enum-class)
 	     (font-lock-add-keywords
 	      nil
 	      '((my-c-mode-font-lock-if

@@ -12,9 +12,11 @@
   (interactive)
   (load-theme dark-theme t))
 
-(if on-windows
-    (light-theme)
-  (dark-theme))
+;(if on-windows
+;    (light-theme)
+;  (dark-theme))
+
+(light-theme)
 
 (setq inhibit-startup-message t
       initial-scratch-message nil

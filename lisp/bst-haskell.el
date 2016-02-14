@@ -9,19 +9,17 @@
 
 ;;; For cabal instead, use 'cabal-repl instead of 'stack-ghci
 
-
 (custom-set-variables '(haskell-process-path-stack "/home/bryan/bin/stack"))
-
 (custom-set-variables '(haskell-process-type 'stack-ghci))
 
 (add-to-list 'auto-mode-alist '("\\.hs" . haskell-mode))
 (add-to-list 'auto-mode-alist '("\\.lhs" . literate-haskell-mode))
 
-(add-hook 'haskell-mode-hook
-	  '(lambda ()
-	     (progn
-	       (turn-on-haskell-indentation)
-	       (turn-on-haskell-doc-mode))))
+;(add-hook 'haskell-mode-hook
+;	  '(lambda ()
+;	     (progn
+;	       (turn-on-haskell-indentation)
+;	       (turn-on-haskell-doc-mode))))
 
 (eval-after-load "haskell-mode"
   '(progn
