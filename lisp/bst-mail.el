@@ -1,4 +1,5 @@
 ;;;======================================================================================
+;;;
 ;;; GNUS-related settings go here, so that each platform I port my
 ;;; emacs config to can have a custom .gnus.el file.
 ;;;
@@ -33,6 +34,10 @@
 ;;;
 ;;;======================================================================================
 
+;;; TODO:
+;;; 1. Get email address switching to work again.
+
+
 (require 'gnus)
 
 ;;;---------------------------------------------------------------------------------
@@ -41,26 +46,11 @@
 (setq user-full-name    "Bryan St. Amour"
       user-mail-address "bryan@bryanstamour.com")
 
-;;;---------------------------------------------------------------------------------
-;;; Different posting styles for different groups.
-;;;
-;;; These are defaults, they can be overridden in the .gnus.el file per-machine.
-
 (setq gnus-posting-styles
       '((".*"
 	 (signature "Peace, love, and Unix")
 	 (address "bryan@bryanstamour.com")
-	 )
-	("school"
-	 (signature (concat "Bryan St. Amour\n"
-			    "BCS, Msc, PhD (student)\n"))
-	 (address "stamoub@uwindsor.ca"))
-	("work"
-	 (signature (concat "Bryan St. Amour\n"
-			    "Software Engineer\n"
-			    "Tessonics Inc.\n"
-			    "519-250-4455 ext 243\n"))
-	 (address "bsa@tessonics.com"))))
+	 )))
 
 ;;;---------------------------------------------------------------------------------
 ;;; More settings.
