@@ -23,6 +23,7 @@
 (require 'bst-cpp)
 (require 'bst-web)
 (require 'bst-git)
-;(require 'bst-r)
+(require 'bst-mail)
+(require 'bst-erc)
 
 (require 'fireplace)
