@@ -9,7 +9,10 @@
 
 ;;; For cabal instead, use 'cabal-repl instead of 'stack-ghci
 
-(custom-set-variables '(haskell-process-path-stack "/home/bryan/bin/stack"))
+(custom-set-variables (if on-windows
+			  '(haskell-process-path-stack "C:/Users/bryan/AppData/Roaming/local/bin/stack")
+			'(haskell-process-path-stack "/home/bryan/bin/stack")))
+
 (custom-set-variables '(haskell-process-type 'stack-ghci))
 
 (add-to-list 'auto-mode-alist '("\\.hs" . haskell-mode))
