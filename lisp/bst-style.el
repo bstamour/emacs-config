@@ -1,20 +1,20 @@
 
 ;;; Color theme.
 
-(defvar light-theme 'white-sand)
-(defvar dark-theme  'tango-dark)
+(defvar dark-theme  'ample)
+(defvar light-theme 'ample-light)
+
+(load-theme 'ample t t)
+(load-theme 'ample-flat t t)
+(load-theme 'ample-light t t)
 
 (defun light-theme ()
   (interactive)
-  (load-theme light-theme t))
+  (enable-theme light-theme))
 
 (defun dark-theme ()
   (interactive)
-  (load-theme dark-theme t))
-
-;(if on-windows
-;    (light-theme)
-;  (dark-theme))
+  (enable-theme dark-theme))
 
 (light-theme)
 
