@@ -1,28 +1,12 @@
 
-;; TODO: When exploring stack, use this for integragion?
-
-;; (haskell-mode . ((haskell-indent-spaces . 4)
-;; 		 (hindent-style . "johan-tibell")
-;; 		 (haskell-process-type . ghci)
-;; 		 (haskell-process-path-ghci . "stack")
-;; 		 (haskell-process-args-ghci . ("ghci"))))
-
-;;; For cabal instead, use 'cabal-repl instead of 'stack-ghci
-
-(custom-set-variables (if on-windows
-			  '(haskell-process-path-stack "C:/Users/bryan/AppData/Roaming/local/bin/stack")
-			'(haskell-process-path-stack "/home/bryan/bin/stack")))
-
-(custom-set-variables '(haskell-process-type 'stack-ghci))
+(setf haskell-process-path-stack "C:/Users/bryan/AppData/Roaming/local/bin/stack")
+(setf haskell-process-type 'stack-ghci)
+(setf haskell-process-suggest-remove-import-lines t)
+(setf haskell-process-auto-import-loaded-modules t)
+(setf haskell-process-log t)
 
 (add-to-list 'auto-mode-alist '("\\.hs" . haskell-mode))
 (add-to-list 'auto-mode-alist '("\\.lhs" . literate-haskell-mode))
-
-;(add-hook 'haskell-mode-hook
-;	  '(lambda ()
-;	     (progn
-;	       (turn-on-haskell-indentation)
-;	       (turn-on-haskell-doc-mode))))
 
 (eval-after-load "haskell-mode"
   '(progn
@@ -37,7 +21,6 @@
        'haskell-process-do-type)
      (define-key haskell-mode-map (kbd "C-c C-i")
        'haskell-process-do-info)
-     (define-key haskell-mode-map (kbd "C-c M-.") nil)
-     (define-key haskell-mode-map (kbd "C-c C-d") nil)))
+     ))
 
 (provide 'bst-haskell)

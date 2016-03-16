@@ -1,8 +1,8 @@
 
 ;;; Color theme.
 
-(defvar light-theme 'solarized-light)
-(defvar dark-theme  'solarized-dark)
+(defvar light-theme 'tango)
+(defvar dark-theme  'tango-dark)
 
 (defun light-theme ()
   (interactive)
