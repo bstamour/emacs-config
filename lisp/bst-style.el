@@ -1,7 +1,7 @@
 
 ;;; Color theme.
 
-(defvar light-theme 'tango)
+(defvar light-theme 'white-sand)
 (defvar dark-theme  'tango-dark)
 
 (defun light-theme ()
