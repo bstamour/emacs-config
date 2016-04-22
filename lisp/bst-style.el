@@ -1,12 +1,11 @@
 
 ;;; Color theme.
 
-(defvar dark-theme  'ample)
-(defvar light-theme 'ample-light)
+(defvar dark-theme  'brin)
+(defvar light-theme 'autumn-light)
 
-(load-theme 'ample t t)
-(load-theme 'ample-flat t t)
-(load-theme 'ample-light t t)
+(load-theme dark-theme t t)
+(load-theme light-theme t t)
 
 (defun light-theme ()
   (interactive)
@@ -16,7 +15,7 @@
   (interactive)
   (enable-theme dark-theme))
 
-(light-theme)
+(dark-theme)
 
 (setq inhibit-startup-message t
       initial-scratch-message nil

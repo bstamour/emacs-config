@@ -1,5 +1,8 @@
 
-(setf haskell-process-path-stack "C:/Users/bryan/AppData/Roaming/local/bin/stack")
+
+(setf haskell-process-path-stack "/home/bryan/bin/stack")
+
+;(setf haskell-process-path-stack "C:/Users/bryan/AppData/Roaming/local/bin/stack")
 (setf haskell-process-type 'stack-ghci)
 (setf haskell-process-suggest-remove-import-lines t)
 (setf haskell-process-auto-import-loaded-modules t)

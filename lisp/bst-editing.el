@@ -1,4 +1,3 @@
-
 (setq backup-directory-alist `(("." . "~/.saves")))
 
 (add-hook 'before-save-hook
@@ -16,5 +15,9 @@
 				 (smex-initialize))
 			     (global-set-key [(meta x)] 'smex)
 			     (smex)))
+
+(set-language-environment "UTF-8")
+(set-default-coding-systems 'utf-8)
+(define-key key-translation-map (kbd "C-c C-;") (kbd "◊"))
 
 (provide 'bst-editing)
