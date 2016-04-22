@@ -26,7 +26,7 @@
 (require 'bst-mail)
 (require 'bst-erc)
 ;(require 'bst-mu4e)
-(require 'bst-elfeed)
+;(require 'bst-elfeed)
 
 (require 'fireplace)
 (custom-set-variables

@@ -1,7 +1,7 @@
 
 ;;; Color theme.
 
-(defvar dark-theme  'brin)
+(defvar dark-theme  'hickey)
 (defvar light-theme 'autumn-light)
 
 (load-theme dark-theme t t)
