@@ -1,0 +1,97 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("c:/Users/bryan/Documents/" . "comp/")
+ ("c:/Users/bryan/Documents/comp/" . "survey/")
+ ("c:/Users/bryan/" . "Desktop/")
+ ("c:/Users/bryan/AppData/" . "Local/")
+ ("e:/projects/" . "SONYA/")
+ ("k:/tessonics-sync/templates/" . "{B0050927-6019-4760-A609-10DC8D0DECF0}/")
+ ("k:/tessonics-sync/" . "templates/")
+ ("k:/" . "tessonics-sync/")
+ ("e:/projects/SONYA/" . "data-server/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "c:/Users/bryan/Documents/comp/survey/"
+ "c:/Users/bryan/.emacs.d/lisp/"
+ "c:/Users/bryan/Documents/bib/"
+ "c:/Users/bryan/Documents/"
+ "c:/Users/bryan/.emacs.d/"
+ "c:/Users/bryan/AppData/Roaming/.emacs.d/lisp/"
+ "c:/Users/bryan/"
+ "e:/projects/SONYA/data-analyzer/app/"
+ "c:/Users/bryan/Desktop/"
+ "e:/projects/SONYA/data-analyzer/"
+ "e:/projects/SONYA/data-server/app/"
+ "k:/tessonics-sync/templates/{B0050927-6019-4760-A609-10DC8D0DECF0}/"
+ "e:/projects/SONYA/data-server/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "cognitive-modeling.tex"
+ "bst-tex.el"
+ "cognitive-modeling.bib"
+ "test.bib"
+ "init.el"
+ "survey.tex"
+ "test.tex"
+ "logistic.cxx"
+ "bst-style.el"
+ "input.txt"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("c:/Users/bryan/Documents/comp/survey/" (22361 54808 0 0) "_region_.tex" "cognitive-modeling.tex" "cognitive-modeling.pdf" "cognitive-modeling.log" "cognitive-modeling.fls" "cognitive-modeling.fdb_latexmk" "cognitive-modeling.dvi" "cognitive-modeling.blg" "cognitive-modeling.bib" "cognitive-modeling.bbl" "cognitive-modeling.aux" "acmtrans2m.cls" "acmsmall.cls" "acmcopyright.sty" "ACM-Reference-Format-Journals.bst" ".#cognitive-modeling.tex" "../" "./")
+
+ ("c:/Users/bryan/" (22361 54771 0 0) "Videos/" "Test.hs" "Templates/" "Start Menu/" "SendTo/" "Searches/" "Saved Games/" "sanct.log" "regwizard.log" "Recent/" "PrintHood/" "plotting.rkt" "Pictures/" "ownCloud/" "output.svg" "output.png" "OneDrive/" "ntuser.ini" "NTUSER.DAT{cb56a6d7-0c49-11e6-a90e-c8aa52d4e633}.TMContainer00000000000000000002.regtrans-ms" "NTUSER.DAT{cb56a6d7-0c49-11e6-a90e-c8aa52d4e633}.TMContainer00000000000000000001.regtrans-ms" "NTUSER.DAT{cb56a6d7-0c49-11e6-a90e-c8aa52d4e633}.TM.blf" "ntuser.dat.LOG2" "ntuser.dat.LOG1" "NTUSER.DAT" "NetHood/" "My Documents/" "Music/" "ml.rkt" "logistic.cxx" "Local Settings/" "Links/" "jcl-2.7.0.5627/" "Favorites/" "emacs-24.5/" "emacs-24.3/" "Dropbox/" "Downloads/" "Documents/" "Desktop/" "databases/" "Cookies/" "Contacts/" "Application Data/" "AppData/" ".texlive2016/" ".ssh/" ".smex-items" ".slime-history.eld" ".slime/" ".saves/" ".gitconfig" ".geiser_history.racket" ".emacs.d/" ".dnx/" ".autorespond-loopprotect" "../" "./")
+
+ ("c:/Users/bryan/.emacs.d/lisp/" (22361 43673 0 0) "fireplace.elc" "fireplace.el" "bst-windows.el" "bst-web.el" "bst-tex.el" "bst-style.el" "bst-scheme.el" "bst-r.el" "bst-org.el" "bst-mail.el" "bst-keybindings.el" "bst-haskell.el" "bst-git.el" "bst-erc.el" "bst-editing.el" "bst-cpp.el" "bst-common-lisp.el" "../" "./")
+
+ ("c:/Users/bryan/.emacs.d/" (22361 48895 0 0) "lisp/" "init.el" "ido.last" "eshell/" "elpa/" "auto-save-list/" ".gitmodules" ".gitignore" ".git/" "../" "./")
+
+ ("c:/Users/bryan/Documents/bib/" (22361 46513 0 0) "cognitive-modeling.bib" ".git/" "../" "./")
+
+ ("c:/Users/bryan/Documents/" (22361 46491 0 0) "Visual Studio 2015/" "test.tex" "test.pdf" "test.log" "test.fls" "test.fdb_latexmk" "test.bib" "test.aux" "Received Files/" "Rad_Studio_XE8_Downloads/" "Rad_Studio_XE3_Upd3_Help_Downloadsversion.ini" "Rad_Studio_XE3_Upd3_Help_Downloads/" "Rad_Studio_XE3_Upd2_Downloads/" "RAD Studio/" "My Videos/" "My Pictures/" "My Music/" "GitHub/" "Embarcadero/" "desktop.ini" "Default.rdp" "comp/" "bib/" "../" "./")
+
+ ("c:/Users/bryan/Documents/comp/" (22361 44574 0 0) "survey/" "README" ".git/" "../" "./")
+
+ ("c:/Users/bryan/AppData/Roaming/.emacs.d/lisp/" (22361 43673 0 0) "fireplace.elc" "fireplace.el" "bst-windows.el" "bst-web.el" "bst-tex.el" "bst-style.el" "bst-scheme.el" "bst-r.el" "bst-org.el" "bst-mail.el" "bst-keybindings.el" "bst-haskell.el" "bst-git.el" "bst-erc.el" "bst-editing.el" "bst-cpp.el" "bst-common-lisp.el" "../" "./")
+
+ ("c:/Users/bryan/AppData/Roaming/.emacs.d/" (22361 43311 0 0) "lisp/" "init.el" "ido.last" "eshell/" "elpa/" "auto-save-list/" ".gitmodules" ".gitignore" ".git/" "../" "./")
+
+ ("c:/Users/bryan/Desktop/" (22360 26965 0 0) "VID_20160530_085610.mp4" "translation AE 20160518_3.9.11.69/" "translation 20160518_DesktopTools69/" "Template Designer.lnk" "RSWA User Manager.lnk" "RSWA Synchronizer.lnk" "RSWA Reporter.lnk" "RSWA Array Explorer.lnk" "RSWA Array Explorer (Aluminum Mode).lnk" "Reporter.lnk" "OwnCloud.lnk" "Jerome-inspections.zip" "Jerome-inspections/" "Dropbox.lnk" "downloads.html" "desktop.ini" "desktop-server-402d/" "Designer.lnk" "Database Tools.lnk" "CSP/" "../" "./")
+
+ ("e:/projects/SONYA/" (22357 32296 0 0) "GSR_SAMPLE_DATA_FILES.rar" "GSR_SAMPLE_DATA_FILES/" "data-server/" "data-analyzer/" "../" "./")
+
+ ("e:/projects/SONYA/data-analyzer/" (22360 33465 0 0) "test/" "stuff.svg" "stack.yaml" "src/" "something.svg" "Setup.hs" "output.svg" "LICENSE" "data-analyzer.cabal" "app/" ".stack-work/" "../" "./")
+
+ ("e:/projects/SONYA/data-analyzer/app/" (22360 35119 0 0) "Main.hs" "input.txt" "../" "./")
+
+ ("c:/Users/bryan/AppData/Local/" (22350 57316 0 0) "{C49877F5-B9A4-4C4D-AB8D-F7F9DA1A9BBB}/" "{95E74D47-F7E3-45F0-98A6-C4EB87FC1E6A}/" "VirtualStore/" "TSVNCache/" "TortoiseSVN/" "TileDataLayer/" "Thunderbird/" "tessonics/" "Temporary Internet Files/" "Temp/" "Rowley Associates Limited/" "Publishers/" "Programs/" "PeerDistRepub/" "Packages/" "PackageAware/" "ownCloud/" "NetworkTiles/" "Mozilla/" "MicrosoftEdge/" "Microsoft Help/" "Microsoft/" "LAN Messenger/" "IconCache.db" "History/" "GroupPolicy/" "GitHub/" "Diagnostics/" "Deployment/" "CEF/" "Castalia for Delphi/" "Apps/" "Application Data/" "Adobe/" "../" "./")
+
+ ("c:/Users/bryan/AppData/" (22333 49795 0 0) "Roaming/" "LocalLow/" "Local/" "../" "./")
+
+ ("k:/tessonics-sync/templates/{B0050927-6019-4760-A609-10DC8D0DECF0}/" (22341 62130 0 0) "revision-1.xml" "../" "./")
+
+ ("e:/projects/SONYA/data-server/app/" (22343 24087 0 0) "Types.hs" "Server.hs" "Main.hs" "Helpers.hs" "DB.hs" "../" "./")
+
+ ("k:/tessonics-sync/templates/" (22341 50074 0 0) "{B0050927-6019-4760-A609-10DC8D0DECF0}/" "{AE7C12BD-3626-4603-8A0A-5908CC92AA4C}/" "{88D6A9D2-9B77-4431-AB71-E771D98B67EE}/" "{226FE38D-7873-4F59-98A5-E07B0898F4EC}/" "../" "./")
+
+ ("k:/tessonics-sync/" (22184 26304 0 0) "templates/" "inspections/" "../" "./")
+
+ ("e:/projects/SONYA/data-server/" (22335 26679 0 0) "test.db" "test/" "stack.yaml" "src/" "sonya-data-server.cabal" "Setup.hs" "LICENSE" "app/" ".stack-work/" "../" "./")
+
+ ("e:/projects/SONYA/data-server/src/" (22334 2187 0 0) "Lib.hs" "../" "./")
+
+ ("e:/projects/" (22333 65065 0 0) "SONYA/" "rswa-v4/" "rswa-v3/" "buildbox/" "../" "./")
+
+ ("c:/Users/" (22333 49795 0 0) "Public/" "newguy/" "desktop.ini" "Default User/" "Default/" "bryan/" "All Users/" "../" "./")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t
