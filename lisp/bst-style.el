@@ -1,8 +1,8 @@
 
 ;;; Color theme.
 
-(defvar dark-theme  'hickey)
-(defvar light-theme 'ritchie)
+(defvar dark-theme  'solarized-dark)
+(defvar light-theme 'solarized-light)
 
 (load-theme dark-theme t t)
 (load-theme light-theme t t)
@@ -15,7 +15,7 @@
   (interactive)
   (enable-theme dark-theme))
 
-(light-theme)
+(dark-theme)
 
 (setq inhibit-startup-message t
       initial-scratch-message nil
