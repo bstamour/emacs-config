@@ -21,7 +21,7 @@
 (require 'bst-org)
 (require 'bst-haskell)
 (require 'bst-common-lisp)
-;(require 'bst-scheme)
+(require 'bst-scheme)
 (require 'bst-cpp)
 (require 'bst-web)
 (require 'bst-git)
