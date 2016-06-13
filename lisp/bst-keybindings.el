@@ -4,4 +4,8 @@
 (defalias 'qrr 'query-replace-regexp)
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+(require 'framemove)
+(windmove-default-keybindings)
+(setq framemove-hook-into-windmove t)
+
 (provide 'bst-keybindings)
