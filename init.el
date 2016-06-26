@@ -30,5 +30,6 @@
 ;(require 'bst-mu4e)
 ;(require 'bst-elfeed)
 (require 'bst-tex)
+(require 'bst-blogging)
 
 (require 'fireplace)
