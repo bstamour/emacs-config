@@ -1,7 +1,7 @@
 
 ;;; Color theme.
 
-(defvar dark-theme  'solarized-dark)
+(defvar dark-theme  'zenburn)
 (defvar light-theme 'solarized-light)
 
 (load-theme dark-theme t t)
