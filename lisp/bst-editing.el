@@ -16,6 +16,9 @@
 			     (global-set-key [(meta x)] 'smex)
 			     (smex)))
 
+(global-set-key (kbd "<f5>") 'magit-status)
+
+
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
 (define-key key-translation-map (kbd "C-c C-;") (kbd "◊"))
