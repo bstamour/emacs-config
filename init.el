@@ -13,11 +13,60 @@
    ("melpa" . "http://melpa.milkbox.net/packages/")
    ))
 
-(require 'bst-style)
-(if on-windows
-    (require 'bst-windows))
 
-(require 'fireplace)
+;;;-----------------------------------------------------------------------------
+;;; look and feel.
+
+;; Color theme.
+
+(defvar dark-theme  'solarized-dark)
+(defvar light-theme 'solarized-light)
+
+(load-theme dark-theme t t)
+(load-theme light-theme t t)
+
+(defun light-theme ()
+  (interactive)
+  (enable-theme light-theme))
+
+(defun dark-theme ()
+  (interactive)
+  (enable-theme dark-theme))
+
+(dark-theme)
+
+(setq inhibit-startup-message t
+      initial-scratch-message nil
+      visible-bell            t)
+
+(show-paren-mode t)
+(column-number-mode t)
+(iswitchb-mode 1)
+
+;; Remove scrollbars and menus.
+
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(if (fboundp 'tool-bar-mode)   (tool-bar-mode -1))
+(if (fboundp 'menu-bar-mode)   (menu-bar-mode -1))
+
+(set-default-font "Monospace-8")
+
+(if on-windows
+    (progn
+      ;; Windows-specific customizations.
+
+      ;; default Latin font (e.g. Consolas)
+      (set-face-attribute 'default nil :family "Consolas")
+
+      ;; default font size (point * 10)
+      ;;
+      ;; WARNING!  Depending on the default font,
+      ;; if the size is not supported very well, the frame will be clipped
+      ;; so that the beginning of the buffer may not be visible correctly.
+      (set-face-attribute 'default nil :height 100)
+
+      (setq default-directory "~/")))
+
 
 ;;;-----------------------------------------------------------------------------
 ;;; Keybindings
@@ -33,7 +82,6 @@
 ;(windmove-default-keybindings)
 ;(setq framemove-hook-into-windmove t)
 
-
 ;;;-----------------------------------------------------------------------------
 ;;; Editing.
 
@@ -43,28 +91,23 @@
           (lambda ()
             (delete-trailing-whitespace)))
 
-;;; See https://www.emacswiki.org/emacs/InteractivelyDoThings#toc1
-(require 'ido)
-(ido-mode t)
+;; See https://www.emacswiki.org/emacs/InteractivelyDoThings#toc1
+;(require 'ido)
+;(ido-mode t)
 
-;;; See https://www.emacswiki.org/emacs/Smex
-(global-set-key [(meta x)] (lambda ()
-			     (interactive)
-			     (or (boundp 'smex-cache)
-				 (smex-initialize))
-			     (global-set-key [(meta x)] 'smex)
-			     (smex)))
+;; See https://www.emacswiki.org/emacs/Smex
+;(global-set-key [(meta x)] (lambda ()
+;			     (interactive)
+;			     (or (boundp 'smex-cache)
+;				 (smex-initialize))
+;			     (global-set-key [(meta x)] 'smex)
+;			     (smex)))
 
 (global-set-key (kbd "<f5>") 'magit-status)
-
 
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
 (define-key key-translation-map (kbd "C-c C-;") (kbd "◊"))
-
-
-
-
 
 
 ;;;-----------------------------------------------------------------------------
@@ -78,8 +121,6 @@
 (global-set-key "\C-cb" 'org-iswitchb)
 
 (setq org-agenda-files (list "~/Dropbox/org"))
-
-
 
 
 ;;;-----------------------------------------------------------------------------
@@ -112,6 +153,7 @@
      (define-key haskell-mode-map (kbd "C-c C-i")
        'haskell-process-do-info)
      ))
+
 
 ;;;-----------------------------------------------------------------------------
 ;;; Common lisp config
@@ -287,10 +329,12 @@
 	     (setq indent-tabs-mode t)
 	     (define-key web-mode-map (kbd "TAB") 'self-insert-command)))
 
+
 ;;;-----------------------------------------------------------------------------
 ;;; git
 
 (setq magit-auto-revert-mode nil)
+
 
 ;;;-----------------------------------------------------------------------------
 ;;; LaTeX
@@ -303,6 +347,7 @@
 	     TeX-command-list)
 	    (define-key 'LaTeX-mode-map "\C-cb" 'ebib-insert-bibtex-key)
 	    (setq TeX-command-default "Latexmk")))
+
 
 ;;;-----------------------------------------------------------------------------
 ;;; Functions for creating blog posts with Jekyll.
