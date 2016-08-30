@@ -19,21 +19,35 @@
 
 ;; Color theme.
 
-(defvar dark-theme  'solarized-dark)
-(defvar light-theme 'solarized-light)
+(defvar *dark-theme*  'solarized-dark)
+(defvar *light-theme* 'solarized-light)
+(defvar *current-theme* dark-theme)
 
-(load-theme dark-theme t t)
-(load-theme light-theme t t)
+(load-theme *dark-theme* t t)
+(load-theme *light-theme* t t)
 
-(defun light-theme ()
+(defun enable-light-theme ()
   (interactive)
-  (enable-theme light-theme))
+  (setf *current-theme* *light-theme*)
+  (enable-theme *light-theme*))
 
-(defun dark-theme ()
+(defun enable-dark-theme ()
   (interactive)
-  (enable-theme dark-theme))
+  (setf *current-theme* *dark-theme*)
+  (enable-theme *dark-theme*))
 
-(dark-theme)
+(defun toggle-themes ()
+  (interactive)
+  (if (eq *current-theme* *dark-theme*)
+      (enable-light-theme)
+    (enable-dark-theme)))
+
+(enable-dark-theme)
+
+(global-set-key (kbd "<f6>") 'toggle-themes)
+
+
+
 
 (setq inhibit-startup-message t
       initial-scratch-message nil
