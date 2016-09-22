@@ -438,4 +438,12 @@ proper pre-amble."
 
 ;;;-----------------------------------------------------------------------------
 
+(setf elfeed-db-directory "~/Dropbox/emacs/elfeed/")
+
+(setf elfeed-feeds
+      '("https://www.linux.com/feeds/rss"))
+
+
+;;;-----------------------------------------------------------------------------
+
 (server-start)
