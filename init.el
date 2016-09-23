@@ -324,6 +324,7 @@
 (add-hook 'c++-mode-hook
 	  '(lambda ()
 	     (c-set-style "stroustrup")
+	     (c-set-offset 'innamespace 0)
 	     (fix-enum-class)
 	     (font-lock-add-keywords
 	      nil
