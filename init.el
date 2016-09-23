@@ -1,5 +1,12 @@
+;;;;============================================================================
+;;;;
+;;;;                   Bryan St. Amour's emacs config
+;;;;
+;;;;============================================================================
+
 ;;;-----------------------------------------------------------------------------
 ;;; Preamble.
+;;;-----------------------------------------------------------------------------
 
 (defvar on-windows (string= system-type "windows-nt"))
 
@@ -16,10 +23,9 @@
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
 (add-to-list 'load-path "~/.emacs.d/site-lisp/cc-mode-5.33/")
 
-
-
 ;;;-----------------------------------------------------------------------------
 ;;; look and feel.
+;;;-----------------------------------------------------------------------------
 
 ;; Color theme.
 
@@ -49,9 +55,6 @@
 (enable-dark-theme)
 
 (global-set-key (kbd "<f6>") 'toggle-themes)
-
-
-
 
 (setq inhibit-startup-message t
       initial-scratch-message nil
@@ -85,9 +88,9 @@
 
       (setq default-directory "~/")))
 
-
 ;;;-----------------------------------------------------------------------------
 ;;; Keybindings
+;;;-----------------------------------------------------------------------------
 
 ;(global-set-key "\C-x\C-m" 'execute-extended-command)
 (global-set-key "\C-x\C-b" 'electric-buffer-list)
@@ -102,6 +105,7 @@
 
 ;;;-----------------------------------------------------------------------------
 ;;; Editing.
+;;;-----------------------------------------------------------------------------
 
 (setq backup-directory-alist `(("." . "~/.saves")))
 
@@ -127,9 +131,9 @@
 (set-default-coding-systems 'utf-8)
 (define-key key-translation-map (kbd "C-c C-;") (kbd "◊"))
 
-
 ;;;-----------------------------------------------------------------------------
 ;;; org-mode config
+;;;-----------------------------------------------------------------------------
 
 (require 'org)
 
@@ -143,10 +147,9 @@
 (setq org-todo-keywords
       '((sequence "TODO" "ON-HOLD" "|" "DONE" "DELEGATED")))
 
-
-
 ;;;-----------------------------------------------------------------------------
 ;;; Haskell config.
+;;;-----------------------------------------------------------------------------
 
 (setf haskell-process-path-stack
       (if on-windows
@@ -176,15 +179,15 @@
        'haskell-process-do-info)
      ))
 
-
 ;;;-----------------------------------------------------------------------------
 ;;; Common lisp config
+;;;-----------------------------------------------------------------------------
 
-;; (setq inferior-lisp-program
-;;       (cond (on-windows "sbcl")
-;;             ((file-exists-p "/usr/local/bin/sbcl") "sbcl")
-;;             ((file-exists-p "/usr/bin/sbcl") "sbcl")
-;;             (t "clisp")))
+; (setq inferior-lisp-program
+;       (cond (on-windows "sbcl")
+;             ((file-exists-p "/usr/local/bin/sbcl") "sbcl")
+;             ((file-exists-p "/usr/bin/sbcl") "sbcl")
+;             (t "clisp")))
 
 (add-to-list 'exec-path "C:\\Program Files\\Steel Bank Common Lisp\\1.3.6")
 (setq inferior-lisp-program "sbcl")
@@ -193,9 +196,9 @@
 (slime-setup '(slime-fancy))
 ;(load (expand-file-name "~/quicklisp/slime-helper.el"))
 
-
 ;;;-----------------------------------------------------------------------------
 ;;; scheme config
+;;;-----------------------------------------------------------------------------
 
 (require 'geiser-repl)
 
@@ -216,16 +219,13 @@
 
 ;(global-prettify-symbols-mode 1)
 
-
 ;;;-----------------------------------------------------------------------------
 ;;; C++ config
-
-;; C++ configuration.
+;;;-----------------------------------------------------------------------------
 
 (require 'cc-mode)
 
 ;; Add support for the 'enum class' keyword in C++11.
-
 (defun inside-class-enum-p (pos)
   "Checks if POS is within the braces of a C++ \"enum class\"."
   (ignore-errors
@@ -253,7 +253,6 @@
                '(statement-cont . align-enum-class-closing-brace)))
 
 ;; Change the font to "comment" inside an #if 0 #endif block.
-
 (defun my-c-mode-font-lock-if (limit)
   (save-restriction
     (widen)
@@ -320,7 +319,6 @@
   nil)
 
 ;; Activate it all.
-
 (add-hook 'c++-mode-hook
 	  '(lambda ()
 	     (c-set-style "stroustrup")
@@ -334,9 +332,9 @@
 		  font-lock-comment-face prepend)))
 	      'add-to-end)))
 
-
 ;;;-----------------------------------------------------------------------------
 ;;; web editing
+;;;-----------------------------------------------------------------------------
 
 (require 'web-mode)
 
@@ -353,15 +351,15 @@
 	     (setq indent-tabs-mode t)
 	     (define-key web-mode-map (kbd "TAB") 'self-insert-command)))
 
-
 ;;;-----------------------------------------------------------------------------
 ;;; git
+;;;-----------------------------------------------------------------------------
 
 (setq magit-auto-revert-mode nil)
 
-
 ;;;-----------------------------------------------------------------------------
 ;;; LaTeX
+;;;-----------------------------------------------------------------------------
 
 (add-hook 'LaTeX-mode-hook
 	  (lambda ()
@@ -372,9 +370,9 @@
 	    (define-key 'LaTeX-mode-map "\C-cb" 'ebib-insert-bibtex-key)
 	    (setq TeX-command-default "Latexmk")))
 
-
 ;;;-----------------------------------------------------------------------------
 ;;; Functions for creating blog posts with Jekyll.
+;;;-----------------------------------------------------------------------------
 
 (setq blog-base-dir "/home/bryan/Projects/personal-site/")
 (setq blog-posts-dir (concat blog-base-dir "_posts/"))
@@ -406,11 +404,10 @@ proper pre-amble."
      (replace-regexp-in-string "[^[:alnum:][:space:]]" "" title)))
    ".md"))
 
-
+;;;-----------------------------------------------------------------------------
+;;; Big brother database (bbdb) for storing contacts.
 ;;;-----------------------------------------------------------------------------
 
-
-;(require 'bbdb-autoloads)
 (require 'bbdb)
 
 ;; initialization
@@ -435,9 +432,10 @@ proper pre-amble."
  (lambda ()
     (define-key gnus-summary-mode-map (kbd ";") 'bbdb-mua-edit-field)))
 
-
 (add-hook 'bbdb-create-hook 'bbdb-save)
 
+;;;-----------------------------------------------------------------------------
+;;; RSS Settings.
 ;;;-----------------------------------------------------------------------------
 
 (setf elfeed-db-directory "~/Dropbox/emacs/elfeed/")
@@ -457,6 +455,8 @@ proper pre-amble."
 	"http://planetkde.org/rss20.xml"
 	))
 
+;;;-----------------------------------------------------------------------------
+;;; This is the end.
 ;;;-----------------------------------------------------------------------------
 
 (server-start)
