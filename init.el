@@ -143,7 +143,7 @@
 (setq org-agenda-files (list "~/Dropbox/org"))
 
 (setq org-todo-keywords
-      '((sequence "TODO" "ON-HOLD" "|" "DONE" "DELEGATED")))
+      '((sequence "TODO" "WAITING" "ON-HOLD" "|" "DONE" "DELEGATED")))
 
 ;;;-----------------------------------------------------------------------------
 ;;; Haskell config.
