@@ -28,7 +28,6 @@
 ;;;-----------------------------------------------------------------------------
 
 ;; Color theme.
-
 (defvar *dark-theme*  'solarized-dark)
 (defvar *light-theme* 'solarized-light)
 (defvar *current-theme* *dark-theme*)
@@ -65,7 +64,6 @@
 (iswitchb-mode 1)
 
 ;; Remove scrollbars and menus.
-
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (if (fboundp 'tool-bar-mode)   (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode)   (menu-bar-mode -1))
