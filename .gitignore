@@ -3,3 +3,4 @@ eshell/*
 auto-save-list/*
 gnus.el
 url/*
+server/*
