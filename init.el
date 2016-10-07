@@ -451,6 +451,7 @@ proper pre-amble."
 	"https://www.schneier.com/blog/atom.xml"
 	"https://static.fsf.org/fsforg/rss/news.xml"
 	"http://planetkde.org/rss20.xml"
+	"http://www.charlespetzold.com/rss.xml"
 	))
 
 ;;;-----------------------------------------------------------------------------
