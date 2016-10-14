@@ -439,19 +439,21 @@ proper pre-amble."
 (setf elfeed-db-directory "~/Dropbox/emacs/elfeed/")
 
 (setq elfeed-feeds
-      '("https://planet.haskell.org/rss20.xml"
+      '(
+	"https://planet.haskell.org/rss20.xml"
 	"https://isocpp.org/blog/rss"
 	"http://alien.slackbook.org/blog/feed/"
-	"http://www.scheme.dk/planet/atom.xml"
-	"https://www.linux.com/rss/feeds.php"
-	"http://rss.cnn.com/rss/cnn_world.rss"
+;	"http://www.scheme.dk/planet/atom.xml"
+;	"https://www.linux.com/rss/feeds.php"
 	"http://lambda-the-ultimate.org/rss.xml"
-	"http://pl6anet.org/atom.xml"
-	"http://esr.ibiblio.org/?feed=rss2"
+;	"http://pl6anet.org/atom.xml"
+;	"http://esr.ibiblio.org/?feed=rss2"
 	"https://www.schneier.com/blog/atom.xml"
 	"https://static.fsf.org/fsforg/rss/news.xml"
-	"http://planetkde.org/rss20.xml"
-	"http://www.charlespetzold.com/rss.xml"
+;	"http://planetkde.org/rss20.xml"
+;	"http://www.charlespetzold.com/rss.xml"
+
+;	"https://diracdeltas.github.io/blog/"
 	))
 
 ;;;-----------------------------------------------------------------------------
@@ -465,3 +467,28 @@ proper pre-amble."
 ;;;-----------------------------------------------------------------------------
 
 (server-start)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("bf3ec301ea82ab546efb39c2fdd4412d1188c7382ff3bbadd74a8ecae4121678" "a2e7b508533d46b701ad3b055e7c708323fb110b6676a8be458a758dd8f24e27" default)))
+ '(highlight-changes-colors (quote ("#d33682" "#6c71c4")))
+ '(highlight-tail-colors
+   (quote
+    (("#073642" . 0)
+     ("#546E00" . 20)
+     ("#00736F" . 30)
+     ("#00629D" . 50)
+     ("#7B6000" . 60)
+     ("#8B2C02" . 70)
+     ("#93115C" . 85)
+     ("#073642" . 100)))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
