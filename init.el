@@ -326,6 +326,7 @@
 	     (c-set-style "stroustrup")
 	     (setq c-basic-offset 2)
 	     (c-set-offset 'innamespace 0)
+	     (c-set-offset 'arglist-close 0)
 	     (fix-enum-class)
 	     (font-lock-add-keywords
 	      nil
@@ -447,18 +448,11 @@ proper pre-amble."
 	"https://planet.haskell.org/rss20.xml"
 	"https://isocpp.org/blog/rss"
 	"http://alien.slackbook.org/blog/feed/"
-;	"http://www.scheme.dk/planet/atom.xml"
-;	"https://www.linux.com/rss/feeds.php"
 	"http://lambda-the-ultimate.org/rss.xml"
-;	"http://pl6anet.org/atom.xml"
-;	"http://esr.ibiblio.org/?feed=rss2"
 	"https://www.schneier.com/blog/atom.xml"
 	"https://static.fsf.org/fsforg/rss/news.xml"
-;	"http://planetkde.org/rss20.xml"
-;	"http://www.charlespetzold.com/rss.xml"
-
-;	"https://diracdeltas.github.io/blog/"
-	))
+	"https://bryanstamour.com/feed.xml" ; just for testing shit, I'm
+	))                                  ; not THAT full of myself.
 
 ;;;-----------------------------------------------------------------------------
 ;;; IRC settings.
