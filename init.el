@@ -326,6 +326,7 @@
 	     (c-set-style "stroustrup")
 	     (setq c-basic-offset 2)
 	     (c-set-offset 'innamespace 0)
+	     (c-set-offset 'arglist-close 0)
 	     (fix-enum-class)
 	     (font-lock-add-keywords
 	      nil
