@@ -32,8 +32,9 @@
 ;;;-----------------------------------------------------------------------------
 
 ;; Color theme.
-(defvar *dark-theme*  'brin)
+(defvar *dark-theme*  'solarized-dark)
 (defvar *light-theme* 'solarized-light)
+
 (defvar *current-theme* *dark-theme*)
 
 (load-theme *dark-theme* t t)
@@ -57,7 +58,7 @@
 
 (enable-dark-theme)
 
-(global-set-key (kbd "<f6>") 'toggle-themes)
+
 
 (setq inhibit-startup-message t
       initial-scratch-message nil
@@ -94,8 +95,12 @@
 ;;; Keybindings
 ;;;-----------------------------------------------------------------------------
 
-;(global-set-key "\C-x\C-m" 'execute-extended-command)
 (global-set-key "\C-x\C-b" 'electric-buffer-list)
+(global-set-key (kbd "<f6>") 'toggle-themes)
+(global-set-key (kbd "<f7>") (lambda ()
+			       (interactive)
+			       (find-file "~/.emacs.d/init.el")))
+(global-set-key (kbd "<f5>") 'magit-status)
 
 (defalias 'qrr 'query-replace-regexp)
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -127,7 +132,7 @@
 ;			     (global-set-key [(meta x)] 'smex)
 ;			     (smex)))
 
-(global-set-key (kbd "<f5>") 'magit-status)
+
 
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
