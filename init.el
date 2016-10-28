@@ -32,7 +32,7 @@
 ;;;-----------------------------------------------------------------------------
 
 ;; Color theme.
-(defvar *dark-theme*  'solarized-dark)
+(defvar *dark-theme*  'fogus)
 (defvar *light-theme* 'solarized-light)
 (defvar *current-theme* *dark-theme*)
 
@@ -451,6 +451,7 @@ proper pre-amble."
 	"http://lambda-the-ultimate.org/rss.xml"
 	"https://www.schneier.com/blog/atom.xml"
 	"https://static.fsf.org/fsforg/rss/news.xml"
+	"https://blogs.msdn.microsoft.com/oldnewthing/feed"
 	"https://bryanstamour.com/feed.xml" ; just for testing shit, I'm
 	))                                  ; not THAT full of myself.
 
