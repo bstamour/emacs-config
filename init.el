@@ -32,7 +32,7 @@
 ;;;-----------------------------------------------------------------------------
 
 ;; Color theme.
-(defvar *dark-theme*  'fogus)
+(defvar *dark-theme*  'brin)
 (defvar *light-theme* 'solarized-light)
 (defvar *current-theme* *dark-theme*)
 
