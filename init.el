@@ -446,7 +446,7 @@ proper pre-amble."
 ;;; RSS Settings.
 ;;;-----------------------------------------------------------------------------
 
-(setf elfeed-db-directory "~/Dropbox/emacs/elfeed/")
+(setf elfeed-db-directory "~/Dropbox/emacs/elfeed")
 
 (setq elfeed-feeds
       '(
@@ -457,8 +457,9 @@ proper pre-amble."
 	"https://www.schneier.com/blog/atom.xml"
 	"https://static.fsf.org/fsforg/rss/news.xml"
 	"https://blogs.msdn.microsoft.com/oldnewthing/feed"
-	"https://bryanstamour.com/feed.xml" ; just for testing shit, I'm
-	))                                  ; not THAT full of myself.
+	"http://www.hardballtimes.com/feed/"
+	"https://bryanstamour.com/feed.xml" ; just for testing shit,
+	))
 
 ;;;-----------------------------------------------------------------------------
 ;;; IRC settings.
