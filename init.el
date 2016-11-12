@@ -32,14 +32,8 @@
 ;;;-----------------------------------------------------------------------------
 
 ;; Color theme.
-(if on-windows
-    (progn
-      (defvar *dark-theme* 'solarized-dark)
-      (defvar *light-theme* 'solarized-light))
-  (progn
-    (defvar *dark-theme*  'minimal)
-    (defvar *light-theme* 'minimal-light)))
-
+(defvar *dark-theme* 'solarized-dark)
+(defvar *light-theme* 'solarized-light)
 (defvar *current-theme* nil)
 
 (load-theme *dark-theme* t t)
