@@ -74,22 +74,6 @@
 
 (set-default-font "Monospace-8")
 
-(if on-windows
-    (progn
-      ;; Windows-specific customizations.
-
-      ;; default Latin font (e.g. Consolas)
-      (set-face-attribute 'default nil :family "Consolas")
-
-      ;; default font size (point * 10)
-      ;;
-      ;; WARNING!  Depending on the default font,
-      ;; if the size is not supported very well, the frame will be clipped
-      ;; so that the beginning of the buffer may not be visible correctly.
-      (set-face-attribute 'default nil :height 100)
-
-      (setq default-directory "~/")))
-
 ;;;-----------------------------------------------------------------------------
 ;;; Keybindings
 ;;;-----------------------------------------------------------------------------
@@ -471,4 +455,5 @@ proper pre-amble."
 ;;; This is the end.
 ;;;-----------------------------------------------------------------------------
 
-(server-start)
+(when on-windows
+  (load-file "~/.emacs.d/windows.el"))

@@ -2,5 +2,6 @@
 eshell/*
 auto-save-list/*
 gnus.el
+windows.el
 url/*
 server/*
