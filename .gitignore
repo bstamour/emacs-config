@@ -3,5 +3,6 @@ eshell/*
 auto-save-list/*
 gnus.el
 windows.el
+abbrev_defs
 url/*
 server/*
