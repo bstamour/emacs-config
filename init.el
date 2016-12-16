@@ -449,7 +449,8 @@ proper pre-amble."
 	"https://static.fsf.org/fsforg/rss/news.xml"
 	"https://blogs.msdn.microsoft.com/oldnewthing/feed"
 	"http://www.hardballtimes.com/feed/"
-	"https://bryanstamour.com/feed.xml" ; just for testing shit,
+	"https://bryanstamour.com/feed.xml" ; just for testing shit
+	"http://slackware-changelog.oprod.net/atom_feed/"
 	))
 
 ;;;-----------------------------------------------------------------------------
