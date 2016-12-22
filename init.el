@@ -32,8 +32,8 @@
 ;;;-----------------------------------------------------------------------------
 
 ;; Color theme.
-(defvar *dark-theme* 'solarized-dark)
-(defvar *light-theme* 'solarized-light)
+(defvar *dark-theme* 'zenburn)
+(defvar *light-theme* 'anti-zenburn)
 (defvar *current-theme* nil)
 
 (load-theme *dark-theme* t t)
@@ -144,7 +144,7 @@
 (setf haskell-process-path-stack
       (if on-windows
 	  "C:/Users/bryan/AppData/Roaming/local/bin/stack"
-	"/home/bryan/bin/stack"))
+	"stack"))
 
 (setf haskell-process-type 'stack-ghci)
 (setf haskell-process-suggest-remove-import-lines t)
