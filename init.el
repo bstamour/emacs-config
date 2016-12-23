@@ -451,6 +451,7 @@ proper pre-amble."
 	"http://www.hardballtimes.com/feed/"
 	"https://bryanstamour.com/feed.xml" ; just for testing shit
 	"http://slackware-changelog.oprod.net/atom_feed/"
+"https://www.reddit.com/.rss?feed=8c7b5c451313bb1e0cb4898985bdc1fcda9dd88a&user=bstamour"
 	))
 
 ;;;-----------------------------------------------------------------------------
