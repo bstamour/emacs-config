@@ -23,7 +23,6 @@
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
 (add-to-list 'load-path "~/.emacs.d/site-lisp/cc-mode-5.33/")
 
-
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
 
@@ -57,8 +56,6 @@
 
 (enable-dark-theme)
 
-
-
 (setq inhibit-startup-message t
       initial-scratch-message nil
       visible-bell            t)
@@ -72,7 +69,7 @@
 (if (fboundp 'tool-bar-mode)   (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode)   (menu-bar-mode -1))
 
-(set-default-font "Monospace-8")
+;(set-default-font "Monospace-8")
 
 ;;;-----------------------------------------------------------------------------
 ;;; Keybindings
@@ -120,6 +117,9 @@
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
 (define-key key-translation-map (kbd "C-c C-;") (kbd "◊"))
+
+;; For editing text.
+(require 'writegood-mode)
 
 ;;;-----------------------------------------------------------------------------
 ;;; org-mode config
@@ -349,7 +349,6 @@
 
 (setq perl6-indent-offset 2)
 
-
 ;;;-----------------------------------------------------------------------------
 ;;; git
 ;;;-----------------------------------------------------------------------------
@@ -451,7 +450,8 @@ proper pre-amble."
 	"http://www.hardballtimes.com/feed/"
 	"https://bryanstamour.com/feed.xml" ; just for testing shit
 	"http://slackware-changelog.oprod.net/atom_feed/"
-"https://www.reddit.com/.rss?feed=8c7b5c451313bb1e0cb4898985bdc1fcda9dd88a&user=bstamour"
+	"https://www.reddit.com/.rss?feed=8c7b5c451313bb1e0cb4898985bdc1fcda9dd88a&user=bstamour"
+	"https://news.ycombinator.com/rss"
 	))
 
 ;;;-----------------------------------------------------------------------------
