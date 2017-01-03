@@ -463,8 +463,31 @@ proper pre-amble."
 (setq erc-nick "bstamour")
 
 ;;;-----------------------------------------------------------------------------
-;;; This is the end.
+;;; Windows related stuff.
 ;;;-----------------------------------------------------------------------------
 
-(when on-windows
-  (load-file "~/.emacs.d/windows.el"))
+(when on-windws
+  (progn
+
+    ;; default Latin font (e.g. Consolas)
+    (set-face-attribute 'default nil :family "Consolas")
+
+    ;; default font size (point * 10)
+    ;;
+    ;; WARNING!  Depending on the default font,
+    ;; if the size is not supported very well, the frame will be clipped
+    ;; so that the beginning of the buffer may not be visible correctly.
+    (set-face-attribute 'default nil :height 100)
+
+    (setq default-directory "~/")))
+
+;;;-----------------------------------------------------------------------------
+;;; Other weird shit.
+;;;-----------------------------------------------------------------------------
+
+(defun compute-coffee (brand servings)
+  4)
+
+;;;-----------------------------------------------------------------------------
+;;; This is the end.
+;;;-----------------------------------------------------------------------------
