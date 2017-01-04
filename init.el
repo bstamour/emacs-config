@@ -112,6 +112,11 @@
 ;			     (global-set-key [(meta x)] 'smex)
 ;			     (smex)))
 
+;; vlf is for editing really big files. It opens them in chunks.
+;; See here: https://github.com/m00natic/vlfi for info.
+(require 'vlf-setup)
+
+
 
 
 (set-language-environment "UTF-8")
