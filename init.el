@@ -471,9 +471,8 @@ proper pre-amble."
 ;;; Windows related stuff.
 ;;;-----------------------------------------------------------------------------
 
-(when on-windws
+(when on-windows
   (progn
-
     ;; default Latin font (e.g. Consolas)
     (set-face-attribute 'default nil :family "Consolas")
 
@@ -484,7 +483,11 @@ proper pre-amble."
     ;; so that the beginning of the buffer may not be visible correctly.
     (set-face-attribute 'default nil :height 100)
 
-    (setq default-directory "~/")))
+    (setq default-directory "~/")
+
+    ;; Use PuTTY as a backend for tramp.
+    (setq tramp-default-method "pscp")
+    ))
 
 ;;;-----------------------------------------------------------------------------
 ;;; Other weird shit.
