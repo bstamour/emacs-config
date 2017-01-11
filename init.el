@@ -488,12 +488,14 @@ proper pre-amble."
     ;; Use PuTTY as a backend for tramp.
     (setq tramp-default-method "pscp")
 
-    ;; A macro for cleaning up delphi error novels.
-    (fset 'clean-delphi
-	  (lambda (&optional arg) "Keyboard macro."
-	    (interactive "p")
-	    (kmacro-exec-ring-item (quote ([134217848 114 101 103 101 tab backspace backspace backspace backspace backspace backspace backspace backspace backspace backspace backspace backspace 112 108 97 99 101 tab 114 101 tab 103 tab return return] 0 "%d")) arg)))
+    ;; Help clean up delphi error dumps.
+    (defun delphi-cleaner ()
+      (interactive)
+      (beginning-of-buffer)
+      (replace-regexp "  " "\n")
+      (beginning-of-buffer))
     ))
+
 
 ;;;-----------------------------------------------------------------------------
 ;;; Other weird shit.
