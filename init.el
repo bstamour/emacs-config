@@ -26,12 +26,15 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
 
+(set-language-environment "UTF-8")
+(set-default-coding-systems 'utf-8)
+
 ;;;-----------------------------------------------------------------------------
 ;;; look and feel.
 ;;;-----------------------------------------------------------------------------
 
 ;; Color theme.
-(defvar *dark-theme* 'solarized-dark)
+(defvar *dark-theme* 'zenburn)
 (defvar *light-theme* 'solarized-light)
 (defvar *current-theme* nil)
 
