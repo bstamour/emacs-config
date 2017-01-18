@@ -323,6 +323,7 @@
 	     (setq c-basic-offset 2)
 	     (c-set-offset 'innamespace 0)
 	     (c-set-offset 'arglist-close 0)
+	     (c-set-offset 'arglist-cont-nonempty '+)
 	     (c-set-offset 'inline-open 0)
 	     (fix-enum-class)
 	     (font-lock-add-keywords
@@ -490,7 +491,15 @@ proper pre-amble."
 
     ;; Use PuTTY as a backend for tramp.
     (setq tramp-default-method "pscp")
+
+    ;; Help clean up delphi error dumps.
+    (defun delphi-cleaner ()
+      (interactive)
+      (beginning-of-buffer)
+      (replace-regexp "  " "\n")
+      (beginning-of-buffer))
     ))
+
 
 ;;;-----------------------------------------------------------------------------
 ;;; Other weird shit.
