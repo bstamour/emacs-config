@@ -9,6 +9,7 @@
 ;;;-----------------------------------------------------------------------------
 
 (defvar on-windows (string= system-type "windows-nt"))
+(defvar on-laptop  (string= system-name "bryan-laptop"))
 
 (require 'package)
 
@@ -34,7 +35,7 @@
 ;;;-----------------------------------------------------------------------------
 
 ;; Color theme.
-(defvar *dark-theme* 'zenburn)
+(defvar *dark-theme* (if on-laptop 'zenburn 'solarized-dark))
 (defvar *light-theme* 'solarized-light)
 (defvar *current-theme* nil)
 
