@@ -35,7 +35,7 @@
 ;;;-----------------------------------------------------------------------------
 
 ;; Color theme.
-(defvar *dark-theme* (if on-laptop 'zenburn 'solarized-dark))
+(defvar *dark-theme* (if on-laptop 'zenburn 'monokai))
 (defvar *light-theme* 'solarized-light)
 (defvar *current-theme* nil)
 
