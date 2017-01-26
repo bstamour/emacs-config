@@ -35,7 +35,7 @@
 ;;;-----------------------------------------------------------------------------
 
 ;; Color theme.
-(defvar *dark-theme* 'monokai)
+(defvar *dark-theme* 'solarized-dark)
 (defvar *light-theme* 'solarized-light)
 (defvar *current-theme* nil)
 
