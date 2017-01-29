@@ -9,6 +9,7 @@
 ;;;-----------------------------------------------------------------------------
 
 (defvar on-windows (string= system-type "windows-nt"))
+(defvar on-laptop  (string= system-name "bryan-laptop"))
 
 (require 'package)
 
