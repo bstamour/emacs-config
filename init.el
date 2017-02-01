@@ -156,6 +156,7 @@
 	"stack"))
 
 (setf haskell-process-type 'stack-ghci)
+(setq haskell-process-args-stack-ghci '("--ghci-options=-ferror-spans"))
 (setf haskell-process-suggest-remove-import-lines t)
 (setf haskell-process-auto-import-loaded-modules t)
 (setf haskell-process-log t)
