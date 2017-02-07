@@ -35,7 +35,7 @@
 ;;;-----------------------------------------------------------------------------
 
 ;; Color theme.
-(defvar *dark-theme* 'solarized-dark)
+(defvar *dark-theme* 'zenburn)
 (defvar *light-theme* 'solarized-light)
 (defvar *current-theme* nil)
 
