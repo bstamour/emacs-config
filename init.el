@@ -11,6 +11,7 @@
 (defvar on-windows (string= system-type "windows-nt"))
 (defvar on-laptop  (string= system-name "bryan-laptop"))
 
+(require 'tramp)
 (require 'package)
 
 (package-initialize)
@@ -80,11 +81,13 @@
 ;;;-----------------------------------------------------------------------------
 
 (global-set-key "\C-x\C-b" 'electric-buffer-list)
+
+(global-set-key (kbd "<f5>") 'magit-status)
 (global-set-key (kbd "<f6>") 'toggle-themes)
 (global-set-key (kbd "<f7>") (lambda ()
 			       (interactive)
 			       (find-file "~/.emacs.d/init.el")))
-(global-set-key (kbd "<f5>") 'magit-status)
+(global-set-key (kbd "<f8>") 'bst/elfeed-command)
 
 (defalias 'qrr 'query-replace-regexp)
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -119,9 +122,6 @@
 ;; vlf is for editing really big files. It opens them in chunks.
 ;; See here: https://github.com/m00natic/vlfi for info.
 (require 'vlf-setup)
-
-
-
 
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
@@ -451,21 +451,54 @@ proper pre-amble."
 
 (setq elfeed-feeds
       '(
+	;; Normal news.
+	"http://rss.cnn.com/rss/cnn_topstories.rss"
+	"http://rss.nytimes.com/services/xml/rss/nyt/US.xml"
+
+	;; Blogs/tech
 	"https://planet.haskell.org/rss20.xml"
 	"https://isocpp.org/blog/rss"
 	"http://alien.slackbook.org/blog/feed/"
-	"http://lambda-the-ultimate.org/rss.xml"
-	"https://www.schneier.com/blog/atom.xml"
-	"https://static.fsf.org/fsforg/rss/news.xml"
-	"https://blogs.msdn.microsoft.com/oldnewthing/feed"
-	"http://www.hardballtimes.com/feed/"
-	"https://bryanstamour.com/feed.xml" ; just for testing shit
-	"http://slackware-changelog.oprod.net/atom_feed/"
-	"https://news.ycombinator.com/rss"
-	"http://www.datatau.com/rss"
-	"https://www.reddit.com/.rss?feed=8c7b5c451313bb1e0cb4898985bdc1fcda9dd88a&user=bstamour"
-	"https://news.ycombinator.com/rss"
+
+	;; Science news
+	"https://phys.org/rss-feed/physics-news/"
+	"https://phys.org/rss-feed/space-news/"
+	"https://phys.org/rss-feed/technology-news/"
+
 	))
+
+;;functions to support syncing .elfeed between machines
+;;makes sure elfeed reads index from disk before launching
+(defun bjm/elfeed-load-db-and-open ()
+  "Wrapper to load the elfeed db from disk before opening"
+  (interactive)
+  (elfeed-db-load)
+  (elfeed)
+  (elfeed-search-update--force))
+
+;;write to disk when quiting
+(defun bjm/elfeed-save-db-and-bury ()
+  "Wrapper to save the elfeed db to disk before burying buffer"
+  (interactive)
+  (elfeed-db-save)
+  (quit-window))
+
+(defun bst/elfeed-kill-and-set ()
+  (interactive)
+  (bjm/elfeed-save-db-and-bury)
+  (setf *elfeed-cmd* 'open-it))
+
+(defvar *elfeed-cmd* 'open-it)
+
+(defun bst/elfeed-command ()
+  (interactive)
+  (if (eq *elfeed-cmd* 'open-it)
+      (progn
+	(bjm/elfeed-load-db-and-open)
+	(setf *elfeed-cmd* 'close-it))
+    (bst/elfeed-kill-and-set)))
+
+(define-key elfeed-search-mode-map "q" 'bst/elfeed-kill-and-set)
 
 ;;;-----------------------------------------------------------------------------
 ;;; IRC settings.
@@ -477,7 +510,9 @@ proper pre-amble."
 ;;; web browsing
 ;;;-----------------------------------------------------------------------------
 
-(setq browse-url-browser-function 'w3m-goto-url-new-session)
+(setq browse-url-browser-function 'browse-url-firefox
+          browse-url-new-window-flag  t
+          browse-url-firefox-new-window-is-tab t)
 
 ;;;-----------------------------------------------------------------------------
 ;;; Windows related stuff.
@@ -508,16 +543,12 @@ proper pre-amble."
       (beginning-of-buffer))
     ))
 
-
 ;;;-----------------------------------------------------------------------------
 ;;; Other weird shit.
 ;;;-----------------------------------------------------------------------------
 
 (defun compute-coffee (brand servings)
   4)
-
-
-
 
 ;;;-----------------------------------------------------------------------------
 ;;; This is the end.
