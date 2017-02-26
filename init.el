@@ -36,7 +36,7 @@
 ;;;-----------------------------------------------------------------------------
 
 ;; Color theme.
-(defvar *dark-theme* 'zenburn)
+(defvar *dark-theme* 'solarized-dark)
 (defvar *light-theme* 'solarized-light)
 (defvar *current-theme* nil)
 
@@ -322,11 +322,11 @@
 (add-hook 'c++-mode-hook
 	  '(lambda ()
 	     (c-set-style "stroustrup")
-	     (setq c-basic-offset 2)
-	     (c-set-offset 'innamespace 0)
-	     (c-set-offset 'arglist-close 0)
-	     (c-set-offset 'arglist-cont-nonempty '+)
-	     (c-set-offset 'inline-open 0)
+	     (setq c-basic-offset 3)
+;	     (c-set-offset 'innamespace 0)
+;	     (c-set-offset 'arglist-close 0)
+;	     (c-set-offset 'arglist-cont-nonempty '+)
+;	     (c-set-offset 'inline-open 0)
 	     (fix-enum-class)
 	     (font-lock-add-keywords
 	      nil
@@ -446,6 +446,8 @@ proper pre-amble."
 ;;;-----------------------------------------------------------------------------
 ;;; RSS Settings.
 ;;;-----------------------------------------------------------------------------
+
+(require 'elfeed)
 
 (setf elfeed-db-directory "~/Dropbox/emacs/elfeed")
 
