@@ -36,7 +36,7 @@
 ;;;-----------------------------------------------------------------------------
 
 ;; Color theme.
-(defvar *dark-theme* 'solarized-dark)
+(defvar *dark-theme* 'railscasts)
 (defvar *light-theme* 'solarized-light)
 (defvar *current-theme* nil)
 
