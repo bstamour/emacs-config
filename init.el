@@ -322,7 +322,7 @@
 (add-hook 'c++-mode-hook
 	  '(lambda ()
 	     (c-set-style "stroustrup")
-	     (setq c-basic-offset 3)
+;	     (setq c-basic-offset 3)
 ;	     (c-set-offset 'innamespace 0)
 ;	     (c-set-offset 'arglist-close 0)
 ;	     (c-set-offset 'arglist-cont-nonempty '+)
