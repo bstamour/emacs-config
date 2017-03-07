@@ -512,9 +512,18 @@ proper pre-amble."
 ;;; web browsing
 ;;;-----------------------------------------------------------------------------
 
-(setq browse-url-browser-function 'browse-url-firefox
-          browse-url-new-window-flag  t
-          browse-url-firefox-new-window-is-tab t)
+(defun my-browse-firefox (url &optional new-window)
+  (interactive (browse-url-interactive-arg "URL: "))
+  (if (not on-windows)
+      (browse-url-firefox url new-window)
+    (let ((cmd "C:/Program Files (x86)/Mozilla Firefox/firefox"))
+      (message "Starting firefox...")
+      (start-process (concat cmd " " url) nil cmd url)
+      (message "starting firefox... done"))))
+
+(setq browse-url-browser-function 'my-browse-firefox
+      browse-url-new-window-flag  t
+      browse-url-firefox-new-window-is-tab t)
 
 ;;;-----------------------------------------------------------------------------
 ;;; Windows related stuff.
