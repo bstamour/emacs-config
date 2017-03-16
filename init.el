@@ -579,7 +579,7 @@ proper pre-amble."
 
 (defun estimate-rswa-data-needs (welds-per-week)
   "Simple function for generating RSWA data estimates. Output is in kilobytes."
-  (interactive "nWelds per week: ")
+  (interactive "NWelds per week: ")
   (let* ((weld-data-size 500)
 	 (total-size (* welds-per-week 52 weld-data-size)))
     (message (number-to-string total-size))))
