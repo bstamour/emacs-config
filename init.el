@@ -103,9 +103,24 @@
 
 (setq backup-directory-alist `(("." . "~/.saves")))
 
+(setq version-control t                    ; Use version numbers for backups
+       kept-new-versions 16                ; Number of newest versions to keep
+       kept-old-versions 2                 ; Number of oldest versions to keep
+       delete-old-versions t               ; Ask to delete excess backup versions?
+       backup-by-copying-when-linked t)    ; Copy linked files, don't rename.
+
+ (defun force-backup-of-buffer ()
+   (let ((buffer-backed-up nil))
+     (backup-buffer)))
+
+;; Make sure dired doesn't get too cluttered up.
+(require 'dired-x)
+(setq dired-omit-mode t)
+
 (add-hook 'before-save-hook
           (lambda ()
-            (delete-trailing-whitespace)))
+            (delete-trailing-whitespace)
+	    (force-backup-of-buffer)))
 
 ;; See https://www.emacswiki.org/emacs/InteractivelyDoThings#toc1
 ;(require 'ido)
@@ -129,6 +144,7 @@
 
 ;; For editing text.
 (require 'writegood-mode)
+
 
 ;;;-----------------------------------------------------------------------------
 ;;; org-mode config
@@ -560,6 +576,13 @@ proper pre-amble."
 
 (defun compute-coffee (brand servings)
   4)
+
+(defun estimate-rswa-data-needs (welds-per-week)
+  "Simple function for generating RSWA data estimates. Output is in kilobytes."
+  (interactive "nWelds per week: ")
+  (let* ((weld-data-size 500)
+	 (total-size (* welds-per-week 52 weld-data-size)))
+    (message (number-to-string total-size))))
 
 ;;;-----------------------------------------------------------------------------
 ;;; This is the end.
