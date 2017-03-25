@@ -199,14 +199,14 @@
 ;;; Common lisp config
 ;;;-----------------------------------------------------------------------------
 
-; (setq inferior-lisp-program
-;       (cond (on-windows "sbcl")
-;             ((file-exists-p "/usr/local/bin/sbcl") "sbcl")
-;             ((file-exists-p "/usr/bin/sbcl") "sbcl")
-;             (t "clisp")))
+(if on-windows
+    (add-to-list 'exec-path
+		 "C:\\Program Files\\Steel Bank Common Lisp\\1.3.6"))
 
-(add-to-list 'exec-path "C:\\Program Files\\Steel Bank Common Lisp\\1.3.6")
-(setq inferior-lisp-program "sbcl")
+(setq inferior-lisp-program
+      (if (executable-find "sbcl")
+	  "sbcl"
+	"clisp"))
 
 (require 'slime)
 (slime-setup '(slime-fancy))
