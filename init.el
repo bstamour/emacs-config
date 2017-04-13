@@ -36,8 +36,8 @@
 ;;;-----------------------------------------------------------------------------
 
 ;; Color theme.
-(defvar *dark-theme* 'tao-yin)
-(defvar *light-theme* 'tao-yang)
+(defvar *dark-theme* 'solarized-dark)
+(defvar *light-theme* 'solarized-light)
 (defvar *current-theme* nil)
 
 (load-theme *dark-theme* t t)
