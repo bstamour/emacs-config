@@ -23,7 +23,7 @@
    ))
 
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
-(add-to-list 'load-path "~/.emacs.d/site-lisp/cc-mode-5.33/")
+(add-to-list 'load-path "~/.emacs.d/site-lisp/cc-mode-snapshot/")
 
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
@@ -36,7 +36,7 @@
 ;;;-----------------------------------------------------------------------------
 
 ;; Color theme.
-(defvar *dark-theme* 'ample-flat)
+(defvar *dark-theme* 'solarized-dark)
 (defvar *light-theme* 'solarized-light)
 (defvar *current-theme* nil)
 
@@ -144,7 +144,6 @@
 
 ;; For editing text.
 (require 'writegood-mode)
-
 
 ;;;-----------------------------------------------------------------------------
 ;;; org-mode config
@@ -338,8 +337,8 @@
 (add-hook 'c++-mode-hook
 	  '(lambda ()
 	     (c-set-style "stroustrup")
-;	     (setq c-basic-offset 3)
-;	     (c-set-offset 'innamespace 0)
+	     (setq c-basic-offset 2)
+	     (c-set-offset 'innamespace 0)
 ;	     (c-set-offset 'arglist-close 0)
 ;	     (c-set-offset 'arglist-cont-nonempty '+)
 ;	     (c-set-offset 'inline-open 0)
