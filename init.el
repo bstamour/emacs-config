@@ -92,11 +92,6 @@
 (defalias 'qrr 'query-replace-regexp)
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-;(require 'cl)
-;(require 'framemove)
-;(windmove-default-keybindings)
-;(setq framemove-hook-into-windmove t)
-
 ;;;-----------------------------------------------------------------------------
 ;;; Editing.
 ;;;-----------------------------------------------------------------------------
@@ -121,18 +116,6 @@
           (lambda ()
             (delete-trailing-whitespace)
 	    (force-backup-of-buffer)))
-
-;; See https://www.emacswiki.org/emacs/InteractivelyDoThings#toc1
-;(require 'ido)
-;(ido-mode t)
-
-;; See https://www.emacswiki.org/emacs/Smex
-;(global-set-key [(meta x)] (lambda ()
-;			     (interactive)
-;			     (or (boundp 'smex-cache)
-;				 (smex-initialize))
-;			     (global-set-key [(meta x)] 'smex)
-;			     (smex)))
 
 ;; vlf is for editing really big files. It opens them in chunks.
 ;; See here: https://github.com/m00natic/vlfi for info.
@@ -209,7 +192,6 @@
 
 (require 'slime)
 (slime-setup '(slime-fancy))
-;(load (expand-file-name "~/quicklisp/slime-helper.el"))
 
 ;;;-----------------------------------------------------------------------------
 ;;; scheme config
@@ -220,52 +202,11 @@
 (if on-windows
     (setq geiser-racket-binary "C:/Program Files/Racket/Racket.exe"))
 
-;(defun my-pretty-lambda ()
-;  "make some word or string show as pretty Unicode symbols"
-;  (setq prettify-symbols-alist
-;        '(
-;          ("lambda" . 955) ; λ
-;          )))
-
-;(add-hook 'geiser-repl-mode-hook
-;	  (lambda ()
-;	    (prettify-symbols-mode)
-;	    (my-pretty-lambda)))
-
-;(global-prettify-symbols-mode 1)
-
 ;;;-----------------------------------------------------------------------------
 ;;; C++ config
 ;;;-----------------------------------------------------------------------------
 
 (require 'cc-mode)
-
-;; Add support for the 'enum class' keyword in C++11.
-(defun inside-class-enum-p (pos)
-  "Checks if POS is within the braces of a C++ \"enum class\"."
-  (ignore-errors
-    (save-excursion
-      (goto-char pos)
-      (up-list -1)
-      (backward-sexp 1)
-      (looking-back "enum[ \t]+class[ \t]+"))))
-
-(defun align-enum-class (langelem)
-  (if (inside-class-enum-p (c-langelem-pos langelem))
-      0
-    (c-lineup-topmost-intro-cont langelem)))
-
-(defun align-enum-class-closing-brace (langelem)
-  (if (inside-class-enum-p (c-langelem-pos langelem))
-      '-
-    '+))
-
-(defun fix-enum-class ()
-  "Setup `c++-mode' to better handle \"class enum\"."
-  (add-to-list 'c-offsets-alist
-	       '(topmost-intro-cont . align-enum-class))
-  (add-to-list 'c-offsets-alist
-               '(statement-cont . align-enum-class-closing-brace)))
 
 ;; Change the font to "comment" inside an #if 0 #endif block.
 (defun my-c-mode-font-lock-if (limit)
@@ -336,15 +277,8 @@
 ;; Activate it all.
 (add-hook 'c++-mode-hook
 	  '(lambda ()
-	     (c-set-style "stroustrup")
 	     (setq c-basic-offset 2)
 	     (setq c-syntactic-indentation nil)
-;	     (c-toggle-electric-state -1)
-	     (c-set-offset 'innamespace 0)
-;	     (c-set-offset 'arglist-close 0)
-;	     (c-set-offset 'arglist-cont-nonempty '+)
-;	     (c-set-offset 'inline-open 0)
-	     (fix-enum-class)
 	     (font-lock-add-keywords
 	      nil
 	      '((my-c-mode-font-lock-if
