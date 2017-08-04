@@ -338,6 +338,8 @@
 	  '(lambda ()
 	     (c-set-style "stroustrup")
 	     (setq c-basic-offset 2)
+	     (setq c-syntactic-indentation nil)
+	     (c-toggle-electric-state -1)))
 	     (c-set-offset 'innamespace 0)
 ;	     (c-set-offset 'arglist-close 0)
 ;	     (c-set-offset 'arglist-cont-nonempty '+)
