@@ -277,8 +277,10 @@
 ;; Activate it all.
 (add-hook 'c++-mode-hook
 	  '(lambda ()
+	     ;; Turn off complex indentation and just indent to the previous line.
 	     (setq c-basic-offset 2)
 	     (setq c-syntactic-indentation nil)
+	     (local-set-key (kbd "<enter>") 'electric-newline-and-maybe-indent)
 	     (font-lock-add-keywords
 	      nil
 	      '((my-c-mode-font-lock-if
