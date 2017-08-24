@@ -4,7 +4,7 @@
 (add-to-list 'load-path (directory-file-name (or (file-name-directory #$) (car load-path))))
 
 ;;;### (autoloads nil "elfeed-goodies" "elfeed-goodies.el" (22942
-;;;;;;  13737 919054 167000))
+;;;;;;  58880 0 0))
 ;;; Generated autoloads from elfeed-goodies.el
 
 (autoload 'elfeed-goodies/setup "elfeed-goodies" "\
@@ -19,7 +19,7 @@ Setup Elfeed with extras:
 ;;;***
 
 ;;;### (autoloads nil "elfeed-goodies-logging" "elfeed-goodies-logging.el"
-;;;;;;  (22942 13737 908054 168000))
+;;;;;;  (22942 58880 0 0))
 ;;; Generated autoloads from elfeed-goodies-logging.el
 
 (autoload 'elfeed-goodies/toggle-logs "elfeed-goodies-logging" "\
@@ -31,7 +31,7 @@ Toggle the display of Elfeed logs in a popup window.
 
 ;;;### (autoloads nil nil ("elfeed-goodies-new-entry-hooks.el" "elfeed-goodies-pkg.el"
 ;;;;;;  "elfeed-goodies-search-mode.el" "elfeed-goodies-show-mode.el"
-;;;;;;  "elfeed-goodies-split-pane.el") (22942 13737 923054 167000))
+;;;;;;  "elfeed-goodies-split-pane.el") (22942 58880 0 0))
 
 ;;;***
 

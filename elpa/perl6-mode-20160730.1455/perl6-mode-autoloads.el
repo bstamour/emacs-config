@@ -1,9 +1,9 @@
 ;;; perl6-mode-autoloads.el --- automatically extracted autoloads
 ;;
 ;;; Code:
-(add-to-list 'load-path (or (file-name-directory #$) (car load-path)))
+(add-to-list 'load-path (directory-file-name (or (file-name-directory #$) (car load-path))))
 
-;;;### (autoloads nil "perl6-detect" "perl6-detect.el" (22526 16905
+;;;### (autoloads nil "perl6-detect" "perl6-detect.el" (22942 58889
 ;;;;;;  0 0))
 ;;; Generated autoloads from perl6-detect.el
 
@@ -28,7 +28,7 @@ nil otherwise.
 
 ;;;***
 
-;;;### (autoloads nil "perl6-mode" "perl6-mode.el" (22526 16905 0
+;;;### (autoloads nil "perl6-mode" "perl6-mode.el" (22942 58889 0
 ;;;;;;  0))
 ;;; Generated autoloads from perl6-mode.el
 
@@ -40,7 +40,7 @@ Major mode for editing Perl 6 code.
 ;;;***
 
 ;;;### (autoloads nil nil ("perl6-font-lock.el" "perl6-indent.el"
-;;;;;;  "perl6-mode-pkg.el") (22526 16905 323000 0))
+;;;;;;  "perl6-mode-pkg.el") (22942 58889 0 0))
 
 ;;;***
 
