@@ -102,8 +102,8 @@
 ;;;-----------------------------------------------------------------------------
 
 ;; Make sure dired doesn't get too cluttered up.
-(use-package dired-x :ensure t)
-(setq dired-omit-mode t)
+;(use-package dired-x :ensure t)
+;(setq dired-omit-mode t)
 
 (add-hook 'before-save-hook
           (lambda ()
@@ -116,8 +116,6 @@
 (use-package vlf :ensure t :defer t)
 ;(require 'vlf-setup)
 
-(set-language-environment "UTF-8")
-(set-default-coding-systems 'utf-8)
 (define-key key-translation-map (kbd "C-c C-;") (kbd "◊"))
 
 ;; For editing text.
@@ -172,6 +170,7 @@
 
 (use-package elfeed
   :ensure t
+  :defer t
   :bind (:map elfeed-search-mode-map
 	      ("q" . bjm/elfeed-save-db-and-bury)
 	      ("Q" . bjm/elfeed-save-db-and-bury))
