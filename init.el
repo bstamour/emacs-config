@@ -101,10 +101,6 @@
 ;;; Editing.
 ;;;-----------------------------------------------------------------------------
 
-;; Make sure dired doesn't get too cluttered up.
-;(use-package dired-x :ensure t)
-;(setq dired-omit-mode t)
-
 (add-hook 'before-save-hook
           (lambda ()
             (delete-trailing-whitespace)
@@ -114,7 +110,6 @@
 ;; vlf is for editing really big files. It opens them in chunks.
 ;; See here: https://github.com/m00natic/vlfi for info.
 (use-package vlf :ensure t :defer t)
-;(require 'vlf-setup)
 
 (define-key key-translation-map (kbd "C-c C-;") (kbd "◊"))
 
@@ -258,7 +253,7 @@
         (flet ((start-comment
                 ()
                 ;; Check if a comment can be started now and
-								;; if so, do it.
+		;; if so, do it.
                 (when (null comment-start)
                   (setq comment-start (match-end 0))
                   (setq comment-start-depth depth)))
@@ -266,7 +261,7 @@
                (finish-comment
                 ()
                 ;; Check if a comment is being closed off now,
-								;; if so, close it and do the font trickery.
+		;; if so, close it and do the font trickery.
                 (when (and
                        (not (null comment-start))
                        (= depth comment-start-depth))
