@@ -33,6 +33,8 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
+(use-package cl :ensure t)
+
 ;;;-----------------------------------------------------------------------------
 ;;; look and feel.
 ;;;-----------------------------------------------------------------------------
@@ -111,15 +113,15 @@
 
 ;; vlf is for editing really big files. It opens them in chunks.
 ;; See here: https://github.com/m00natic/vlfi for info.
-(use-package vlf :ensure t)
-(require 'vlf-setup)
+(use-package vlf :ensure t :defer t)
+;(require 'vlf-setup)
 
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
 (define-key key-translation-map (kbd "C-c C-;") (kbd "◊"))
 
 ;; For editing text.
-(use-package writegood-mode :ensure t)
+(use-package writegood-mode :ensure t :defer t)
 
 ;;;-----------------------------------------------------------------------------
 ;;; RSS Settings.
@@ -172,21 +174,18 @@
   :ensure t
   :bind (:map elfeed-search-mode-map
 	      ("q" . bjm/elfeed-save-db-and-bury)
-	      ("Q" . bjm/elfeed-save-db-and-bury)
-	      )
-  )
-
-(use-package elfeed-goodies
-  :ensure t
+	      ("Q" . bjm/elfeed-save-db-and-bury))
   :config
-  (elfeed-goodies/setup))
+  (use-package elfeed-goodies
+    :ensure t
+    :config
+    (elfeed-goodies/setup)))
 
 ;(use-package elfeed-org
 ;  :ensure t
 ;  :config
 ;  (elfeed-org)
 ;  (setq rmh-elfeed-org-files (list "~/Dropbox/emacs/elfeed.org")))
-
 
 ;;;-----------------------------------------------------------------------------
 ;;; org-mode config
@@ -210,6 +209,7 @@
 
 (use-package bbdb
   :ensure t
+  :defer t
   :config
   ;; initialization
   (bbdb-initialize 'gnus 'message)
@@ -233,8 +233,7 @@
    (lambda ()
      (define-key gnus-summary-mode-map (kbd ";") 'bbdb-mua-edit-field)))
 
-  (add-hook 'bbdb-create-hook 'bbdb-save)
-  )
+  (add-hook 'bbdb-create-hook 'bbdb-save))
 
 ;;;-----------------------------------------------------------------------------
 ;;; git
@@ -318,6 +317,7 @@
 
 (use-package cc-mode
   :ensure t
+  :defer t
   :config
   (add-hook 'c++-mode-hook
 	    '(lambda ()
@@ -365,6 +365,7 @@
 
 (use-package web-mode
   :ensure t
+  :defer t
   :init
   (setq web-mode-code-indent-offset 2)
   :config
@@ -378,6 +379,7 @@
 
 (use-package perl6-mode
   :ensure t
+  :mode "\\.pl6\\'"
   :config
   (setq perl6-indent-offset 2))
 
@@ -387,6 +389,7 @@
 
 (use-package slime
   :ensure t
+  :defer t
   :config
   (if on-windows
       (add-to-list 'exec-path
@@ -404,6 +407,7 @@
 
 (use-package geiser
   :ensure t
+  :defer t
   :config
   (require 'geiser-repl)
   (if on-windows
