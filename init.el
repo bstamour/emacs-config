@@ -14,6 +14,7 @@
 (require 'tramp)
 (require 'package)
 
+(setq package-enable-at-startup nil)
 (package-initialize)
 (mapc
  (lambda (repo) (add-to-list 'package-archives repo) t)
@@ -21,6 +22,11 @@
    ("marmalade" . "http://marmalade-repo.org/packages/")
    ("melpa" . "http://melpa.milkbox.net/packages/")
    ))
+
+;; Bootstrap `use-package'
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
 
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
 (add-to-list 'load-path "~/.emacs.d/site-lisp/cc-mode-snapshot/")
