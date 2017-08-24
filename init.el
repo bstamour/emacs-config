@@ -89,6 +89,11 @@
 			       (find-file "~/.emacs.d/init.el")))
 (global-set-key (kbd "<f8>") 'bst/elfeed-command)
 
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-cb" 'org-iswitchb)
+
 (defalias 'qrr 'query-replace-regexp)
 (defalias 'yes-or-no-p 'y-or-n-p)
 
@@ -133,11 +138,6 @@
 ;;;-----------------------------------------------------------------------------
 
 (require 'org)
-
-(global-set-key "\C-cl" 'org-store-link)
-(global-set-key "\C-ca" 'org-agenda)
-(global-set-key "\C-cc" 'org-capture)
-(global-set-key "\C-cb" 'org-iswitchb)
 
 (setq org-agenda-files (list "~/Dropbox/org"))
 
@@ -333,40 +333,6 @@
 	    (setq TeX-command-default "Latexmk")))
 
 ;;;-----------------------------------------------------------------------------
-;;; Functions for creating blog posts with Jekyll.
-;;;-----------------------------------------------------------------------------
-
-(setq blog-base-dir "/home/bryan/Projects/personal-site/")
-(setq blog-posts-dir (concat blog-base-dir "_posts/"))
-
-(defun new-blog-post (title)
-  "Prompt for a blog post title, then create the file with the
-proper pre-amble."
-  (interactive "sTitle: ")
-  (let ((file-name (title-to-file-name title))
-	(todays-date (shell-command-to-string "echo -n $(date +%Y-%m-%d)")))
-    (find-file (concat blog-posts-dir todays-date "-" file-name))
-
-    (insert "---")
-    (newline)
-    (insert "layout: post")
-    (newline)
-    (insert (concat "title: " title))
-    (newline)
-    (insert "---")
-
-    (newline)
-    (newline)))
-
-(defun title-to-file-name (title)
-  (concat
-   (downcase
-    (replace-regexp-in-string
-     "[[:space:]]" "-"
-     (replace-regexp-in-string "[^[:alnum:][:space:]]" "" title)))
-   ".md"))
-
-;;;-----------------------------------------------------------------------------
 ;;; Big brother database (bbdb) for storing contacts.
 ;;;-----------------------------------------------------------------------------
 
@@ -506,20 +472,6 @@ proper pre-amble."
       (replace-regexp "  " "\n")
       (beginning-of-buffer))
     ))
-
-;;;-----------------------------------------------------------------------------
-;;; Other weird shit.
-;;;-----------------------------------------------------------------------------
-
-(defun compute-coffee (brand servings)
-  4)
-
-(defun estimate-rswa-data-needs (welds-per-week)
-  "Simple function for generating RSWA data estimates. Output is in kilobytes."
-  (interactive "NWelds per week: ")
-  (let* ((weld-data-size 500)
-	 (total-size (* welds-per-week 52 weld-data-size)))
-    (message (number-to-string total-size))))
 
 ;;;-----------------------------------------------------------------------------
 ;;; This is the end.
