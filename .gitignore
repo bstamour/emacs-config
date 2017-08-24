@@ -5,3 +5,4 @@ windows.el
 abbrev_defs
 url/*
 server/*
+elpa/*
