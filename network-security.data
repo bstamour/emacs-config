@@ -1,0 +1,7 @@
+(
+ (:id "sha1:85457c729378cc93c732b6a3941c8e4f9c2e60f3" :fingerprint "sha1:ab:a6:d7:6a:b3:d3:63:fa:19:0d:65:41:60:23:6e:ef:d3:2a:46:dc" :host "marmalade-repo.org:443" :conditions (:insecure :unknown-ca :invalid))
+ (:id "sha1:ff926bcea8c935f2eab94388cdc28d214f46682c" :fingerprint "sha1:90:56:9e:31:d8:1d:d6:5f:24:d8:db:89:88:b1:12:65:33:88:24:54" :host "worker.bryanstamour.com:993" :conditions (:self-signed :insecure :unknown-ca :invalid))
+ (:id "sha1:d5b0737e2f54091af43b173d7aefc92f0d03f2dd" :fingerprint "sha1:90:56:9e:31:d8:1d:d6:5f:24:d8:db:89:88:b1:12:65:33:88:24:54" :host "worker.bryanstamour.com:587" :conditions (:self-signed :unknown-ca :invalid))
+ (:id "sha1:ffd9fbf47321d39c1599190ced9e3ecb2869279a" :fingerprint "sha1:c2:31:20:37:8d:8e:82:72:eb:e4:07:a9:75:b4:da:82:b4:22:38:56" :host "minerva.bryanstamour.com:587" :conditions (:self-signed :unknown-ca :invalid))
+ (:id "sha1:6e0c5c56803a5aa91eda35c729168cfeb1c40bfd" :fingerprint "sha1:d3:76:6b:5e:b5:2a:48:c6:07:71:ff:30:87:7f:5c:8f:1d:8b:00:36" :host "minerva.bryanstamour.com:143" :conditions (:self-signed :unknown-ca :invalid))
+)

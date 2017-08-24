@@ -87,7 +87,8 @@
 (global-set-key (kbd "<f7>") (lambda ()
 			       (interactive)
 			       (find-file "~/.emacs.d/init.el")))
-(global-set-key (kbd "<f8>") 'bst/elfeed-command)
+
+(global-set-key (kbd "<f8>") 'bjm/elfeed-load-db-and-open)
 
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-ca" 'org-agenda)
@@ -366,8 +367,6 @@
 ;;; RSS Settings.
 ;;;-----------------------------------------------------------------------------
 
-(require 'elfeed)
-
 (setf elfeed-db-directory "~/Dropbox/emacs/elfeed")
 
 (setq elfeed-feeds
@@ -385,8 +384,12 @@
 	"https://phys.org/rss-feed/physics-news/"
 	"https://phys.org/rss-feed/space-news/"
 	"https://phys.org/rss-feed/technology-news/"
-
 	))
+
+(defun elfeed-mark-all-as-read ()
+  (interactive)
+  (mark-whole-buffer)
+  (elfeed-search-untag-all-unread))
 
 ;;functions to support syncing .elfeed between machines
 ;;makes sure elfeed reads index from disk before launching
@@ -404,22 +407,29 @@
   (elfeed-db-save)
   (quit-window))
 
-(defun bst/elfeed-kill-and-set ()
-  (interactive)
-  (bjm/elfeed-save-db-and-bury)
-  (setf *elfeed-cmd* 'open-it))
+;(defalias 'elfeed-toggle-star
+;  (elfeed-expose #'elfeed-search-toggle-all 'star))
 
-(defvar *elfeed-cmd* 'open-it)
+(use-package elfeed
+  :ensure t
+  :bind (:map elfeed-search-mode-map
+	      ("q" . bjm/elfeed-save-db-and-bury)
+	      ("Q" . bjm/elfeed-save-db-and-bury)
+	      ("m" . elfeed-toggle-star)
+	      ("M" . elfeed-toggle-star)
+	      )
+  )
 
-(defun bst/elfeed-command ()
-  (interactive)
-  (if (eq *elfeed-cmd* 'open-it)
-      (progn
-	(bjm/elfeed-load-db-and-open)
-	(setf *elfeed-cmd* 'close-it))
-    (bst/elfeed-kill-and-set)))
+(use-package elfeed-goodies
+  :ensure t
+  :config
+  (elfeed-goodies/setup))
 
-(define-key elfeed-search-mode-map "q" 'bst/elfeed-kill-and-set)
+;(use-package elfeed-org
+;  :ensure t
+;  :config
+;  (elfeed-org)
+;  (setq rmh-elfeed-org-files (list "~/Dropbox/emacs/elfeed.org")))
 
 ;;;-----------------------------------------------------------------------------
 ;;; IRC settings.
