@@ -198,7 +198,9 @@
   (setq org-todo-keywords
 	'((sequence "TODO" "WAITING" "HIGH-PRIORITY" "ON-HOLD" "|" "DONE" "DELEGATED")))
   (org-babel-do-load-languages
-   'org-babel-load-languages '((C . t))))
+   'org-babel-load-languages '((C . t)))
+  (when on-windows
+    (setq org-babel-C++-compiler "C:\\MinGW\\bin\\g++")))
 
 ;;;-----------------------------------------------------------------------------
 ;;; Big brother database (bbdb) for storing contacts.
