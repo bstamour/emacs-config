@@ -195,7 +195,9 @@
   :config
   (setq org-agenda-files (list "~/Dropbox/org"))
   (setq org-todo-keywords
-	'((sequence "TODO" "WAITING" "HIGH-PRIORITY" "ON-HOLD" "|" "DONE" "DELEGATED"))))
+	'((sequence "TODO" "WAITING" "HIGH-PRIORITY" "ON-HOLD" "|" "DONE" "DELEGATED")))
+  (org-babel-do-load-languages
+   'org-babel-load-languages '((C . t))))
 
 ;;;-----------------------------------------------------------------------------
 ;;; Big brother database (bbdb) for storing contacts.
