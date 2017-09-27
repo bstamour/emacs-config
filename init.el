@@ -92,7 +92,6 @@
 (global-set-key (kbd "<f7>") (lambda ()
 			       (interactive)
 			       (find-file "~/.emacs.d/init.el")))
-(global-set-key (kbd "<f8>") 'bjm/elfeed-load-db-and-open)
 
 (defalias 'qrr 'query-replace-regexp)
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -125,7 +124,7 @@
 (setq elfeed-feeds
       '(
 	;; Normal news.
-	"http://rss.cnn.com/rss/cnn_topstories.rss"
+;	"http://rss.cnn.com/rss/cnn_topstories.rss"
 	"http://rss.nytimes.com/services/xml/rss/nyt/US.xml"
 
 	;; Blogs/tech
@@ -136,7 +135,6 @@
 	;; Science news
 	"https://phys.org/rss-feed/physics-news/"
 	"https://phys.org/rss-feed/space-news/"
-	"https://phys.org/rss-feed/technology-news/"
 	))
 
 (defun elfeed-mark-all-as-read ()
@@ -166,7 +164,10 @@
 (use-package elfeed
   :ensure t
   :defer t
-  :bind (:map elfeed-search-mode-map
+  :commands (elfeed-db-load elfeed elfeed-search-update--force)
+  :bind (
+	 ("<f8>" . bjm/elfeed-load-db-and-open)
+	 :map elfeed-search-mode-map
 	      ("q" . bjm/elfeed-save-db-and-bury)
 	      ("Q" . bjm/elfeed-save-db-and-bury))
   :config
