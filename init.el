@@ -201,11 +201,15 @@
    'org-babel-load-languages '((C . t)))
 
   ;; Add an onlyenv environment that creates a block that behaves like BEAMER's onlyenv
-  (add-to-list 'org-beamer-environments-extra
-	       '("onlyenv"
-		 "O"
-		 "\\begin{onlyenv}%a \\begin{block}{%h}"
-		 "\\end{block}\\end{onlyenv}"))
+
+  (add-hook
+   'org-beamer-mode-hook
+   (lambda ()
+     (add-to-list 'org-beamer-environments-extra
+		  '("onlyenv"
+		    "O"
+		    "\\begin{onlyenv}%a \\begin{block}{%h}"
+		    "\\end{block}\\end{onlyenv}"))))
 
   (when on-windows
     (setq org-babel-C++-compiler "C:\\MinGW\\bin\\g++")))
