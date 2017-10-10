@@ -341,7 +341,13 @@
 		'((my-c-mode-font-lock-if
 		   (0
 		    font-lock-comment-face prepend)))
-		'add-to-end))))
+		'add-to-end)
+
+	       (load (if on-windows
+			 "C:/program files/LLVM/share/clang/clang-format.el"
+		       "/usr/share/clang/clang-format.el"))
+	       (global-set-key [f10] 'clang-format-region)
+	       )))
 
 ;;;-----------------------------------------------------------------------------
 ;;; Haskell config.
