@@ -328,6 +328,8 @@
 
 (use-package cc-mode
   :ensure t
+  :bind (:map c++-mode-map
+	      ("C-M-\\" . clang-format-region))
   :defer t
   :config
   (add-hook 'c++-mode-hook
@@ -346,7 +348,6 @@
 	       (load (if on-windows
 			 "C:/program files/LLVM/share/clang/clang-format.el"
 		       "/usr/share/clang/clang-format.el"))
-	       (global-set-key [f10] 'clang-format-region)
 	       )))
 
 ;;;-----------------------------------------------------------------------------
