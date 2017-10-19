@@ -42,8 +42,9 @@
 ;; Color theme.
 
 (use-package solarized-theme :ensure t)
+(use-package underwater-theme :ensure t)
 
-(defvar *dark-theme* 'solarized-dark)
+(defvar *dark-theme* 'underwater)
 (defvar *light-theme* 'solarized-light)
 (defvar *current-theme* nil)
 
