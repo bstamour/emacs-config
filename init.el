@@ -28,15 +28,20 @@
 ;;;-----------------------------------------------------------------------------
 (require 'package)
 (setq package-enable-at-startup nil)
-;(when (version< emacs-version "27.0") (package-initialize))
+(when (version< emacs-version "27.0") (package-initialize))
 (mapc
  (lambda (repo) (add-to-list 'package-archives repo) t)
  '(("gnu"   . "http://elpa.gnu.org/packages/")
    ("melpa" . "http://melpa.milkbox.net/packages/")))
 
 
-(package-initialize)
-(package-install 'use-package)
+(defun download-use-package ()
+  "Call this function to grab use-package from the repos.
+Do this once when installing emacs for the first time."
+  (interactive)
+  (package-initialize)
+  (package-refresh-contents)
+  (package-install 'use-package))
 
 
 ;;;-----------------------------------------------------------------------------
