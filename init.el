@@ -28,14 +28,22 @@
 ;;;-----------------------------------------------------------------------------
 (require 'package)
 (setq package-enable-at-startup nil)
-(when (version< emacs-version "27.0") (package-initialize))
+;(when (version< emacs-version "27.0") (package-initialize))
 (mapc
  (lambda (repo) (add-to-list 'package-archives repo) t)
  '(("gnu"   . "http://elpa.gnu.org/packages/")
    ("melpa" . "http://melpa.milkbox.net/packages/")))
 
 
+(package-initialize)
+(package-install 'use-package)
+
+
 ;;;-----------------------------------------------------------------------------
+
+(use-package solarized-theme
+  :ensure t)
+
 (defconst themes '(solarized-dark solarized-light leuven))
 (defvar which-theme 0)
 
