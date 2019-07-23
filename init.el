@@ -113,11 +113,14 @@ Do this once when installing emacs for the first time."
 	 ("C-c a"   . org-agenda)
 	 ("C-c c"   . org-capture)
 	 ("C-c b"   . org-iswitch))
-  :config (setq org-agenda-files      (list "~/Dropbox/wiki")
-		org-todo-keywords     '((sequence "TODO" "DELEGATED" "ON-HOLD" "|" "DONE"))
-		org-capture-templates '(("t" "Todo [inbox]" entry
-					 (file "~/Dropbox/wiki/actions.org")
-					 "* TODO %i%?"))))
+  :config (setq org-agenda-files
+		(list "~/Dropbox/wiki")
+		org-todo-keywords
+		'((sequence "TODO" "DELEGATED" "ON-HOLD" "|" "DONE"))
+		org-capture-templates
+		'(("t" "Todo [inbox]" entry
+		   (file "~/Dropbox/wiki/actions.org")
+		   "* TODO %i%?"))))
 
 
 ;;;-----------------------------------------------------------------------------
@@ -131,36 +134,39 @@ Do this once when installing emacs for the first time."
 (use-package cc-mode
   :ensure t
   :bind (("<f5>" . compile))
-  :hook (c++-mode . (lambda ()
-		      ;; Turn off complex indentation and just indent to the previous line.
-		      (setq c-basic-offset          2
-			    c-syntactic-indentation nil)
-		      (local-set-key (kbd "<enter>") 'electric-newline-and-maybe-indent)
-		      (local-set-key (kbd "C-M-\\")  'clang-format-region)
+  :hook (c++-mode .
+		  (lambda ()
+		    ;; Turn off complex indentation and just indent to
+		    ;; the previous line.
+		    (setq c-basic-offset          2
+			  c-syntactic-indentation nil)
+		    (local-set-key (kbd "<enter>") 'electric-newline-and-maybe-indent)
+		    (local-set-key (kbd "C-M-\\")  'clang-format-region)
 
-		      ;; Special compile command. Unless there's a makefile present,
-		      ;; just invoke the compiler on the current file.
-		      (unless (or (file-exists-p "makefile")
-				  (file-exists-p "Makefile"))
-			(set (make-local-variable 'compile-command)
-			     (let ((flags "-std=c++17 -O3"))
-			       (if on-windows
-				   (concat
-				    "\"C:/program files/LLVM/bin/clang++\" "
-				    "-std=c++17 -O3 -Xclang -flto-visibility-public-std -o "
-				    (file-name-base buffer-file-name)
-				    ".exe "
-				    buffer-file-name)
+		    ;; Special compile command. Unless there's a makefile present,
+		    ;; just invoke the compiler on the current file.
+		    (unless (or (file-exists-p "makefile")
+				(file-exists-p "Makefile"))
+		      (set (make-local-variable 'compile-command)
+			   (let ((flags "-std=c++17 -O3"))
+			     (if on-windows
 				 (concat
-				  "clang++ -std=c++17 -O3 -o "
+				  "\"C:/program files/LLVM/bin/clang++\" "
+				  "-std=c++17 -O3 -Xclang "
+				  "-flto-visibility-public-std -o "
 				  (file-name-base buffer-file-name)
-				  " "
-				  buffer-file-name)))))
+				  ".exe "
+				  buffer-file-name)
+			       (concat
+				"clang++ -std=c++17 -O3 -o "
+				(file-name-base buffer-file-name)
+				" "
+				buffer-file-name)))))
 
-		      ;; Load up clang-format so we can format the buffer nicely.
-		      (load (if on-windows
-				"C:/program files/LLVM/share/clang/clang-format.el"
-			      "/usr/share/clang/clang-format.el")))))
+		    ;; Load up clang-format so we can format the buffer nicely.
+		    (load (if on-windows
+			      "C:/program files/LLVM/share/clang/clang-format.el"
+			    "/usr/share/clang/clang-format.el")))))
 
 
 ;;;-----------------------------------------------------------------------------
@@ -210,9 +216,12 @@ Do this once when installing emacs for the first time."
     ;; so that the beginning of the buffer may not be visible correctly.
     ;(set-face-attribute 'default nil :height 100)
 
-    (setq default-directory         "~/"
-	  ange-ftp-ftp-program-name "C:/Users/Bryan.TESSONICS/ftp-for-win32-1/Release/ftp.exe"
-	  tramp-default-method      "pscp")
+    (setq default-directory
+	  "~/"
+	  ange-ftp-ftp-program-name
+	  "C:/Users/Bryan.TESSONICS/ftp-for-win32-1/Release/ftp.exe"
+	  tramp-default-method
+	  "pscp")
 
     (defun delphi-cleaner ()
       "Help clean up delphi error dumps."
