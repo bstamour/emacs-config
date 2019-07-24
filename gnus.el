@@ -93,6 +93,7 @@
 			       "ISO.Lib-Ext"
 			       "ISO.Ext"
 			       "ISO.Edit"
+			       "ISO.Education"
 			       "ISO.Discussion"
 			       "ISO.All"
 			       "ISO.Direction"
@@ -101,11 +102,12 @@
 			       "ISO.Modules"
 			       "ISO.Networking"
 			       "ISO.News"
+			       "ISO.Tooling"
 			       )
 			      ("Mailings"
 			       "UAI"
 			       "arxiv")
 			      ("Gnus")))))    ; Anything not listed gets tossed
-					; into the gnus top-level
+					      ; into the gnus top-level
 
 ;;;;============================================================================
