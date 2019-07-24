@@ -10,7 +10,9 @@
 ;;; shortcuts
 ;;; ---------
 ;;;
+;;;   F5         compile
 ;;;   F6         magit (git)
+;;;   F9         elfeed
 ;;;   F10        switch color themes
 
 
@@ -201,6 +203,26 @@ Do this once when installing emacs for the first time."
 ;;;-----------------------------------------------------------------------------
 (use-package erc
   :config (setq erc-nick "bstamour"))
+
+
+;;;-----------------------------------------------------------------------------
+(defun elfeed-mark-all-as-read ()
+  (interactive)
+  (mark-whole-buffer)
+  (elfeed-search-untag-all-unread))
+
+(use-package elfeed
+  :ensure t
+  :bind (("<f9>" . elfeed))
+  :config
+  (progn
+    (setq elfeed-feeds
+	'(
+	  "https://rss.cbc.ca/lineup/topstories.xml"
+	  "https://rss.cbc.ca/lineup/canada-windsor.xml"
+	  "http://feeds.reuters.com/reuters/topNews"
+	  ))
+    (define-key elfeed-search-mode-map (kbd "R") 'elfeed-mark-all-as-read)))
 
 
 ;;;-----------------------------------------------------------------------------
