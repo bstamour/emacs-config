@@ -17,8 +17,8 @@
 
 
 ;;;-----------------------------------------------------------------------------
-(defvar on-windows (string= system-type "windows-nt"))
-(defvar on-laptop  (string= system-name "bryan-laptop"))
+(defvar on-windows (string= (system-name) "BRYANPC"))
+(defvar on-laptop  (string= (system-name) "bryan-laptop"))
 
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
@@ -36,7 +36,6 @@
  '(("gnu"   . "http://elpa.gnu.org/packages/")
    ("melpa" . "http://melpa.milkbox.net/packages/")))
 
-
 (defun download-use-package ()
   "Call this function to grab use-package from the repos.
 Do this once when installing emacs for the first time."
@@ -47,28 +46,33 @@ Do this once when installing emacs for the first time."
 
 
 ;;;-----------------------------------------------------------------------------
+(defun open-config ()
+  (interactive)
+  (find-file "~/.emacs.d/init.el"))
 
+
+;;;-----------------------------------------------------------------------------
 (use-package solarized-theme
   :ensure t)
 
-(defconst themes '(solarized-dark solarized-light leuven))
+(defconst *themes* '(leuven solarized-dark solarized-light))
 (defvar which-theme 0)
 
-(mapc (lambda (theme-name) (load-theme theme-name t t)) themes)
+(mapc (lambda (theme-name) (load-theme theme-name t t)) *themes*)
 
 (defun toggle-themes ()
   "Switch beteen a list of themes with a single keystroke."
   (interactive)
-  (disable-theme (nth which-theme themes))
+  (disable-theme (nth which-theme *themes*))
   (setq which-theme
-	(if (eq which-theme (- (length themes) 1))
+	(if (eq which-theme (- (length *themes*) 1))
 	    0
 	  (+ which-theme 1)))
-  (enable-theme (nth which-theme themes)))
+  (enable-theme (nth which-theme *themes*)))
 (define-key global-map (kbd "<f10>") 'toggle-themes)
 
 (if (display-graphic-p)
-    (enable-theme (nth which-theme themes))
+    (enable-theme (nth which-theme *themes*))
   (load-theme 'wheatgrass))
 
 
@@ -92,7 +96,7 @@ Do this once when installing emacs for the first time."
 
 (show-paren-mode t)
 (column-number-mode t)
-(iswitchb-mode 1)
+;(iswitchb-mode 1)
 
 (add-hook 'before-save-hook
           (lambda () (delete-trailing-whitespace)))
@@ -136,39 +140,40 @@ Do this once when installing emacs for the first time."
 (use-package cc-mode
   :ensure t
   :bind (("<f5>" . compile))
-  :hook (c++-mode .
-		  (lambda ()
-		    ;; Turn off complex indentation and just indent to
-		    ;; the previous line.
-		    (setq c-basic-offset          2
-			  c-syntactic-indentation nil)
-		    (local-set-key (kbd "<enter>") 'electric-newline-and-maybe-indent)
-		    (local-set-key (kbd "C-M-\\")  'clang-format-region)
+  :hook
+  (c++-mode .
+	    (lambda ()
+	      ;; Turn off complex indentation and just indent to
+	      ;; the previous line.
+	      (setq c-basic-offset          2
+		    c-syntactic-indentation nil)
+	      (local-set-key (kbd "<enter>") 'electric-newline-and-maybe-indent)
+	      (local-set-key (kbd "C-M-\\")  'clang-format-region)
 
-		    ;; Special compile command. Unless there's a makefile present,
-		    ;; just invoke the compiler on the current file.
-		    (unless (or (file-exists-p "makefile")
-				(file-exists-p "Makefile"))
-		      (set (make-local-variable 'compile-command)
-			   (let ((flags "-std=c++17 -O3"))
-			     (if on-windows
-				 (concat
-				  "\"C:/program files/LLVM/bin/clang++\" "
-				  "-std=c++17 -O3 -Xclang "
-				  "-flto-visibility-public-std -o "
-				  (file-name-base buffer-file-name)
-				  ".exe "
-				  buffer-file-name)
-			       (concat
-				"clang++ -std=c++17 -O3 -o "
-				(file-name-base buffer-file-name)
-				" "
-				buffer-file-name)))))
+	      ;; Special compile command. Unless there's a makefile present,
+	      ;; just invoke the compiler on the current file.
+	      (unless (or (file-exists-p "makefile")
+			  (file-exists-p "Makefile"))
+		(set (make-local-variable 'compile-command)
+		     (let ((flags "-std=c++17 -O3"))
+		       (if on-windows
+			   (concat
+			    "\"C:/program files/LLVM/bin/clang++\" "
+			    "-std=c++17 -O3 -Xclang "
+			    "-flto-visibility-public-std -o "
+			    (file-name-base buffer-file-name)
+			    ".exe "
+			    buffer-file-name)
+			 (concat
+			  "clang++ -std=c++17 -O3 -o "
+			  (file-name-base buffer-file-name)
+			  " "
+			  buffer-file-name)))))
 
-		    ;; Load up clang-format so we can format the buffer nicely.
-		    (load (if on-windows
-			      "C:/program files/LLVM/share/clang/clang-format.el"
-			    "/usr/share/clang/clang-format.el")))))
+	      ;; Load up clang-format so we can format the buffer nicely.
+	      (load (if on-windows
+			"C:/program files/LLVM/share/clang/clang-format.el"
+		      "/usr/share/clang/clang-format.el")))))
 
 
 ;;;-----------------------------------------------------------------------------
@@ -197,7 +202,8 @@ Do this once when installing emacs for the first time."
 		  TeX-parse-self t)
 	    (setq-default TeX-engine   'xetex
 			  TeX-PDF-mode t)
-	    (setcar (cdr (assoc 'output-pdf TeX-view-program-selection)) "Okular")))
+	    (setcar (cdr (assoc 'output-pdf TeX-view-program-selection))
+		    "Okular")))
 
 
 ;;;-----------------------------------------------------------------------------
@@ -208,8 +214,9 @@ Do this once when installing emacs for the first time."
 ;;;-----------------------------------------------------------------------------
 (defun elfeed-mark-all-as-read ()
   (interactive)
-  (mark-whole-buffer)
-  (elfeed-search-untag-all-unread))
+  (with-no-warnings
+    (mark-whole-buffer)
+    (elfeed-search-untag-all-unread)))
 
 (use-package elfeed
   :ensure t
@@ -248,9 +255,10 @@ Do this once when installing emacs for the first time."
     (defun delphi-cleaner ()
       "Help clean up delphi error dumps."
       (interactive)
-      (beginning-of-buffer)
-      (replace-regexp "  " "\n")
-      (beginning-of-buffer))))
+      (with-no-warnings
+	(beginning-of-buffer)
+	(replace-regexp "  " "\n")
+	(beginning-of-buffer)))))
 
 
 ;;;;============================================================================
